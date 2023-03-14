@@ -4,37 +4,39 @@ using UnityEngine;
 
 public class Water : MonoBehaviour
 {
-    // private bool inWater;
-    // private float gravityTos;
-    // public GameObject player;
-    // private Rigidbody2D rb;
-    // public WaterController waterController;
+    public bool inWater;                            //水に入った
+    public WaterController waterController;         //水中呼吸
+    public PlayerController playerController;       //移動関連
 
 
-    // void Start()
-    // {
-    //     rb = player.GetComponent<Rigidbody2D>();
-    //     gravityTos = rb.gravityScale;
-    // }
 
-    // void OnTriggerEnter2D(Collider2D col)
-    // {
-    //     if (col.CompareTag("Player"))
-    //     {
-    //         Debug.Log("水に触れている");
-    //         inWater = true;
-    //         void WaterAir(bool inWater);
-    //         //rb.gravityScale = rb.gravityScale / 4;
-    //     }
-    // }
-    // void OnTriggerExit2D(Collider2D col)
-    // {
-    //     if (col.CompareTag("Player"))
-    //     {
-    //         Debug.Log("水から出た");
-    //         inWater = false;
-    //         void WaterAir(bool inWater);
-    //         //rb.gravityScale = gravityTos;
-    //     }
-    // }
+    void OnTriggerStay2D(Collider2D col)
+    {
+        if (col.CompareTag("Player"))
+        {
+            if (inWater == false)
+            {
+                Debug.Log("水に触れている");
+                inWater = true;
+
+                waterController.WaterAir(inWater);
+                playerController.WaterMove(inWater);
+            }
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D col)
+    {
+        if (col.CompareTag("Player"))
+        {
+            if (inWater == true)
+            {
+                Debug.Log("水から出た");
+                inWater = false;
+
+                waterController.WaterAir(inWater);
+                playerController.WaterMove(inWater);
+            }
+        }
+    }
 }

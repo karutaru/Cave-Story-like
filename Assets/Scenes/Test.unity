@@ -548,7 +548,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1, z: -10}
+  m_LocalPosition: {x: -25.9, y: 12.1, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -601,7 +601,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: a48ac9f37557bf64f888d6fe6bf7f677, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.12
+  m_Volume: 0.079
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -25152,7 +25152,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 740703560}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1, z: 0}
+  m_LocalPosition: {x: -25.9, y: 12.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -25271,6 +25271,7 @@ MonoBehaviour:
   maxJumpTime: 0.85
   JumpButtonName: Jump
   rb: {fileID: 740703564}
+  inWater: 0
   isGrounded: 0
   callStepCount: 0
   moveSpeed: 3.8
@@ -25296,6 +25297,7 @@ GameObject:
   - component: {fileID: 1117011532}
   - component: {fileID: 1117011534}
   - component: {fileID: 1117011533}
+  - component: {fileID: 1117011536}
   - component: {fileID: 1117011535}
   m_Layer: 5
   m_Name: WaterController
@@ -25352,7 +25354,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 7
     m_MaxSize: 80
-    m_Alignment: 1
+    m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 1
@@ -25382,6 +25384,22 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
   m_EffectDistance: {x: 3, y: -3}
   m_UseGraphicAlpha: 1
+--- !u!114 &1117011536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1117011531}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35a2f0518528c034abd7a4b914a73d84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  breathCounter: 0.15
+  air: 100
+  breath: {fileID: 1117011533}
+  breathLabel: {fileID: 1770802424}
 --- !u!1 &1226669206
 GameObject:
   m_ObjectHideFlags: 0
@@ -25598,7 +25616,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -290, y: 0}
+  m_AnchoredPosition: {x: -250, y: 0}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1770802424
@@ -25628,7 +25646,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 7
     m_MaxSize: 80
-    m_Alignment: 1
+    m_Alignment: 2
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 1
@@ -25891,8 +25909,6 @@ GameObject:
   - component: {fileID: 1920840601}
   - component: {fileID: 1920840600}
   - component: {fileID: 1920840602}
-  - component: {fileID: 1920840604}
-  - component: {fileID: 1920840603}
   - component: {fileID: 1920840605}
   m_Layer: 0
   m_Name: Water
@@ -26327,87 +26343,12 @@ TilemapCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 1
-  m_Offset: {x: 0, y: 0}
-  m_MaximumTileChangeCount: 1000
-  m_ExtrusionFactor: 0.00001
---- !u!66 &1920840603
-CompositeCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1920840598}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_GeometryType: 0
-  m_GenerationType: 0
-  m_EdgeRadius: 0.1
-  m_ColliderPaths:
-  - m_Collider: {fileID: 1920840602}
-    m_ColliderPaths:
-    - - X: -420000000
-        Y: 90000000
-      - X: -410000000
-        Y: 90000000
-      - X: -410000000
-        Y: 80000000
-      - X: -340000000
-        Y: 80000000
-      - X: -340000000
-        Y: 90000000
-      - X: -330000000
-        Y: 90000000
-      - X: -330000000
-        Y: 100000000
-      - X: -310000000
-        Y: 100000000
-      - X: -310000000
-        Y: 107500000
-      - X: -420000000
-        Y: 107500000
-  m_CompositePaths:
-    m_Paths:
-    - - {x: -34.00003, y: 8}
-      - {x: -33.999973, y: 9}
-      - {x: -33, y: 9.00003}
-      - {x: -32.999973, y: 10}
-      - {x: -31, y: 10.00003}
-      - {x: -31.000029, y: 10.75}
-      - {x: -42, y: 10.74997}
-      - {x: -41.999973, y: 9}
-      - {x: -41, y: 8.99997}
-      - {x: -40.999973, y: 8}
-  m_VertexDistance: 0.0005
-  m_OffsetDistance: 0.00005
---- !u!50 &1920840604
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1920840598}
-  m_BodyType: 2
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
+  m_MaximumTileChangeCount: 1000
+  m_ExtrusionFactor: 0.00001
 --- !u!114 &1920840605
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26420,6 +26361,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aae864cf9f85c5f43b04ba3ddc813c74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inWater: 0
+  waterController: {fileID: 1117011536}
+  playerController: {fileID: 740703566}
 --- !u!1 &1974207539
 GameObject:
   m_ObjectHideFlags: 0
@@ -52639,7 +52583,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2115808554}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -1, z: -10}
+  m_LocalPosition: {x: -25.9, y: 12.1, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

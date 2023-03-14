@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour
     // ジャンプに関するパラメータ
     [SerializeField, Min(0)]
     private float jumpPower = 5f;               //ジャンプ力
+    private float jumpPowerKeep;
+    private float jumpWater = 1f;               //水中のジャンプ力
     [SerializeField]
     AnimationCurve jumpCurve = new();
     [SerializeField]
@@ -33,11 +35,13 @@ public class PlayerController : MonoBehaviour
     private bool headHit;
     private bool headHitOnce = false;            //頭を打つのはジャンプ中１回だけ
     private bool jumpLandingOnce = false;        //着地するのはジャンプ後１回だけ
+    public bool inWater;                        //水の中か
     public bool isGrounded;
     public bool callStepCount;                   //万歩計呼び出し
     private float scale;                         // 向きの設定に利用する
     private float stepTimer;                     //万歩計のカウント用
-    public float moveSpeed;                      // 移動速度
+    public float moveSpeed;                      //移動速度
+    private float moveSpeedKeep;                 //移動速度の保存
     public float knockbackPower;                 // 敵と接触した際に吹き飛ばされる力
     public GameObject headHitEffectPrefab;
     public AudioClip headHitSE;
@@ -66,17 +70,23 @@ public class PlayerController : MonoBehaviour
     {
         if (isGrounded == true) //接地していたら
         {
-            rb.gravityScale = 4f;
-            if (jumpLandingOnce == true && rb.velocity.y <= -8f)
+            if (inWater == false)
             {
-                AudioSource.PlayClipAtPoint(jumpLandingSE, transform.position);
-                jumpLandingOnce = false;
+                rb.gravityScale = 4f;
+                if (jumpLandingOnce == true && rb.velocity.y <= -8f)
+                {
+                    AudioSource.PlayClipAtPoint(jumpLandingSE, transform.position);
+                    jumpLandingOnce = false;
+                }
             }
         }
         else //接地していなかったら
         {
-            rb.gravityScale = 2f;
-            jumpLandingOnce = true;
+            if (inWater == false)
+            {
+                rb.gravityScale = 2f;
+                jumpLandingOnce = true;
+            }
         }
 
         //接地判定用のラインキャスト
@@ -124,7 +134,7 @@ public class PlayerController : MonoBehaviour
             if (Input.GetButtonUp(JumpButtonName) || jumpTime >= maxJumpTime) //ジャンプボタンを離したら
             {
                 jumping = false;
-                rb.AddForce(-Vector2.up / (jumpTime + 0.1f), (ForceMode2D)ForceMode.Impulse);
+                rb.AddForce(-Vector2.up / (jumpTime + 0.1f) / jumpWater, (ForceMode2D)ForceMode.Impulse);
                 jumpTime = 0;
             }
             else if(Input.GetButton(JumpButtonName)) //ジャンプボタンを押し続けている間
@@ -136,9 +146,9 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W)) //上矢印キー、もしくはWキーを押している
         {
             //y軸の移動をスムーズに
-            artViewCameraTransposer.m_YDamping = 1f;
+            //artViewCameraTransposer.m_YDamping = 1f;
             //カメラを上に向ける
-            artViewCameraTransposer.m_TrackedObjectOffset.y = 3f;
+            //artViewCameraTransposer.m_TrackedObjectOffset.y = 3f;
 
             if (isRun == true) //走っている最中なら
             {
@@ -151,9 +161,9 @@ public class PlayerController : MonoBehaviour
         }
         else { //上キーを離したら
             //カメラを元に戻す
-            artViewCameraTransposer.m_TrackedObjectOffset.y = 0f;
+            //artViewCameraTransposer.m_TrackedObjectOffset.y = 0f;
             //y軸の移動をカタく
-            artViewCameraTransposer.m_YDamping = 0f;
+            //artViewCameraTransposer.m_YDamping = 0f;
 
             // if (artViewCamera.m_LocalPosition.y <= 0) //yが0になったら
             // {
@@ -287,6 +297,29 @@ public class PlayerController : MonoBehaviour
 
             // 敵の反対側にキャラを吹き飛ばす
             transform.position += direction * knockbackPower;
+        }
+    }
+
+    public void WaterMove(bool waterIn)
+    {
+        inWater = waterIn;
+        if (inWater == true) //水に入ったら
+        {
+            rb.velocity = new Vector2(rb.velocity.x, 0.1f);
+            //ジャンプ力を保存
+            jumpPowerKeep = jumpPower;
+            //ジャンプを2分の1にする
+            jumpPower = jumpPower / 2f;
+            jumpWater = 1000f;
+            rb.gravityScale = 1f;
+            moveSpeedKeep = moveSpeed;
+            moveSpeed = moveSpeed / 2;
+
+        } else { //水から出たら
+            jumpPower = jumpPowerKeep;
+            jumpWater = 1f;
+            rb.gravityScale = 2f;
+            moveSpeed = moveSpeedKeep;
         }
     }
 }

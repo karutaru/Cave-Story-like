@@ -8,7 +8,7 @@ public class GunShot : MonoBehaviour
     public GameObject bulletPrefab;
     public GameObject bulletEffectPrefab;
     private GameObject bulletFire;
-    private GameObject bullet;
+    //private GameObject bullet;
     public Transform firePoint;
     public Vector2 temp;
     public AudioClip shotSound;
@@ -35,7 +35,7 @@ public class GunShot : MonoBehaviour
         Vector2 direction = new Vector2 (playerController.transform.localScale.x * -1, 0);
 
         // 弾をインスタンス化する
-        bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         GameObject bulletFire = Instantiate(bulletEffectPrefab, new Vector2 (firePoint.position.x, firePoint.position.y - 0.2f), firePoint.rotation);
         temp = new Vector2 (firePoint.position.x, firePoint.position.y);
 
@@ -45,10 +45,10 @@ public class GunShot : MonoBehaviour
         // 発射音を再生する
         AudioSource.PlayClipAtPoint(shotSound, transform.position);
 
-        StartCoroutine(RespawnBulletEffect(0.3f));
+        StartCoroutine(RespawnBulletEffect(0.29f, bullet));
     }
 
-    IEnumerator RespawnBulletEffect(float delay)
+    IEnumerator RespawnBulletEffect(float delay, GameObject bullet)
     {
         yield return new WaitForSeconds(delay);
 

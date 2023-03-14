@@ -4,9 +4,22 @@ using UnityEngine;
 
 public class Destroy : MonoBehaviour
 {
+    private float destroyTime;
+    private float timer;
+
     void Start()
     {
-        StartCoroutine("DestroyObj");
+        destroyTime = 0.32f;
+        //StartCoroutine("DestroyObj");
+    }
+
+    void Update()
+    {
+        timer += Time.deltaTime;
+        if (timer >= destroyTime)
+        {
+            Destroy(gameObject);
+        }
     }
 
     IEnumerator DestroyObj()
