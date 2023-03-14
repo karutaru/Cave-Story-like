@@ -4,20 +4,20 @@ using UnityEngine;
 
 public class WaterController : MonoBehaviour
 {
-    private bool inWatercatch;
-    public int air;
+    // private bool inWatercatch;
+    // public int air;
 
 
-    public void WaterAir(bool inWater)
-    {
-        inWatercatch = inWater;
-    }
+    // public void WaterAir(bool inWater)
+    // {
+    //     inWatercatch = inWater;
+    // }
 
-    void Update()
-    {
-        if (inWatercatch == true)
-        {
-            air -= 1;//くうきを減らす
-        }
-    }
+    // void Update()
+    // {
+    //     if (inWatercatch == true)
+    //     {
+    //         air -= 1;//くうきを減らす
+    //     }
+    // }
 }
