@@ -70,6 +70,7 @@ public class PlayerController : MonoBehaviour
     {
         if (isGrounded == true) //接地していたら
         {
+
             if (inWater == false)
             {
                 rb.gravityScale = 4f;
@@ -118,7 +119,7 @@ public class PlayerController : MonoBehaviour
         // ジャンプの開始判定
         if (isGrounded && Input.GetButtonDown(JumpButtonName)) //接地していて、かつジャンプボタンを押した時
         {
-            anim.SetTrigger("Jump");
+            anim.Play("Player_Jump");
             //ジャンプSE再生
             AudioSource.PlayClipAtPoint(jumpSE, transform.position);
             //飛んでいる
@@ -130,8 +131,6 @@ public class PlayerController : MonoBehaviour
 
         if (jumping)                                             // ジャンプ中の処理◆◆
         {
-            //anim.SetTrigger("Jump");
-
             if (Input.GetButtonUp(JumpButtonName) || jumpTime >= maxJumpTime) //ジャンプボタンを離したら
             {
                 jumping = false;
@@ -153,11 +152,11 @@ public class PlayerController : MonoBehaviour
 
             if (isRun == true) //走っている最中なら
             {
-                anim.SetFloat("LookUp", 0.2f);
+                anim.Play("LookUp");
                 anim.SetFloat("LookUpIdle", 0.0f);
             }
             else { //走っていないなら
-                anim.SetFloat("LookUpIdle", 0.2f);
+                anim.Play("LookUpIdle");
                 anim.SetFloat("LookUp", 0.0f);
             }
         }
@@ -177,12 +176,14 @@ public class PlayerController : MonoBehaviour
         }
         if (Input.GetKeyUp(KeyCode.UpArrow) || Input.GetKeyUp(KeyCode.W)) //上矢印キー、もしくはWキーを離したら
         {
-            if (jumping == true)
-                {
-                    anim.SetFloat("LookUpIdle", 0.0f);
-                    anim.SetFloat("LookUp", 0.0f);
-                    anim.SetTrigger("Jump");
-                }
+            if (jumping == true) //飛んでる
+            {
+                anim.SetFloat("LookUpIdle", 0.0f);
+                anim.SetFloat("LookUp", 0.0f);
+                anim.Play("Player_Jump");
+            } else { //飛んでない
+                anim.Play("Player_Idle");
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.E)) //万歩計
@@ -256,8 +257,16 @@ public class PlayerController : MonoBehaviour
             }
             //キャラの向きを移動方向に合わせる
             transform.localScale = temp;
-            //待機状態のアニメの再生を止めて、走るアニメの再生への遷移を行う
-            anim.SetFloat("Run", 0.2f);
+
+            if (isGrounded == true) //飛んでない
+            {
+                //待機状態のアニメの再生を止めて、走るアニメの再生への遷移を行う
+                anim.SetFloat("Run", 0.2f);
+            }
+            if (isGrounded == false)
+            {
+                anim.SetFloat("Run", 0.0f);
+            }
 
         }
         else
