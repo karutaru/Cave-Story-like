@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShotHit : MonoBehaviour
+public class Damage : MonoBehaviour
 {
     public GameObject enemyEffectPrefab;//エネミー用の衝突プレファブ
     public GameObject wallEffectPrefab;//カベ用の衝突プレファブ

@@ -45,7 +45,7 @@ public class GunShot : MonoBehaviour
         // 発射音を再生する
         AudioSource.PlayClipAtPoint(shotSound, transform.position);
 
-        StartCoroutine(RespawnBulletEffect(0.29f, bullet));
+        StartCoroutine(RespawnBulletEffect(0.3f, bullet));
     }
 
     IEnumerator RespawnBulletEffect(float delay, GameObject bullet)

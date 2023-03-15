@@ -548,7 +548,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -25.9, y: 12.1, z: -10}
+  m_LocalPosition: {x: 0, y: -1, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -601,7 +601,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: a48ac9f37557bf64f888d6fe6bf7f677, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.079
+  m_Volume: 0.12
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -964,6 +964,7 @@ GameObject:
   - component: {fileID: 739532459}
   - component: {fileID: 739532461}
   - component: {fileID: 739532460}
+  - component: {fileID: 739532465}
   - component: {fileID: 739532462}
   - component: {fileID: 739532464}
   - component: {fileID: 739532463}
@@ -25051,6 +25052,21 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &739532465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 739532458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a4a56f80d4a0e74e8a22cce6c9e55d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyEffectPrefab: {fileID: 2510631693483142348, guid: 5b33d984885b52042ae66e181b326be0, type: 3}
+  wallEffectPrefab: {fileID: 4292963306959589444, guid: 8ed3d6aa4ca4de34987890dd9851d141, type: 3}
+  wallOrEnemy: 1
 --- !u!1 &740703560
 GameObject:
   m_ObjectHideFlags: 0
@@ -25152,7 +25168,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 740703560}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -25.9, y: 12.1, z: 0}
+  m_LocalPosition: {x: 0, y: -1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -25896,7 +25912,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a4a56f80d4a0e74e8a22cce6c9e55d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  effectPrefab: {fileID: 2510631693483142348, guid: 5b33d984885b52042ae66e181b326be0, type: 3}
+  enemyEffectPrefab: {fileID: 2510631693483142348, guid: 5b33d984885b52042ae66e181b326be0, type: 3}
+  wallEffectPrefab: {fileID: 4292963306959589444, guid: 8ed3d6aa4ca4de34987890dd9851d141, type: 3}
+  wallOrEnemy: 0
 --- !u!1 &1920840598
 GameObject:
   m_ObjectHideFlags: 0
@@ -52583,7 +52601,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2115808554}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -25.9, y: 12.1, z: -10}
+  m_LocalPosition: {x: 0, y: -1, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

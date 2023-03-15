@@ -9,7 +9,7 @@ public class Destroy : MonoBehaviour
 
     void Start()
     {
-        destroyTime = 0.32f;
+        destroyTime = 0.305f;
         //StartCoroutine("DestroyObj");
     }
 
