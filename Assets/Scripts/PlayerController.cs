@@ -118,6 +118,7 @@ public class PlayerController : MonoBehaviour
         // ジャンプの開始判定
         if (isGrounded && Input.GetButtonDown(JumpButtonName)) //接地していて、かつジャンプボタンを押した時
         {
+            anim.SetTrigger("Jump");
             //ジャンプSE再生
             AudioSource.PlayClipAtPoint(jumpSE, transform.position);
             //飛んでいる
@@ -126,10 +127,10 @@ public class PlayerController : MonoBehaviour
             headHitOnce = false;
         }
 
-        // ジャンプ中の処理
-        if (jumping)
+
+        if (jumping)                                             // ジャンプ中の処理◆◆
         {
-            anim.SetTrigger("Jump");
+            //anim.SetTrigger("Jump");
 
             if (Input.GetButtonUp(JumpButtonName) || jumpTime >= maxJumpTime) //ジャンプボタンを離したら
             {
@@ -153,13 +154,14 @@ public class PlayerController : MonoBehaviour
             if (isRun == true) //走っている最中なら
             {
                 anim.SetFloat("LookUp", 0.2f);
+                anim.SetFloat("LookUpIdle", 0.0f);
             }
             else { //走っていないなら
                 anim.SetFloat("LookUpIdle", 0.2f);
                 anim.SetFloat("LookUp", 0.0f);
             }
         }
-        else { //上キーを離したら
+        else { //上キーを押していない状態
             //カメラを元に戻す
             //artViewCameraTransposer.m_TrackedObjectOffset.y = 0f;
             //y軸の移動をカタく
@@ -170,8 +172,17 @@ public class PlayerController : MonoBehaviour
             // //y軸の移動をカタく
             // artViewCameraTransposer.m_YDamping = 0f;
             // }
-            anim.SetFloat("LookUp", 0.0f);
             anim.SetFloat("LookUpIdle", 0.0f);
+            anim.SetFloat("LookUp", 0.0f);
+        }
+        if (Input.GetKeyUp(KeyCode.UpArrow) || Input.GetKeyUp(KeyCode.W)) //上矢印キー、もしくはWキーを離したら
+        {
+            if (jumping == true)
+                {
+                    anim.SetFloat("LookUpIdle", 0.0f);
+                    anim.SetFloat("LookUp", 0.0f);
+                    anim.SetTrigger("Jump");
+                }
         }
 
         if (Input.GetKeyDown(KeyCode.E)) //万歩計
@@ -200,7 +211,7 @@ public class PlayerController : MonoBehaviour
     /// <summary>
     /// 移動
     /// </summary>
-    private void Move() //移動
+    private void Move()                                           //移動◆◆
     {
         // 水平方向への入力受付
         float x = Input.GetAxis(horizontal);
@@ -262,7 +273,8 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void Jump() //ジャンプ
+
+    void Jump()                                             //ジャンプ◆◆
     {
         if (!jumping) //飛んでない
         {
@@ -287,6 +299,7 @@ public class PlayerController : MonoBehaviour
         rb.AddForce(power * Vector2.up, (ForceMode2D)ForceMode.Impulse);
     }
 
+
     private void OnCollisionEnter2D(Collision2D col) { //接触したなら
 
         // 接触したコライダーを持つゲームオブジェクトのTagがEnemyなら 
@@ -300,7 +313,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void WaterMove(bool waterIn)
+    public void WaterMove(bool waterIn)                     //水の中◆◆
     {
         inWater = waterIn;
         if (inWater == true) //水に入ったら
