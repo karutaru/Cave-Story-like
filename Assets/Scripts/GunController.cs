@@ -10,8 +10,8 @@ public class GunController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) // Wか↑を押した時
         {
-            //プレイヤーの向きを取得
-            Vector2 direction = new Vector2 (playerController.transform.localScale.x * -1, 0);
+            // プレイヤーの向いている方向を取得する
+            Vector2 direction = new Vector2 (playerController.playerLookDirection, 0);
 
             //位置を変更
             Transform myTransform = this.transform;
@@ -26,8 +26,8 @@ public class GunController : MonoBehaviour
 
         if (Input.GetKeyUp(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) // Wか↑を離した時
         {
-            //プレイヤーの向きを取得
-            Vector2 direction = new Vector2 (playerController.transform.localScale.x * -1, 0);
+            // プレイヤーの向いている方向を取得する
+            Vector2 direction = new Vector2 (playerController.playerLookDirection, 0);
 
             //位置を変更
             Transform myTransform = this.transform;

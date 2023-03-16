@@ -38,20 +38,25 @@ public class BulletCountController : MonoBehaviour
 		Obj = (GameObject)Instantiate (bulletUIPrefab, new Vector2 (-1224f, 576f), Quaternion.identity);
 		Obj.transform.parent = bulletCountUI.transform;
 
-        if (bullets[0] = null)
-        {
-            //boolでbulletEmptyのtrueをGunShotスクリプトに送り、
-            //再度射撃した時、GunShotスクリプトをifで止め、リロードのスクリプトを呼び出し、このスクリプトの弾数をmaxまで回復
-            //その後、bulletEmptyのtrueをfalseにする
-        }
 
         currentAmmoCount -= 1; //現在の弾数から1発分を引く
 
         if (currentAmmoCount > 0) //弾数が0より多いなら
         {
             shotReady = true; //弾が撃てる
+            gunShot.BulletEmpty(shotReady);
         } else {
             shotReady = false; //弾を撃てない
+            gunShot.BulletEmpty(shotReady);
+            // リロード
+            reload.ReloadBullets(gunMaxAmmo); //弾の最大数を送る
         }
 	}
+
+    public void Reloaded(int amount)
+    {
+        currentAmmoCount = amount;
+        shotReady = true; //弾が撃てる
+        gunShot.BulletEmpty(shotReady);
+    }
 }

@@ -15,15 +15,19 @@ public class Reload : MonoBehaviour
     GameObject reloadObject; //同列のリロードオブジェクト
     [SerializeField]
     PlayerController playerController;
+    public AudioClip ReloadSE;
+    public AudioClip ReloadedSE;
 
     void Start()
     {
-        this.gameObject.transform.localPosition = new Vector2 (0.95f, 0f);
+        this.gameObject.transform.localPosition = new Vector2 (0.95f, 0.4f);
     }
 
     private void Update()
     {
-        
+
+        //gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
+
 
         if (isReloading == true)
         {
@@ -34,15 +38,19 @@ public class Reload : MonoBehaviour
                 //タイマーをリセット
                 timer = 0f;
                 //位置を元に戻す
-                this.gameObject.transform.localPosition = new Vector2 (0.95f, 1.4f);
+                this.gameObject.transform.localPosition = new Vector2 (0.95f, 0.4f);
 
                 isReloading = false;
 
                 reloadObject.SetActive (false);
                 this.gameObject.SetActive (false);
 
+                bulletCountController.Reloaded(maxbullets);
+
+                AudioSource.PlayClipAtPoint(ReloadedSE, transform.position);
+
             } else {
-                this.gameObject.transform.localPosition = new Vector2 (0.95f + timer * -1.9f / gunReloadTime, 1.4f);
+                this.gameObject.transform.localPosition = new Vector2 (0.95f + timer * -1.9f / gunReloadTime, 0.4f);
         }
         }
     }
@@ -53,7 +61,9 @@ public class Reload : MonoBehaviour
         reloadObject.SetActive (true);
         this.gameObject.SetActive (true);
 
-        // maxbullets = amount; //弾の最大数
+        maxbullets = amount; //弾の最大数
+
+        AudioSource.PlayClipAtPoint(ReloadSE, transform.position);
 
         // reloadTime = -1.9f / gunReloadTime; //時間をはかる
 

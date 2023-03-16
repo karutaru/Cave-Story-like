@@ -16,7 +16,8 @@ public class GunShot : MonoBehaviour
     [SerializeField]
     PlayerController playerController;
     public BulletCountController bulletCountController;
-    public bool shotEmpty; //弾が空か
+    public bool canShot; //弾があるか
+
 
     void Start()
     {
@@ -27,7 +28,7 @@ public class GunShot : MonoBehaviour
     {
         if (Input.GetButtonDown("Fire1")) //左クリックが押されたら
         {
-            if (shotEmpty == true) //弾が空なら
+            if (canShot == false) //弾があるなら
             {
                 bulletCountController.ShotNow();
                 
@@ -52,7 +53,7 @@ public class GunShot : MonoBehaviour
         if (UpNow == true) //Wか↑を押した時
         {
             // プレイヤーの向いている方向を取得する
-            Vector2 direction = new Vector2 (playerController.transform.localScale.x * -1, 0);
+            Vector2 direction = new Vector2 (playerController.playerLookDirection, 0);
 
             //位置を変更
             Transform myTransform = this.transform;
@@ -99,7 +100,7 @@ public class GunShot : MonoBehaviour
         if (UpNow == false)
         {
             // プレイヤーの向いている方向を取得する
-            Vector2 direction = new Vector2 (playerController.transform.localScale.x * -1, 0);
+            Vector2 direction = new Vector2 (playerController.playerLookDirection, 0);
             // 弾をインスタンス化する
             GameObject bullet = Instantiate(bulletPrefab, new Vector2 (firePoint.position.x, firePoint.position.y - 0.2f), firePoint.rotation);
             // マズルフラッシュをインスタンス化する
@@ -138,5 +139,10 @@ public class GunShot : MonoBehaviour
             //Vector2 b = new Vector2 (bullet.transform.position.x, bullet.transform.position.y);
             GameObject newBulletFire = Instantiate(bulletEffectPrefab, new Vector2 (bullet.transform.position.x, bullet.transform.position.y + 0.6f), bullet.transform.rotation);
         }
+    }
+
+    public void BulletEmpty(bool amount)
+    {
+        canShot = amount;
     }
 }
