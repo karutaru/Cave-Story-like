@@ -4,19 +4,19 @@ using UnityEngine;
 
 public class GunShot : MonoBehaviour
 {
-    private bool UpNow;
+    private bool UpNow; //上を向いているか
     private Vector2 bulletLR; //マズルフラッシュ用の弾の向き
     public float shotSpeed;
     public GameObject bulletPrefab;
     public GameObject bulletEffectPrefab;
     private GameObject bulletFire;
-    //private GameObject bullet;
     public Transform firePoint;
-    //public Vector2 temp;
     public AudioClip shotSound;
     public Vector2 endPosition;
     [SerializeField]
     PlayerController playerController;
+    public BulletCountController bulletCountController;
+    public bool shotEmpty; //弾が空か
 
     void Start()
     {
@@ -25,9 +25,17 @@ public class GunShot : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire1")) //左クリックが押されたら
         {
-            Shoot();
+            if (shotEmpty == true) //弾が空なら
+            {
+                bulletCountController.ShotNow();
+                
+            } else { //弾があるなら
+                //Shootを呼び出す
+                Shoot();
+                bulletCountController.ShotNow();
+            }
         }
         if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) //Wか↑を押した時
         {

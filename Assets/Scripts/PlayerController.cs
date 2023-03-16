@@ -31,13 +31,11 @@ public class PlayerController : MonoBehaviour
     private string horizontal = "Horizontal";    // キー入力用の文字列指定(InputManager の Horizontal の入力を判定するための文字列)
     private Animator anim;
     private GameObject headHitEffect;
-    private int isStep;                          //歩数
     private bool headHit;
     private bool headHitOnce = false;            //頭を打つのはジャンプ中１回だけ
     private bool jumpLandingOnce = false;        //着地するのはジャンプ後１回だけ
     public bool inWater;                        //水の中か
     public bool isGrounded;
-    public bool callStepCount;                   //万歩計呼び出し
     private float scale;                         // 向きの設定に利用する
     private float stepTimer;                     //万歩計のカウント用
     public float moveSpeed;                      //移動速度
@@ -48,7 +46,7 @@ public class PlayerController : MonoBehaviour
     public AudioClip jumpLandingSE;
     public AudioClip jumpSE;
     public AudioClip stepSE;
-    public StepCounter stepCounter;
+
     [SerializeField] 
     CinemachineVirtualCamera artViewCamera;
     CinemachineFramingTransposer artViewCameraTransposer;
@@ -185,19 +183,6 @@ public class PlayerController : MonoBehaviour
                 anim.Play("Player_Idle");
             }
         }
-
-        if (Input.GetKeyDown(KeyCode.E)) //万歩計
-        {
-            if (callStepCount == true)
-            {
-                callStepCount = false;
-                stepCounter.CallStepCount(callStepCount);
-            }
-            else {
-                callStepCount = true;
-            stepCounter.CallStepCount(callStepCount);
-            }
-        }
     }
 
     void FixedUpdate()
@@ -226,15 +211,10 @@ public class PlayerController : MonoBehaviour
 
             if (stepTimer >= 0.3f && isGrounded == true) //一定距離歩き、かつ接地している時
             {
-                //１歩
-                isStep += 1;
-                //StepCounterに１歩を渡す
-                stepCounter.AddStepCount(isStep);
                 //歩きSE再生
                 AudioSource.PlayClipAtPoint(stepSE, transform.position);
 
                 stepTimer = 0;
-                isStep = 0;
             }
 
             // x の値が 0 ではない場合 = キー入力がある場合

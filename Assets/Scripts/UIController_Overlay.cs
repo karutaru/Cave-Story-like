@@ -1,23 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+// using System.Collections;
+// using System.Collections.Generic;
+// using UnityEngine;
 
-public class UIController_Overlay : MonoBehaviour
-{
-    [SerializeField]
-    private Transform targetTfm;
+// public class UIController_Overlay : MonoBehaviour
+// {
+//     // [SerializeField]
+//     // public Transform targetTfm;
  
-    private RectTransform myRectTfm;
-    private Vector3 offset = new Vector3(0, 1.5f, 0);
+//     private RectTransform myRectTfm;
+//     private Vector3 offset = new Vector3(0, 1.4f, 0);
  
-    void Start()
-    {
-        myRectTfm = GetComponent<RectTransform>();
-    }
+//     void Start()
+//     {
+//         myRectTfm = GetComponent<RectTransform>();
+//     }
  
-    void Update()
-    {
-        myRectTfm.position 
-            = RectTransformUtility.WorldToScreenPoint(Camera.main, targetTfm.position + offset);
-    }
-}
+//     void Update()
+//     {
+//         myRectTfm.position 
+//             = RectTransformUtility.WorldToScreenPoint(Camera.main, targetTfm.position + offset);
+//     }
+// }
