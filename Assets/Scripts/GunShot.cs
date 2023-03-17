@@ -28,7 +28,7 @@ public class GunShot : MonoBehaviour
     {
         if (Input.GetButtonDown("Fire1")) //左クリックが押されたら
         {
-            if (canShot == false) //弾があるなら
+            if (canShot == false) //弾がないなら
             {
                 bulletCountController.ShotNow();
                 

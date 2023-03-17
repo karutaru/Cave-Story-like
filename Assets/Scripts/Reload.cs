@@ -17,6 +17,8 @@ public class Reload : MonoBehaviour
     PlayerController playerController;
     public AudioClip ReloadSE;
     public AudioClip ReloadedSE;
+    public float seTimer;
+
 
     void Start()
     {
@@ -26,7 +28,7 @@ public class Reload : MonoBehaviour
     private void Update()
     {
 
-        //gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
+        seTimer += Time.deltaTime;
 
 
         if (isReloading == true)
@@ -63,7 +65,12 @@ public class Reload : MonoBehaviour
 
         maxbullets = amount; //弾の最大数
 
-        AudioSource.PlayClipAtPoint(ReloadSE, transform.position);
+        if (seTimer >= 0.08f)
+        {
+            AudioSource.PlayClipAtPoint(ReloadSE, transform.position);
+
+            seTimer = 0f;
+        }
 
         // reloadTime = -1.9f / gunReloadTime; //時間をはかる
 

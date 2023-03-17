@@ -13,6 +13,7 @@ public class BulletCountController : MonoBehaviour
     public Reload reload;
     public GameObject[] bullets; //弾数の配列
     public int gunMaxAmmo = 5; //最大装弾数
+    public bool isReload;
 	
 
     void Start()
@@ -28,6 +29,7 @@ public class BulletCountController : MonoBehaviour
 
             // リロード
             reload.ReloadBullets(gunMaxAmmo); //弾の最大数を送る
+            isReload = true;
             
         }
     }
@@ -41,7 +43,7 @@ public class BulletCountController : MonoBehaviour
 
         currentAmmoCount -= 1; //現在の弾数から1発分を引く
 
-        if (currentAmmoCount > 0) //弾数が0より多いなら
+        if (currentAmmoCount > 0 && isReload == false) //弾数が0より多く、かつリロード状態でない
         {
             shotReady = true; //弾が撃てる
             gunShot.BulletEmpty(shotReady);
@@ -57,6 +59,7 @@ public class BulletCountController : MonoBehaviour
     {
         currentAmmoCount = amount;
         shotReady = true; //弾が撃てる
+        isReload = false;
         gunShot.BulletEmpty(shotReady);
     }
 }
