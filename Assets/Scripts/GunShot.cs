@@ -22,6 +22,7 @@ public class GunShot : MonoBehaviour
     void Start()
     {
         GetComponent<PlayerController>();
+        canShot = true;
     }
 
     private void Update()

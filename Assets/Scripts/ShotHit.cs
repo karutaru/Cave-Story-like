@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using MoreMountains.Feedbacks;
 
 public class Damage : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class Damage : MonoBehaviour
     public GameObject wallEffectPrefab;//カベ用の衝突プレファブ
     [Header("壁ならチェック、エネミーならいじらない")]
     public bool wallOrEnemy;
+    public MMFeedbacks hitDamage; //敵に弾が当たった時
 
     private void OnTriggerEnter2D(Collider2D other) //なにかがぶつかったら
     {
@@ -25,6 +27,8 @@ public class Damage : MonoBehaviour
                 Destroy(wallEffect, 0.2f);
 
                 } else {                        //エネミーなら
+
+                hitDamage.PlayFeedbacks();
 
                 //出血エフェクトを実体化する
                 GameObject bloodEffect = Instantiate(enemyEffectPrefab, transform.position, Quaternion.identity);

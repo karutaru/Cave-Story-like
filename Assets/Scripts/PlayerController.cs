@@ -145,10 +145,6 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W)) //上矢印キー、もしくはWキーを押している
         {
-            //y軸の移動をスムーズに
-            //artViewCameraTransposer.m_YDamping = 1f;
-            //カメラを上に向ける
-            //artViewCameraTransposer.m_TrackedObjectOffset.y = 3f;
 
             if (isRun == true) //走っている最中なら
             {
@@ -161,16 +157,7 @@ public class PlayerController : MonoBehaviour
             }
         }
         else { //上キーを押していない状態
-            //カメラを元に戻す
-            //artViewCameraTransposer.m_TrackedObjectOffset.y = 0f;
-            //y軸の移動をカタく
-            //artViewCameraTransposer.m_YDamping = 0f;
 
-            // if (artViewCamera.m_LocalPosition.y <= 0) //yが0になったら
-            // {
-            // //y軸の移動をカタく
-            // artViewCameraTransposer.m_YDamping = 0f;
-            // }
             anim.SetFloat("LookUpIdle", 0.0f);
             anim.SetFloat("LookUp", 0.0f);
         }
