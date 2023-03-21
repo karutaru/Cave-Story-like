@@ -17,6 +17,7 @@ public class GunShot : MonoBehaviour
     PlayerController playerController;
     public BulletCountController bulletCountController;
     public bool canShot; //弾があるか
+    public GameObject [] bulletPrefabs;
 
 
     void Start()
@@ -127,7 +128,7 @@ public class GunShot : MonoBehaviour
 
         if (bullet != null)
         {
-            GameObject newBulletFire = Instantiate(bulletEffectPrefab, new Vector2 (bullet.transform.position.x, bullet.transform.position.y - 0.2f), bullet.transform.rotation);
+            GameObject newBulletFire = Instantiate(bulletEffectPrefab, new Vector2 (bullet.transform.position.x, bullet.transform.position.y), bullet.transform.rotation);
         }
     }
 

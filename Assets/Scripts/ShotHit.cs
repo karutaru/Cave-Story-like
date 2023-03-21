@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using MoreMountains.Feedbacks;
 
-public class Damage : MonoBehaviour
+public class ShotHit : MonoBehaviour
 {
     public GameObject enemyEffectPrefab;//エネミー用の衝突プレファブ
     public GameObject wallEffectPrefab;//カベ用の衝突プレファブ
@@ -28,7 +28,7 @@ public class Damage : MonoBehaviour
 
                 } else {                        //エネミーなら
 
-                hitDamage.PlayFeedbacks();
+                //hitDamage.PlayFeedbacks();
 
                 //出血エフェクトを実体化する
                 GameObject bloodEffect = Instantiate(enemyEffectPrefab, transform.position, Quaternion.identity);

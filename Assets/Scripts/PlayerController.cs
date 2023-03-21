@@ -91,12 +91,12 @@ public class PlayerController : MonoBehaviour
         }
 
         //接地判定用のラインキャスト
-        isGrounded = Physics2D.Linecast(transform.position + transform.up * 0.1f, transform.position - transform.up * 0.1f, groundLayer);
-        Debug.DrawLine(transform.position + transform.up * 0.1f, transform.position - transform.up * 0.1f, Color.red, 1.0f);
+        isGrounded = Physics2D.Linecast(transform.position + transform.up * -0.4f, transform.position - transform.up * 0.6f, groundLayer);
+        Debug.DrawLine(transform.position + transform.up * -0.4f, transform.position - transform.up * 0.6f, Color.red, 1.0f);
 
         //頭打ち判定用のラインキャスト
-        headHit = Physics2D.Linecast(transform.position + transform.up * 1f, transform.position + transform.up * 0.9f, groundLayer);
-        Debug.DrawLine(transform.position + transform.up * 1f, transform.position + transform.up * 0.9f, Color.red, 1.0f);
+        headHit = Physics2D.Linecast(transform.position + transform.up * 1f, transform.position + transform.up * 0.4f, groundLayer);
+        Debug.DrawLine(transform.position + transform.up * 0.5f, transform.position + transform.up * 0.4f, Color.red, 1.0f);
 
         if (headHit == true) //天井に頭を打ったら
         {
