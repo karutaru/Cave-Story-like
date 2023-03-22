@@ -15,8 +15,8 @@ public class EnemyAI : MonoBehaviour
     public float jumpSpeed = 200f;
     public float nextWayPointDistance = 3f;
     public float jumpNodeHeightRequirement = 0.8f;
-    public float jumpModifier = 0.3f;
-    public float jumpCheckOffset = 0.1f;
+    //public float jumpModifier = 0.3f;
+    //public float jumpCheckOffset = 0.1f;
 
     [Header("Custom Behavior")]
     public bool followEnabled = true;
@@ -71,7 +71,7 @@ public class EnemyAI : MonoBehaviour
 
         //ジャンプ判定
         isGrounded = Physics2D.Linecast(transform.position + transform.up * -0.2f, transform.position - transform.up * 0.6f, groundLayer);
-        Debug.DrawLine(transform.position + transform.up * -0.2f, transform.position - transform.up * 0.6f, Color.red, 1.0f);
+        Debug.DrawLine(transform.position + transform.up * -0.2f, transform.position - transform.up * 0.6f, Color.red, 0.5f);
 
         Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
         Vector2 force = direction * speed * Time.deltaTime;
@@ -113,7 +113,7 @@ public class EnemyAI : MonoBehaviour
 
     private bool TargetInDistance()
     {
-        return Vector2.Distance(transform.position, transform.position) < activateDistance;
+        return Vector2.Distance(transform.position, target.transform.position) < activateDistance;
     }
 
     private void OnPathComplete(Path p) {
