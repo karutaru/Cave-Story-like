@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
+using DG.Tweening;
 
 public class EnemyAI : MonoBehaviour
 {
@@ -31,6 +32,7 @@ public class EnemyAI : MonoBehaviour
     [SerializeField, Header("Linecast用 地面判定レイヤー")]
     private LayerMask groundLayer;
     private float jumpTimer;
+    private bool jumping;
 
 
     public void Start()
@@ -71,18 +73,39 @@ public class EnemyAI : MonoBehaviour
 
         //ジャンプ判定
         isGrounded = Physics2D.Linecast(transform.position + transform.up * -0.2f, transform.position - transform.up * 0.6f, groundLayer);
-        Debug.DrawLine(transform.position + transform.up * -0.2f, transform.position - transform.up * 0.6f, Color.red, 0.5f);
+        Debug.DrawLine(transform.position + transform.up * -0.2f, transform.position - transform.up * 0.5f, Color.red, 0.5f);
 
         Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
         Vector2 force = direction * speed * Time.deltaTime;
 
         //ジャンプ
-        if (jumpEnabled && isGrounded)
+        if (jumpEnabled && isGrounded && jumping == false)
         {
             if (direction.y > jumpNodeHeightRequirement)
             {
+                jumping = true;
                 //rb.AddForce(Vector2.up * jumpSpeed * jumpModifier);
-                rb.AddForce(new Vector2 (0, jumpSpeed));
+                //rb.AddForce(new Vector2 (0, jumpSpeed));
+                //rb.AddForce(transform.up * jumpSpeed);
+                //現在の座標からY+1.1の座標へ1秒で移動する
+                // this.transform.DOMove(endValue: new Vector3(this.transform.position.x + 0.25f * -transform.localScale.x, this.transform.position.y + 1.1f, 0), duration: 0.5f).SetEase(Ease.OutQuart).OnComplete(() =>
+                // {
+                //     this.transform.DOMove(endValue: new Vector3(this.transform.position.x + 0.25f * -transform.localScale.x, this.transform.position.y - 1.1f, 0), duration: 0.5f).SetEase(Ease.InQuart);
+                // });
+
+                //X軸ジャンプ
+                this.transform.DOMoveX(this.transform.position.x + 0.5f * -transform.localScale.x, 0.5f).SetEase(Ease.Linear).OnComplete(() =>
+                {
+                    this.transform.DOMoveX(this.transform.position.x + 0.5f * -transform.localScale.x, 0.5f).SetEase(Ease.Linear);
+                });
+
+                //Y軸ジャンプ
+                this.transform.DOMoveY(this.transform.position.y + 1.1f, 0.5f).SetEase(Ease.OutQuad).OnComplete(() =>
+                {
+                    this.transform.DOMoveY(this.transform.position.y - 1.1f, 0.5f).SetEase(Ease.InQuad);
+                });
+
+                
             }
         }
 
@@ -124,5 +147,23 @@ public class EnemyAI : MonoBehaviour
                 currentWaypoint = 0;
             }
         }
+    }
+
+    void Update()
+    {
+        if (jumping == true)
+        {
+            jumpTimer += Time.deltaTime;
+            if (jumpTimer >= 0.3f)
+            {
+                jumpTimer = 0;
+                jumping = false;
+            }
+        }
+    }
+
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        this.transform.DOKill();
     }
 }

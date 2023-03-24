@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using MoreMountains.Feedbacks;
+using UnityEngine.Events;
 
 public class ShotHit : MonoBehaviour
 {
@@ -9,7 +10,14 @@ public class ShotHit : MonoBehaviour
     public GameObject wallEffectPrefab;//カベ用の衝突プレファブ
     [Header("壁ならチェック、エネミーならいじらない")]
     public bool wallOrEnemy;
-    public MMFeedbacks hitDamage; //敵に弾が当たった時
+    public MMF_Player MyTargetMMFPlayer; //敵に弾が当たった時
+    public AudioClip shotHitSE;
+
+
+    void Start()
+    {
+        MyTargetMMFPlayer = this.gameObject.GetComponent<MMF_Player>();
+    }
 
     private void OnTriggerEnter2D(Collider2D other) //なにかがぶつかったら
     {
@@ -28,7 +36,9 @@ public class ShotHit : MonoBehaviour
 
                 } else {                        //エネミーなら
 
-                //hitDamage.PlayFeedbacks();
+                MyTargetMMFPlayer.Initialization();
+                MyTargetMMFPlayer.PlayFeedbacks();
+                AudioSource.PlayClipAtPoint(shotHitSE, transform.position);
 
                 //出血エフェクトを実体化する
                 GameObject bloodEffect = Instantiate(enemyEffectPrefab, transform.position, Quaternion.identity);
