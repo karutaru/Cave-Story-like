@@ -8,9 +8,9 @@ public class BulletDisplay : MonoBehaviour
     public GameObject bulletPrefab;
     public int bulletCount;
 
-    private float startX = 0f;
-    private float startY = 0f;
-    private float offsetX = 60f;
+    private float startX = 165f;
+    private float startY = -93f;
+    private float offsetX = 30f;
 
     private List<GameObject> bullets = new List<GameObject>();
     public BulletCountController bulletCountController;
