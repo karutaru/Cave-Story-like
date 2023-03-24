@@ -9,6 +9,9 @@ public class EnemyController : MonoBehaviour
     public int exp; //エネミーの経験値
     private int takeDamage;
     public BulletController bulletController;
+    public GameObject ExplosionFirstPrefab;
+    public GameObject ExplosionPrefab;
+    public AudioClip explosionSE;
 
     [SerializeField]
     private GameObject damagePopupPrefab;
@@ -34,6 +37,14 @@ public class EnemyController : MonoBehaviour
 
             if (currentHP <= 0)
             {
+                AudioSource.PlayClipAtPoint(explosionSE, transform.position);
+
+                GameObject ExplosionFirstEffect = Instantiate(ExplosionFirstPrefab, transform.position, Quaternion.identity);
+                GameObject ExplosionEffect = Instantiate(ExplosionPrefab, transform.position, Quaternion.identity);
+                //エフェクトを消す
+                Destroy(ExplosionFirstEffect, 0.4f);
+                Destroy(ExplosionEffect, 1f);
+
                 Destroy(this.gameObject);
             }
         }

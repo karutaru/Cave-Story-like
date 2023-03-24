@@ -86,24 +86,28 @@ public class EnemyAI : MonoBehaviour
                 jumping = true;
                 //rb.AddForce(Vector2.up * jumpSpeed * jumpModifier);
                 //rb.AddForce(new Vector2 (0, jumpSpeed));
-                //rb.AddForce(transform.up * jumpSpeed);
+                rb.AddForce(transform.up * jumpSpeed);
+
+
                 //現在の座標からY+1.1の座標へ1秒で移動する
                 // this.transform.DOMove(endValue: new Vector3(this.transform.position.x + 0.25f * -transform.localScale.x, this.transform.position.y + 1.1f, 0), duration: 0.5f).SetEase(Ease.OutQuart).OnComplete(() =>
                 // {
                 //     this.transform.DOMove(endValue: new Vector3(this.transform.position.x + 0.25f * -transform.localScale.x, this.transform.position.y - 1.1f, 0), duration: 0.5f).SetEase(Ease.InQuart);
                 // });
 
-                //X軸ジャンプ
-                this.transform.DOMoveX(this.transform.position.x + 0.5f * -transform.localScale.x, 0.5f).SetEase(Ease.Linear).OnComplete(() =>
-                {
-                    this.transform.DOMoveX(this.transform.position.x + 0.5f * -transform.localScale.x, 0.5f).SetEase(Ease.Linear);
-                });
 
-                //Y軸ジャンプ
-                this.transform.DOMoveY(this.transform.position.y + 1.1f, 0.5f).SetEase(Ease.OutQuad).OnComplete(() =>
-                {
-                    this.transform.DOMoveY(this.transform.position.y - 1.1f, 0.5f).SetEase(Ease.InQuad);
-                });
+
+                // //X軸ジャンプ
+                // this.transform.DOMoveX(this.transform.position.x + 0.5f * -transform.localScale.x, 0.5f).SetEase(Ease.Linear).OnComplete(() =>
+                // {
+                //     this.transform.DOMoveX(this.transform.position.x + 0.5f * -transform.localScale.x, 0.5f).SetEase(Ease.Linear);
+                // });
+
+                // //Y軸ジャンプ
+                // this.transform.DOMoveY(this.transform.position.y + 1.1f, 0.5f).SetEase(Ease.OutQuad).OnComplete(() =>
+                // {
+                //     this.transform.DOMoveY(this.transform.position.y - 1.1f, 0.5f).SetEase(Ease.InQuad);
+                // });
 
                 
             }
