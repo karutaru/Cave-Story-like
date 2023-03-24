@@ -10,7 +10,7 @@ public class BulletDisplay : MonoBehaviour
 
     private float startX = 0f;
     private float startY = 0f;
-    private float offsetX = 30f;
+    private float offsetX = 60f;
 
     private List<GameObject> bullets = new List<GameObject>();
     public BulletCountController bulletCountController;
