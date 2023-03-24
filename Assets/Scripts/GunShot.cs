@@ -18,12 +18,14 @@ public class GunShot : MonoBehaviour
     public BulletCountController bulletCountController;
     public bool canShot; //弾があるか
     public GameObject [] bulletPrefabs;
+    public int weaponLevel;
 
 
     void Start()
     {
         GetComponent<PlayerController>();
         canShot = true;
+        weaponLevel = 0;
     }
 
     private void Update()
@@ -68,7 +70,7 @@ public class GunShot : MonoBehaviour
             myTransform.localEulerAngles = pos2;
 
             // 弾をインスタンス化する
-            GameObject bullet = Instantiate(bulletPrefab, new Vector3 (firePoint.position.x, firePoint.position.y + 0.6f, 0), firePoint.rotation);
+            GameObject bullet = Instantiate(bulletPrefabs[weaponLevel], new Vector3 (firePoint.position.x, firePoint.position.y + 0.6f, 0), firePoint.rotation);
             // マズルフラッシュをインスタンス化する
             GameObject bulletFire = Instantiate(bulletEffectPrefab, new Vector2 (firePoint.position.x, firePoint.position.y + 0.6f), firePoint.rotation);
 
@@ -104,7 +106,7 @@ public class GunShot : MonoBehaviour
             // プレイヤーの向いている方向を取得する
             Vector2 direction = new Vector2 (playerController.playerLookDirection, 0);
             // 弾をインスタンス化する
-            GameObject bullet = Instantiate(bulletPrefab, new Vector2 (firePoint.position.x, firePoint.position.y - 0.2f), firePoint.rotation);
+            GameObject bullet = Instantiate(bulletPrefabs[weaponLevel], new Vector2 (firePoint.position.x, firePoint.position.y - 0.2f), firePoint.rotation);
             // マズルフラッシュをインスタンス化する
             GameObject bulletFire = Instantiate(bulletEffectPrefab, new Vector2 (firePoint.position.x, firePoint.position.y - 0.2f), firePoint.rotation);
 

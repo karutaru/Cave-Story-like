@@ -946,6 +946,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHP: 5
   currentHP: 0
+  exp: 0
+  bulletController: {fileID: 0}
+  damagePopupPrefab: {fileID: 0}
 --- !u!212 &278563164
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1608,9 +1611,10 @@ MonoBehaviour:
   bulletCountController: {fileID: 2145670040}
   canShot: 0
   bulletPrefabs:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 2185134297141808731, guid: 340daa7fc53b32643bb2447379dd2b47, type: 3}
+  - {fileID: 2577471654045476923, guid: 644a5fc434cdec24ab438ce36c3f92c3, type: 3}
+  - {fileID: 3376689575188039398, guid: cb3107c753010d944be33cf997523da1, type: 3}
+  weaponLevel: 0
 --- !u!1 &673963948
 GameObject:
   m_ObjectHideFlags: 3
@@ -26398,6 +26402,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHP: 5
   currentHP: 0
+  exp: 0
+  bulletController: {fileID: 0}
+  damagePopupPrefab: {fileID: 2904056790803557930, guid: 4797fe97b66f4354680fdd3014c4cbbf, type: 3}
 --- !u!212 &1243124437
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -26463,7 +26470,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 740703563}
-  activateDistance: 5
+  activateDistance: 10
   pathUpdateSeconds: 0.3
   speed: 100
   jumpSpeed: 370
@@ -27216,6 +27223,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHP: 5
   currentHP: 0
+  exp: 0
+  bulletController: {fileID: 0}
+  damagePopupPrefab: {fileID: 0}
 --- !u!212 &1504516986
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -28378,6 +28388,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHP: 5
   currentHP: 0
+  exp: 0
+  bulletController: {fileID: 0}
+  damagePopupPrefab: {fileID: 0}
 --- !u!1 &1920840598
 GameObject:
   m_ObjectHideFlags: 0
