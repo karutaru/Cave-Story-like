@@ -10,13 +10,16 @@ public class ShotHit : MonoBehaviour
     public GameObject wallEffectPrefab;//カベ用の衝突プレファブ
     [Header("壁ならチェック、エネミーならいじらない")]
     public bool wallOrEnemy;
-    public MMF_Player MyTargetMMFPlayer; //敵に弾が当たった時
+    public MMF_Player MMFPlayer_Hit; //敵に弾が当たった時
     public AudioClip shotHitSE;
 
 
-    void Start()
+    void Update()
     {
-        MyTargetMMFPlayer = this.gameObject.GetComponent<MMF_Player>();
+        if (wallOrEnemy == false)
+        {
+            MMFPlayer_Hit.Initialization();
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other) //なにかがぶつかったら
@@ -36,8 +39,8 @@ public class ShotHit : MonoBehaviour
 
                 } else {                        //エネミーなら
 
-                MyTargetMMFPlayer.Initialization();
-                MyTargetMMFPlayer.PlayFeedbacks();
+                //MMFPlayer_Hit.Initialization();
+                MMFPlayer_Hit.PlayFeedbacks();
                 AudioSource.PlayClipAtPoint(shotHitSE, transform.position);
 
                 //出血エフェクトを実体化する
