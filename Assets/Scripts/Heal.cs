@@ -15,6 +15,7 @@ public class Heal : MonoBehaviour
     private int zero;
     private int counter;
     public AudioClip healSE;
+    public PlayerStatus playerStatus;
 
 
 
@@ -46,6 +47,8 @@ public class Heal : MonoBehaviour
 
                 textBox.enabled = true;
                 systemText.enabled = true;
+
+                playerStatus.HealHP();
 
                 systemText.DOText("HPが回復した。", 0.5f).OnComplete(() =>
             {

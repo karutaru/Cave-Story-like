@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerStatus : MonoBehaviour
 {
     //-------プレイヤーの情報-------
     public int lv; //現在のレベル
-    public int hp; //現在の最大HP
+    public int hp = 20; //現在の最大HP
+    public int currentHP; //現在のHP状況
     public int exp; //現在の経験値
 
     //-------武器の情報-------
@@ -15,7 +17,6 @@ public class PlayerStatus : MonoBehaviour
     public int gunShotSpeed; //現在の武器の撃てる速さ
     public int gunShotRange; //現在の武器の射程距離
     public int gunReloadSpeed; //現在の武器のリロード速度
-    public int gunAmount; //現在の武器の弾の増加数
 
     //-------装備の情報-------
     public bool map; //マップを持っているか
@@ -23,9 +24,31 @@ public class PlayerStatus : MonoBehaviour
 
     //---------------------------ここまで---------------------------
 
+    private EnemyController enemyController;
+    public AudioClip damageSE;
+    [SerializeField]
+    private Text playerDamage;
+
 
     void Start()
     {
-        gunMaxAmmo = 5; //仮の数字。5発
+        currentHP = hp;
+    }
+
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        if (enemyController = col.GetComponent<EnemyController>())
+        {
+            currentHP -= enemyController.atk;
+            AudioSource.PlayClipAtPoint(damageSE, transform.position);
+
+            playerDamage.text = currentHP.ToString();
+        }
+    }
+
+    public void HealHP()
+    {
+        currentHP = hp;
+        playerDamage.text = currentHP.ToString();
     }
 }
