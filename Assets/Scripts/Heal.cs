@@ -4,18 +4,17 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 
-public class E_Button : MonoBehaviour
+public class Heal : MonoBehaviour
 {
     [SerializeField]
     private Image textBox;
     [SerializeField]
-    private Image face;
-    [SerializeField]
-    private Text talkText;
+    private Text systemText;
     private bool isDisplay;
     private bool isStay;
     private int zero;
     private int counter;
+    public AudioClip healSE;
 
 
 
@@ -43,12 +42,12 @@ public class E_Button : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.E) && counter == 0)
             {
                 counter ++;
+                AudioSource.PlayClipAtPoint(healSE, transform.position);
 
                 textBox.enabled = true;
-                face.enabled = true;
-                talkText.enabled = true;
+                systemText.enabled = true;
 
-                talkText.DOText("(何の為のオブジェクトだろう…?)", 1f).OnComplete(() =>
+                systemText.DOText("HPが回復した。", 0.5f).OnComplete(() =>
             {
                 isDisplay = true;
                 counter = 0;
@@ -61,9 +60,8 @@ public class E_Button : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.E))
             {
                 textBox.enabled = false;
-                face.enabled = false;
-                talkText.text = zero.ToString();
-                talkText.enabled = false;
+                systemText.text = zero.ToString();
+                systemText.enabled = false;
                 isDisplay = false;
             }
         }
