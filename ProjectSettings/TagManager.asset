@@ -8,6 +8,7 @@ TagManager:
   - Shell
   - Enemy
   - EnemyShell
+  - E_Button
   layers:
   - Default
   - TransparentFX
