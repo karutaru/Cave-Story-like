@@ -23,6 +23,12 @@ public class EnemyAI : MonoBehaviour
     public bool followEnabled = true;
     public bool jumpEnabled = true;
     public bool directionLookEnabled = true;
+    public bool stepSound = false;
+    public bool walkEnable = true;
+    [Header("Custom Sound")]
+    public AudioClip walkSE;
+    public float walkSoundCounter;
+    public AudioClip idleSE;
 
     private Path path;
     private int currentWaypoint = 0;
@@ -31,14 +37,19 @@ public class EnemyAI : MonoBehaviour
     Rigidbody2D rb;
     [SerializeField, Header("Linecast用 地面判定レイヤー")]
     private LayerMask groundLayer;
+    private Animator anim;
     private float jumpTimer;
+    private float walkTimer;
     private bool jumping;
+    private bool canStep;
+    private int moveTimer;
 
 
     public void Start()
     {
         seeker = GetComponent<Seeker>();
         rb =GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
 
         InvokeRepeating("UpdatePath", 0f, pathUpdateSeconds);
     }
@@ -48,6 +59,27 @@ public class EnemyAI : MonoBehaviour
         if (TargetInDistance() && followEnabled)
         {
             PathFollow();
+            moveTimer = 0;
+        }
+        else { //動かない時
+            if (anim != null && moveTimer == 0)
+                {
+                    anim.Play("Idle");
+                    canStep = false;
+
+                }
+            if (idleSE != null && moveTimer == 0)
+                {
+                    AudioSource.PlayClipAtPoint(idleSE, transform.position);
+                    canStep = false;
+                    moveTimer = 0;
+                }
+            moveTimer ++;
+        }
+
+        if (stepSound && canStep)
+        {
+            WalkSound();
         }
     }
 
@@ -88,15 +120,6 @@ public class EnemyAI : MonoBehaviour
                 //rb.AddForce(new Vector2 (0, jumpSpeed));
                 rb.AddForce(transform.up * jumpSpeed);
 
-
-                //現在の座標からY+1.1の座標へ1秒で移動する
-                // this.transform.DOMove(endValue: new Vector3(this.transform.position.x + 0.25f * -transform.localScale.x, this.transform.position.y + 1.1f, 0), duration: 0.5f).SetEase(Ease.OutQuart).OnComplete(() =>
-                // {
-                //     this.transform.DOMove(endValue: new Vector3(this.transform.position.x + 0.25f * -transform.localScale.x, this.transform.position.y - 1.1f, 0), duration: 0.5f).SetEase(Ease.InQuart);
-                // });
-
-
-
                 // //X軸ジャンプ
                 // this.transform.DOMoveX(this.transform.position.x + 0.5f * -transform.localScale.x, 0.5f).SetEase(Ease.Linear).OnComplete(() =>
                 // {
@@ -108,14 +131,26 @@ public class EnemyAI : MonoBehaviour
                 // {
                 //     this.transform.DOMoveY(this.transform.position.y - 1.1f, 0.5f).SetEase(Ease.InQuad);
                 // });
-
-                
             }
         }
 
         //移動
-        //rb.AddForce(force);
-        this.gameObject.transform.localPosition = new Vector2 (this.gameObject.transform.localPosition.x + 0.04f * -transform.localScale.x, this.gameObject.transform.localPosition.y);
+        if (walkEnable && Vector2.Distance(transform.position, target.transform.position) < activateDistance)
+        {
+            if (anim != null)
+            {
+                anim.Play("Walk");
+                canStep = true;
+            }
+            //rb.AddForce(force);
+            this.gameObject.transform.localPosition = new Vector2 (this.gameObject.transform.localPosition.x + 0.04f * -transform.localScale.x, this.gameObject.transform.localPosition.y);
+
+        } else
+        {
+            Debug.Log("Idle");
+            anim.Play("Idle");
+        }
+
 
         //Next Waypoint
         float distance = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
@@ -135,6 +170,16 @@ public class EnemyAI : MonoBehaviour
             {
                 transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
             }
+        }
+    }
+
+    private void WalkSound()
+    {
+        walkTimer += Time.deltaTime;
+        if (walkTimer >= walkSoundCounter)
+        {
+            AudioSource.PlayClipAtPoint(walkSE, transform.position);
+            walkTimer = 0;
         }
     }
 
