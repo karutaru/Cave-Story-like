@@ -119,7 +119,12 @@ public class PlayerController : MonoBehaviour
         // ジャンプの開始判定
         if (isGrounded && Input.GetButtonDown(JumpButtonName)) //接地していて、かつジャンプボタンを押した時
         {
-            anim.Play("Player_Jump");
+            if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow)) //Sか↓を押した時
+            {
+
+            } else {
+                anim.Play("Player_Jump");
+            }
             //ジャンプSE再生
             AudioSource.PlayClipAtPoint(jumpSE, transform.position);
             //飛んでいる
@@ -143,7 +148,7 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W)) //上矢印キー、もしくはWキーを押している
+        if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W)) //上矢印キー、もしくはWキーを押している
         {
 
             if (isRun == true) //走っている最中なら
@@ -176,7 +181,7 @@ public class PlayerController : MonoBehaviour
         {
             anim.Play("Player_LookDown");
         }
-        if (Input.GetKeyUp(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
+        if (Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.DownArrow))
         {
             if (jumping == true) //飛んでる
             {

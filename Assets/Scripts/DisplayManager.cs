@@ -13,6 +13,8 @@ public class DisplayManager : MonoBehaviour
     private Image face;
     [SerializeField]
     private Text talkText;
+    [SerializeField]
+    private float messageSpeed = 0.05f;
     private bool isDisplay;
 
     void Awake()
@@ -37,7 +39,7 @@ public class DisplayManager : MonoBehaviour
                 face.enabled = true;
                 talkText.enabled = true;
 
-                talkText.DOText(message, 1f).SetEase(Ease.Linear).OnComplete(() =>
+                talkText.DOText(message, message.Length * messageSpeed).SetEase(Ease.Linear).OnComplete(() =>
             {
                 isDisplay = true;
             });
