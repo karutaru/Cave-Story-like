@@ -17,6 +17,7 @@ public class EnemyAI_Float : MonoBehaviour
     public MMF_Player MMFPlayer_Scale;
     public MMF_Player MMFPlayer_Shot;
     public AudioClip shotSE;
+    public AudioClip chargeSE;
     private Animator anim;
     private Tweener tweener;
     public Transform player;
@@ -47,6 +48,7 @@ public class EnemyAI_Float : MonoBehaviour
         {
             tweener.Pause(); //一時停止
             anim.Play("Charge");
+            AudioSource.PlayClipAtPoint(chargeSE, transform.position);
             StartCoroutine("Shot");
 
             shotTimer ++;
@@ -59,6 +61,7 @@ public class EnemyAI_Float : MonoBehaviour
         yield return new WaitForSeconds(1); //1秒停止
 
         anim.Play("Shot");
+        AudioSource.PlayClipAtPoint(shotSE, transform.position);
         
         //弾エフェクトを実体化する
         GameObject bullet = Instantiate(bulletPrefab, this.transform.position, Quaternion.identity);

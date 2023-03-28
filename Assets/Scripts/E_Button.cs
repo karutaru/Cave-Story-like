@@ -48,7 +48,7 @@ public class E_Button : MonoBehaviour
                 face.enabled = true;
                 talkText.enabled = true;
 
-                talkText.DOText("(何の為のオブジェクトだろう…?)", 1f).OnComplete(() =>
+                talkText.DOText("(何の為のオブジェクトだろう…?)", 1f).SetEase(Ease.Linear).OnComplete(() =>
             {
                 isDisplay = true;
                 counter = 0;

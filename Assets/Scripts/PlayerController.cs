@@ -172,6 +172,19 @@ public class PlayerController : MonoBehaviour
                 anim.Play("Player_Idle");
             }
         }
+        if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            anim.Play("Player_LookDown");
+        }
+        if (Input.GetKeyUp(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            if (jumping == true) //飛んでる
+            {
+                anim.Play("Player_Jump");
+            } else { //飛んでない
+                anim.Play("Player_Idle");
+            }
+        }
     }
 
     void FixedUpdate()
