@@ -53,7 +53,6 @@ public class GunController : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.W) && isUp == true) // Wか↑を離した時
         {
             isUp = false;
-            Debug.Log("なんでや");
 
             // プレイヤーの向いている方向を取得する
             Vector2 direction = new Vector2 (playerController.playerLookDirection, 0);
