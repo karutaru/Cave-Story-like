@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using System.Linq;
 
 public class DisplayManager : MonoBehaviour
 {
@@ -15,7 +16,11 @@ public class DisplayManager : MonoBehaviour
     private Text talkText;
     [SerializeField]
     private float messageSpeed = 0.05f;
+    [SerializeField]
+    private AudioClip player_TalkSE;
+    AudioSource audioSource;
     private bool isDisplay;
+    private string beforeText;
 
     void Awake()
     {
@@ -26,11 +31,22 @@ public class DisplayManager : MonoBehaviour
         } else {
             Destroy(gameObject);
         }
+
+
+
+        audioSource = GetComponent<AudioSource>();
     }
+
+    private static readonly string[] INVALID_CHARS = {
+        " ", "　", "!", "?", "！", "？", "\"", "\'", "\\",
+        ".", ",", "、", "。", "…", "・", "（", "）", "(", ")"
+    };
+
 
     public void PrepareDisplayMessage(string message, EventBase eventBase)
     {
         StartCoroutine(DisplayMessage(message, eventBase));
+        beforeText = message;
     }
 
     private IEnumerator DisplayMessage(string message, EventBase eventBase)
@@ -39,7 +55,27 @@ public class DisplayManager : MonoBehaviour
                 face.enabled = true;
                 talkText.enabled = true;
 
-                talkText.DOText(message, message.Length * messageSpeed).SetEase(Ease.Linear).OnComplete(() =>
+                talkText.DOText(message, message.Length * messageSpeed).SetEase(Ease.Linear).OnUpdate(() =>
+        {
+            var currentText = talkText.text;
+            if (beforeText == currentText)
+            {
+                return;
+            }
+            var lastIndex = currentText.Length - 1;
+            if (lastIndex >= 0)
+            {
+                var newChar = currentText[lastIndex].ToString();
+                if (!INVALID_CHARS.Contains(newChar))
+                {
+                    audioSource.PlayOneShot(player_TalkSE);
+                }
+            }
+
+            //次のチェック用にテキスト更新
+            beforeText = currentText;
+
+        }).OnComplete(() =>
             {
                 isDisplay = true;
             });
