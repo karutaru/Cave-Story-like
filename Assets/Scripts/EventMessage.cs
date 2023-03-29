@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EventMessage : EventBase
 {
-    [SerializeField]
+    [SerializeField, Multiline(3)]
     protected string message;
 
 
@@ -12,7 +12,7 @@ public class EventMessage : EventBase
     {
         //base.ExecuteEvent();
         //ゲーム画面にメッセージウィンドを表示
-        Debug.Log(message);
+        //Debug.Log(message);
         DisplayManager.instance.PrepareDisplayMessage(message, GetComponent<EventBase>());
     }
 }

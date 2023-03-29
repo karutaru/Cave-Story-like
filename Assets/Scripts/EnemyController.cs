@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     public int maxHP; //エネミーの最大HP
-    public int currentHP; //エネミーの現在のHP
+    private int currentHP; //エネミーの現在のHP
     public int atk = 2; //エネミーの攻撃力
     public int exp; //エネミーの経験値
     private int takeDamage;

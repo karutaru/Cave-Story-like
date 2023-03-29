@@ -19,6 +19,7 @@ public class SystemTextManager : MonoBehaviour
     AudioSource audioSource;
     private bool isDisplay;
     private string beforeText;
+    public PlayerStatus playerStatus;
 
 
 
@@ -87,5 +88,18 @@ public class SystemTextManager : MonoBehaviour
         textBox.enabled = false;
         systemText.text = string.Empty;
         isDisplay = false;
+    }
+
+
+    public void PrepareSystemSelect(bool heal, bool shop, EventBase eventBase)
+    {
+        if (heal == true) //回復ポイントだったら
+        {
+            playerStatus.HealHP();
+        }
+        if (shop == true) //店だったら
+        {
+
+        }
     }
 }

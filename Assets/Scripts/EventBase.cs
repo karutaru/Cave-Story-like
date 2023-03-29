@@ -8,6 +8,10 @@ public class EventBase : MonoBehaviour
 
     public virtual void ExecuteEvent()
     {
+
+    }
+    public virtual void ExecuteSelect()
+    {
         
     }
 }

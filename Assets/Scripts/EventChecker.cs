@@ -38,7 +38,8 @@ public class EventChecker : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E))
         {
             eventBase.isEventPlay = true;
-            eventBase.ExecuteEvent();
+            eventBase.ExecuteEvent(); //メッセージ
+            eventBase.ExecuteSelect(); //回復や店
         }
     }
 }
