@@ -5,7 +5,14 @@ using UnityEngine;
 public class EventMessage : EventBase
 {
     [SerializeField, Multiline(3)]
+    protected string[] talks;
+    [SerializeField, Multiline(3)]
     protected string message;
+
+    [SerializeField]
+    protected bool playerFace = false;
+    [SerializeField]
+    protected bool doctorFace = false;
 
 
     public override void ExecuteEvent()
@@ -13,6 +20,6 @@ public class EventMessage : EventBase
         //base.ExecuteEvent();
         //ゲーム画面にメッセージウィンドを表示
         //Debug.Log(message);
-        DisplayManager.instance.PrepareDisplayMessage(message, GetComponent<EventBase>());
+        DisplayManager.instance.PrepareDisplayMessage(message, playerFace, doctorFace, GetComponent<EventBase>());
     }
 }

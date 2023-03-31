@@ -27,21 +27,21 @@ public class PlayerController : MonoBehaviour
     private float gravity;
 
     [SerializeField]
-    private Rigidbody2D rb;                      // プレイヤーのRigidbody2D
-    private string horizontal = "Horizontal";    // キー入力用の文字列指定(InputManager の Horizontal の入力を判定するための文字列)
+    private Rigidbody2D rb;                         // プレイヤーのRigidbody2D
+    private string horizontal = "Horizontal";       // キー入力用の文字列指定(InputManager の Horizontal の入力を判定するための文字列)
     private Animator anim;
     private GameObject headHitEffect;
     private bool headHit;
-    private bool headHitOnce = false;            //頭を打つのはジャンプ中１回だけ
-    private bool jumpLandingOnce = false;        //着地するのはジャンプ後１回だけ
-    public bool inWater;                        //水の中か
+    private bool headHitOnce = false;               //頭を打つのはジャンプ中１回だけ
+    private bool jumpLandingOnce = false;           //着地するのはジャンプ後１回だけ
+    public bool inWater;                            //水の中か
     public bool isGrounded;
-    private float rotation = 0;                         // 向きの設定に利用する
-    public float playerLookDirection = -1f;             // 今のプレイヤーの向き
-    private float stepTimer;                     //万歩計のカウント用
-    public float moveSpeed;                      //移動速度
-    private float moveSpeedKeep;                 //移動速度の保存
-    public float knockbackPower;                 // 敵と接触した際に吹き飛ばされる力
+    private float rotation = 0;                     // 向きの設定に利用する
+    public float playerLookDirection = -1f;         // 今のプレイヤーの向き
+    private float stepTimer;                        //万歩計のカウント用
+    public float moveSpeed;                         //移動速度
+    private float moveSpeedKeep;                    //移動速度の保存
+    public float knockbackPower;                    // 敵と接触した際に吹き飛ばされる力
     public GameObject headHitEffectPrefab;
     public AudioClip headHitSE;
     public AudioClip jumpLandingSE;
@@ -92,11 +92,11 @@ public class PlayerController : MonoBehaviour
 
         //接地判定用のラインキャスト
         isGrounded = Physics2D.Linecast(transform.position + transform.up * -0.4f, transform.position - transform.up * 0.6f, groundLayer);
-        Debug.DrawLine(transform.position + transform.up * -0.4f, transform.position - transform.up * 0.6f, Color.red, 1.0f);
+        Debug.DrawLine(transform.position + transform.up * -0.4f, transform.position - transform.up * 0.6f, Color.red, 0.3f);
 
         //頭打ち判定用のラインキャスト
-        headHit = Physics2D.Linecast(transform.position + transform.up * 1f, transform.position + transform.up * 0.4f, groundLayer);
-        Debug.DrawLine(transform.position + transform.up * 0.5f, transform.position + transform.up * 0.4f, Color.red, 1.0f);
+        headHit = Physics2D.Linecast(transform.position + transform.up * 0.5f, transform.position + transform.up * 0.4f, groundLayer);
+        Debug.DrawLine(transform.position + transform.up * 0.5f, transform.position + transform.up * 0.4f, Color.red, 0.3f);
 
         if (headHit == true) //天井に頭を打ったら
         {
