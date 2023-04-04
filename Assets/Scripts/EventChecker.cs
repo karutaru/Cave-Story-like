@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EventChecker : MonoBehaviour
 {
-    private bool isStay;
+    public bool isStay;
     private EventBase eventBase;
 
 
@@ -27,19 +27,21 @@ public class EventChecker : MonoBehaviour
 
     void Update()
     {
-        if (isStay == false)
+        if (isStay == false || eventBase == null)
         {
             return;
         }
-        if (eventBase != null && eventBase.isEventPlay == true)
+        if (eventBase.isEventPlay == true)
         {
             return;
         }
         if (Input.GetKeyDown(KeyCode.E))
         {
             eventBase.isEventPlay = true;
-            eventBase.ExecuteEvent(); //メッセージ
-            eventBase.ExecuteSelect(); //回復や店
+            eventBase.ExecuteEvent();           // メッセージ
+            eventBase.ExecuteSelect();          // 回復や店
+            eventBase.SwitchObject();           // 動作オブジェクト
+            eventBase.SceneLoadingObject();     // シーンの遷移
         }
     }
 }

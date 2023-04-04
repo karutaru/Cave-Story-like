@@ -8,7 +8,7 @@ TagManager:
   - Shell
   - Enemy
   - EnemyShell
-  - E_Button
+  - CanTalkObject
   layers:
   - Default
   - TransparentFX
@@ -19,7 +19,7 @@ TagManager:
   - Enemy
   - Volume
   - Player
-  - 
+  - Exp
   - 
   - 
   - 

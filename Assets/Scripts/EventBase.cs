@@ -14,4 +14,16 @@ public class EventBase : MonoBehaviour
     {
         
     }
+    public virtual void FinishEvent()
+    {
+
+    }
+    public virtual void SwitchObject()
+    {
+
+    }
+    public virtual void SceneLoadingObject()
+    {
+
+    }
 }

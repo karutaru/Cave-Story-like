@@ -103,7 +103,7 @@ public class PlayerController : MonoBehaviour
             if (headHitOnce == false)
                 {
                     //エフェクト生成
-                    headHitEffect = Instantiate(headHitEffectPrefab, new Vector2 (this.transform.position.x, this.transform.position.y + 0.8f), this.transform.rotation);
+                    headHitEffect = Instantiate(headHitEffectPrefab, new Vector2 (this.transform.position.x, this.transform.position.y + 0.3f), this.transform.rotation);
                     //頭打ちSE再生
                     AudioSource.PlayClipAtPoint(headHitSE, transform.position);
                     headHitOnce = true;

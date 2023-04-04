@@ -28,6 +28,8 @@ public class PlayerStatus : MonoBehaviour
     public AudioClip damageSE;
     [SerializeField]
     private Text playerDamage;
+    [SerializeField]
+    private Text playerExp;
 
 
     void Start()
@@ -50,5 +52,12 @@ public class PlayerStatus : MonoBehaviour
     {
         currentHP = hp;
         playerDamage.text = currentHP.ToString();
+    }
+
+    public void AddExp(int amount)
+    {
+        exp += amount;
+        playerExp.text = exp.ToString();
+        Debug.Log(exp);
     }
 }

@@ -11,7 +11,7 @@ public class CanTalk : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.CompareTag("E_Button"))
+        if (col.CompareTag("CanTalkObject"))
         {
             canTalk.enabled = true;
         }
@@ -19,7 +19,7 @@ public class CanTalk : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D col)
     {
-        if (col.CompareTag("E_Button"))
+        if (col.CompareTag("CanTalkObject"))
         {
             canTalk.enabled = false;
         }

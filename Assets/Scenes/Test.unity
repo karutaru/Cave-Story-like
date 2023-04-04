@@ -165,7 +165,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &88118391
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -182,7 +182,8 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &88118392
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -836,7 +837,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &151321990
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -853,7 +854,8 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!212 &151321991
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1449,7 +1451,7 @@ MonoBehaviour:
   damagePopupPrefab: {fileID: 2904056790803557930, guid: 4797fe97b66f4354680fdd3014c4cbbf, type: 3}
 --- !u!95 &217837789
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1466,7 +1468,8 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &274717037
 GameObject:
   m_ObjectHideFlags: 0
@@ -27117,7 +27120,7 @@ GameObject:
   m_IsActive: 1
 --- !u!95 &740703561
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -27134,7 +27137,8 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!212 &740703562
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -28201,7 +28205,7 @@ BoxCollider2D:
   m_EdgeRadius: 0
 --- !u!95 &1158804791
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -28218,7 +28222,8 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &1158804792
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29144,7 +29149,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &1350786815
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -29161,7 +29166,8 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!212 &1350786816
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -29965,7 +29971,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &1522173070
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -29982,7 +29988,8 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!212 &1522173071
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -30048,7 +30055,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isEventPlay: 0
-  message: "(\u4F55\u306E\u70BA\u306E\u30AA\u30D6\u30B8\u30A7\u30AF\u30C8\u3060\u308D\u3046\u2026?)"
+  talksList: []
+  talksNumber: 0
 --- !u!61 &1522173073
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -30214,7 +30222,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1628701781}
-  - component: {fileID: 1628701780}
+  - component: {fileID: 1628701783}
   - component: {fileID: 1628701782}
   m_Layer: 0
   m_Name: DisplayManager
@@ -30223,23 +30231,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1628701780
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1628701779}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13e643f2e2ad5e94c84eebe21a43baf8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  textBox: {fileID: 1485337825}
-  face: {fileID: 1514181669}
-  talkText: {fileID: 392571761}
-  messageSpeed: 0.06
-  player_TalkSE: {fileID: 8300000, guid: b7fb332e72080754eab59c12f54d2d61, type: 3}
 --- !u!4 &1628701781
 Transform:
   m_ObjectHideFlags: 0
@@ -30265,7 +30256,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: b7fb332e72080754eab59c12f54d2d61, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.12
   m_Pitch: 1
@@ -30351,6 +30342,39 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1628701783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1628701779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13e643f2e2ad5e94c84eebe21a43baf8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textBox: {fileID: 1485337825}
+  FaceIcon: {fileID: 1514181669}
+  playerFaceSprites:
+  - {fileID: 0}
+  - {fileID: 21300000, guid: 81a950fc7fb478049ae1579f311d30ab, type: 3}
+  - {fileID: 21300000, guid: 2cce5bd9672e12241a345d440652dc93, type: 3}
+  - {fileID: 21300000, guid: c3674486cad1cce4ebe1d49361ea3a9d, type: 3}
+  - {fileID: 21300000, guid: 7ac15c1bc17233c43afb4a4173e239e7, type: 3}
+  - {fileID: 21300000, guid: 2cce5bd9672e12241a345d440652dc93, type: 3}
+  doctorFaceSprites:
+  - {fileID: 0}
+  - {fileID: 21300000, guid: af3153b5e4818b4488ded825d2cbd4e1, type: 3}
+  - {fileID: 21300000, guid: 93700b2c7ad5bb248ac941fc70cd1ca9, type: 3}
+  - {fileID: 21300000, guid: 827fb754d1e26424583984c20d5f7a42, type: 3}
+  - {fileID: 21300000, guid: 8b270ad8b9ebddc4ba37fbddc5402864, type: 3}
+  - {fileID: 21300000, guid: 93700b2c7ad5bb248ac941fc70cd1ca9, type: 3}
+  currentPlayerFace: 0
+  currentDoctorFace: 0
+  talkText: {fileID: 392571761}
+  messageSpeed: 0.06
+  player_TalkSE: {fileID: 8300000, guid: b7fb332e72080754eab59c12f54d2d61, type: 3}
 --- !u!1 &1628885031
 GameObject:
   m_ObjectHideFlags: 0
@@ -31189,7 +31213,7 @@ BoxCollider2D:
   m_EdgeRadius: 0
 --- !u!95 &1773209484
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -31206,7 +31230,8 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &1773209485
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31870,6 +31895,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_SendPointerHoverToParent: 1
   m_HorizontalAxis: Horizontal
   m_VerticalAxis: Vertical
   m_SubmitButton: Submit
@@ -58429,7 +58455,7 @@ GameObject:
   m_IsActive: 1
 --- !u!95 &2110324723
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -58446,7 +58472,8 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!212 &2110324724
 SpriteRenderer:
   m_ObjectHideFlags: 0
