@@ -156,7 +156,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 88118389}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.5, y: -0.5, z: 0}
+  m_LocalPosition: {x: -5.05, y: 4.54, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -594,6 +594,7 @@ MonoBehaviour:
   attack: 0
   speed: 40
   jumpPower: 20
+  exp: 1
   target: {fileID: 740703563}
   activateDistance: 5
   pathUpdateSeconds: 0.3
@@ -606,10 +607,16 @@ MonoBehaviour:
   stepSound: 1
   attackEnabled: 0
   flyEnabled: 0
+  walkAnimEnable: 0
+  walkSoundEnable: 0
+  idleAnimEnable: 0
+  idleSoundEnable: 0
+  attackSoundEnable: 0
   walkSE: {fileID: 8300000, guid: db5a293426d59d5469900dbe4fd40e91, type: 3}
   idleSE: {fileID: 8300000, guid: fb16bf5f36372074c91c0296db7f0823, type: 3}
   deathSE: {fileID: 8300000, guid: 06946702844f3364296e9be8fe9c689c, type: 3}
   walkSoundCounter: 0.2
+  expPrefabs: {fileID: 5324519282543160065, guid: 7f6cc12a0089a3c4bbaaec96f1ba25ca, type: 3}
   ExplosionFirstPrefab: {fileID: 8227313046198943524, guid: 344320bac3152a5449583d5348a826fe, type: 3}
   ExplosionPrefab: {fileID: 4740678945645832136, guid: 0556537c0dbbb0348a75292d06ea41a4, type: 3}
   groundLayer:
@@ -1672,10 +1679,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 502678324b42bd546918c9a177f8a76d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  warpOffset: -1
-  player: {fileID: 740703560}
-  warpNextDoor: {fileID: 527743473}
-  playerController: {fileID: 740703566}
 --- !u!61 &324449735
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2668,6 +2671,7 @@ MonoBehaviour:
   attack: 0
   speed: 40
   jumpPower: 20
+  exp: 1
   target: {fileID: 740703563}
   activateDistance: 5
   pathUpdateSeconds: 0.3
@@ -2680,10 +2684,16 @@ MonoBehaviour:
   stepSound: 0
   attackEnabled: 0
   flyEnabled: 0
+  walkAnimEnable: 0
+  walkSoundEnable: 0
+  idleAnimEnable: 0
+  idleSoundEnable: 0
+  attackSoundEnable: 0
   walkSE: {fileID: 0}
   idleSE: {fileID: 0}
   deathSE: {fileID: 8300000, guid: 06946702844f3364296e9be8fe9c689c, type: 3}
   walkSoundCounter: 0
+  expPrefabs: {fileID: 5324519282543160065, guid: 7f6cc12a0089a3c4bbaaec96f1ba25ca, type: 3}
   ExplosionFirstPrefab: {fileID: 8227313046198943524, guid: 344320bac3152a5449583d5348a826fe, type: 3}
   ExplosionPrefab: {fileID: 4740678945645832136, guid: 0556537c0dbbb0348a75292d06ea41a4, type: 3}
   groundLayer:
@@ -2841,10 +2851,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 502678324b42bd546918c9a177f8a76d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  warpOffset: 1
-  player: {fileID: 740703560}
-  warpNextDoor: {fileID: 324449731}
-  playerController: {fileID: 740703566}
 --- !u!61 &527743477
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -27348,6 +27354,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01c8214dc33f661478a807566e59eda4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isStay: 0
 --- !u!1 &809683200
 GameObject:
   m_ObjectHideFlags: 0
@@ -27894,6 +27901,7 @@ MonoBehaviour:
   attack: 0
   speed: 40
   jumpPower: 20
+  exp: 1
   target: {fileID: 740703563}
   activateDistance: 5
   pathUpdateSeconds: 0.3
@@ -27906,10 +27914,16 @@ MonoBehaviour:
   stepSound: 0
   attackEnabled: 0
   flyEnabled: 0
+  walkAnimEnable: 0
+  walkSoundEnable: 0
+  idleAnimEnable: 0
+  idleSoundEnable: 0
+  attackSoundEnable: 0
   walkSE: {fileID: 0}
   idleSE: {fileID: 0}
   deathSE: {fileID: 8300000, guid: 06946702844f3364296e9be8fe9c689c, type: 3}
   walkSoundCounter: 0
+  expPrefabs: {fileID: 5324519282543160065, guid: 7f6cc12a0089a3c4bbaaec96f1ba25ca, type: 3}
   ExplosionFirstPrefab: {fileID: 8227313046198943524, guid: 344320bac3152a5449583d5348a826fe, type: 3}
   ExplosionPrefab: {fileID: 4740678945645832136, guid: 0556537c0dbbb0348a75292d06ea41a4, type: 3}
   groundLayer:
@@ -28292,6 +28306,88 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1217388992
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1217388993}
+  - component: {fileID: 1217388995}
+  - component: {fileID: 1217388994}
+  m_Layer: 5
+  m_Name: ExpController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1217388993
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1217388992}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1674647493}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: -1215, y: 510}
+  m_SizeDelta: {x: 160, y: 30}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1217388994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1217388992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 4d96033840a1eca41baf8b474de45efc, type: 3}
+    m_FontSize: 50
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 300
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
+    m_LineSpacing: 1
+  m_Text: '0
+
+'
+--- !u!222 &1217388995
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1217388992}
+  m_CullTransparentMesh: 1
 --- !u!1 &1227517100
 GameObject:
   m_ObjectHideFlags: 0
@@ -28583,6 +28679,7 @@ MonoBehaviour:
   attack: 0
   speed: 40
   jumpPower: 20
+  exp: 1
   target: {fileID: 740703563}
   activateDistance: 5
   pathUpdateSeconds: 0.3
@@ -28595,10 +28692,16 @@ MonoBehaviour:
   stepSound: 0
   attackEnabled: 0
   flyEnabled: 0
+  walkAnimEnable: 0
+  walkSoundEnable: 0
+  idleAnimEnable: 0
+  idleSoundEnable: 0
+  attackSoundEnable: 0
   walkSE: {fileID: 0}
   idleSE: {fileID: 0}
   deathSE: {fileID: 8300000, guid: 06946702844f3364296e9be8fe9c689c, type: 3}
   walkSoundCounter: 0
+  expPrefabs: {fileID: 5324519282543160065, guid: 7f6cc12a0089a3c4bbaaec96f1ba25ca, type: 3}
   ExplosionFirstPrefab: {fileID: 8227313046198943524, guid: 344320bac3152a5449583d5348a826fe, type: 3}
   ExplosionPrefab: {fileID: 4740678945645832136, guid: 0556537c0dbbb0348a75292d06ea41a4, type: 3}
   groundLayer:
@@ -29058,6 +29161,7 @@ MonoBehaviour:
   jetBoots: 0
   damageSE: {fileID: 8300000, guid: 87d853c0a1a2880478f7f6989eec6a0a, type: 3}
   playerDamage: {fileID: 1628885033}
+  playerExp: {fileID: 0}
 --- !u!70 &1291054102
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -30572,6 +30676,7 @@ RectTransform:
   - {fileID: 1117011532}
   - {fileID: 2145670039}
   - {fileID: 1628885032}
+  - {fileID: 1217388993}
   m_Father: {fileID: 274717041}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

@@ -5601,20 +5601,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e35077f4e42bc6149bc332f176dba7fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shotSpeed: 17
-  bulletPrefab: {fileID: 2185134297141808731, guid: 340daa7fc53b32643bb2447379dd2b47, type: 3}
   bulletEffectPrefab: {fileID: 4292963306959589444, guid: 8ed3d6aa4ca4de34987890dd9851d141, type: 3}
-  firePoint: {fileID: 564461551}
   shotSound: {fileID: 8300000, guid: c8b9bd4740757cc45a1d7510d0ed1c48, type: 3}
-  endPosition: {x: 0, y: 0}
   playerController: {fileID: 740703566}
   bulletCountController: {fileID: 2145670040}
-  canShot: 0
-  bulletPrefabs:
-  - {fileID: 2185134297141808731, guid: 340daa7fc53b32643bb2447379dd2b47, type: 3}
-  - {fileID: 2577471654045476923, guid: 644a5fc434cdec24ab438ce36c3f92c3, type: 3}
-  - {fileID: 3376689575188039398, guid: cb3107c753010d944be33cf997523da1, type: 3}
-  weaponLevel: 0
+  playerWeapon: {fileID: 1291054103}
 --- !u!1 &579483439
 GameObject:
   m_ObjectHideFlags: 0
@@ -28302,6 +28293,7 @@ GameObject:
   m_Component:
   - component: {fileID: 740703563}
   - component: {fileID: 740703562}
+  - component: {fileID: 740703569}
   - component: {fileID: 740703566}
   - component: {fileID: 740703567}
   - component: {fileID: 740703561}
@@ -28545,6 +28537,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isStay: 0
+--- !u!114 &740703569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 740703560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45a929f3f553e724eae3adbd36061a88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentAmmoCount: 0
+  gunMaxAmmo: 5
+  bulletDisplay: {fileID: 192207770}
 --- !u!1 &859289520
 GameObject:
   m_ObjectHideFlags: 0
@@ -32385,6 +32392,7 @@ GameObject:
   - component: {fileID: 1291054100}
   - component: {fileID: 1291054102}
   - component: {fileID: 1291054101}
+  - component: {fileID: 1291054103}
   m_Layer: 8
   m_Name: HitBox
   m_TagString: Untagged
@@ -32449,6 +32457,21 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.5, y: 0.95}
   m_Direction: 0
+--- !u!114 &1291054103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1291054099}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2e9b685f6f9eb14e9e38f2c40100c71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponLevelDataSO: {fileID: 11400000, guid: cfc8da06fddd108449f1886276ff7398, type: 2}
+  currentExp: 0
+  currentWeaponLevel: 0
 --- !u!1 &1339623680
 GameObject:
   m_ObjectHideFlags: 0
@@ -82194,10 +82217,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentAmmoCount: 0
-  bulletUIPrefab: {fileID: 1109403439095269633, guid: b53e29f8ae8f9af49886cf1aa4e62031, type: 3}
-  bulletCountUI: {fileID: 2145670038}
-  gunShot: {fileID: 564461552}
-  reload: {fileID: 1571330522}
   gunMaxAmmo: 5
-  isReload: 0
   bulletDisplay: {fileID: 192207770}

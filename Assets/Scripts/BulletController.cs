@@ -4,6 +4,15 @@ using UnityEngine;
 
 public class BulletController : MonoBehaviour
 {
-    public int weaponLevel = 0;
-    public int weaponDamage = 0;
+    private int weaponDamage;
+    public int WeaponDamage => weaponDamage; // プロパティ
+
+    public void Shoot(Vector2 direction, int damage)
+    {
+        // ダメージセット
+        weaponDamage = damage;
+
+        // 発射
+        GetComponent<Rigidbody2D>().velocity = direction;
+    }
 }

@@ -253,7 +253,7 @@ public class EnemyAI_Hide : EnemyBase
         if (bulletController = col.GetComponent<BulletController>())
         {
             // プレイヤーの弾からダメージを持ってくる
-            damage = bulletController.weaponDamage;
+            damage = bulletController.WeaponDamage;
 
             // 現在のHPからダメージ分を引く
             currentHP -= damage;

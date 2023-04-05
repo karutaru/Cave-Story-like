@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16137db8834fb9146a819125fd45feb8, type: 3}
+  m_Name: WeaponLevelDataSO
+  m_EditorClassIdentifier: 
+  weaponLevelDataList:
+  - level: 0
+    exp: 0
+    damage: 2
+    shotSpeed: 10
+    gunShellPrefab: {fileID: -3986194673877613549, guid: 340daa7fc53b32643bb2447379dd2b47, type: 3}
+  - level: 1
+    exp: 6
+    damage: 6
+    shotSpeed: 20
+    gunShellPrefab: {fileID: 2577471654045476920, guid: 644a5fc434cdec24ab438ce36c3f92c3, type: 3}
+  - level: 2
+    exp: 10
+    damage: 12
+    shotSpeed: 30
+    gunShellPrefab: {fileID: 3376689575188039399, guid: cb3107c753010d944be33cf997523da1, type: 3}
