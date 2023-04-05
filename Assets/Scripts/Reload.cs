@@ -47,7 +47,7 @@ public class Reload : MonoBehaviour
                 reloadObject.SetActive (false);
                 this.gameObject.SetActive (false);
 
-                bulletCountController.Reloaded(maxbullets);
+                bulletCountController.Reloaded();
 
                 AudioSource.PlayClipAtPoint(ReloadedSE, transform.position);
 

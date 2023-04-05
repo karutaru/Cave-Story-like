@@ -8,11 +8,12 @@ public class ExpScript : MonoBehaviour
 
     private Rigidbody2D rb;
     private Animator animator;
-    private PlayerStatus playerStatus;
 
     public AudioClip expBoundSE;
 
     public AudioClip expGetSE;
+
+    public bool isRemoveExp;
 
 
 
@@ -39,11 +40,19 @@ public class ExpScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (playerStatus = col.GetComponent<PlayerStatus>())
+        Debug.Log("ExpƒQƒbƒg");
+        if (col.TryGetComponent(out PlayerWeapon playerWeapon))
         {
             AudioSource.PlayClipAtPoint(expGetSE, transform.position);
 
-            playerStatus.AddExp(expValue);
+            if (!isRemoveExp)
+            {
+                playerWeapon.AddExp(expValue);
+            }
+            else
+            {
+                playerWeapon.RemoveExp(expValue);
+            }
 
             Destroy(this.gameObject);
         }
