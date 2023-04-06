@@ -142,7 +142,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2185134297141808731}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b0a54454cee080549980c77618664dd6, type: 3}
   m_Name: 
@@ -159,5 +159,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b50b23b1005ab5d4b80bc6aa86a57b36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponLevel: 0
-  weaponDamage: 2

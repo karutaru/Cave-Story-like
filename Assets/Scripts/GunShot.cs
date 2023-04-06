@@ -74,7 +74,7 @@ public class GunShot : MonoBehaviour
         if (bulletCountController.CurrentAmmoCount <= 0)
         {
             // リロード
-            reload.ReloadBullets(playerWeapon.CurrentWeaponLevelData.maxAmmo);
+            reload.ReloadBullets(playerWeapon.CurrentWeaponLevelData.maxAmmo, playerWeapon.CurrentWeaponLevelData.reloadTime);
         }
         else
         {
@@ -114,7 +114,7 @@ public class GunShot : MonoBehaviour
 
         // 弾をインスタンス化する
         BulletController bullet = Instantiate(playerWeapon.CurrentWeaponLevelData.gunShellPrefab,
-            new Vector3(transform.position.x, transform.position.y + offsetY, 0), transform.rotation);
+            new Vector3(transform.position.x, transform.position.y + offsetY + playerWeapon.CurrentWeaponLevelData.prefabPositionOffsetY, 0), transform.rotation);
 
         bullet.transform.eulerAngles = transform.eulerAngles;
 
@@ -156,13 +156,13 @@ public class GunShot : MonoBehaviour
         // 上も下も向いていない場合
         if (currentFaceDirection == FaceDirection.Flat)
         {
-            StartCoroutine(RespawnBulletEffect(0.3f, bullet.gameObject));
+            StartCoroutine(RespawnBulletEffect(playerWeapon.CurrentWeaponLevelData.shotRange, bullet.gameObject));
             // 終了
             return;
         }
 
         // ここは上か下を向いている時に動く
-        StartCoroutine(RespawnBulletEffect(0.3f, bullet.gameObject, 0.6f));
+        StartCoroutine(RespawnBulletEffect(playerWeapon.CurrentWeaponLevelData.shotRange, bullet.gameObject, 0.6f));
 
         // 発射位置を元の位置に戻す
         ChangePosition(-playerController.playerLookDirection);
@@ -233,6 +233,8 @@ public class GunShot : MonoBehaviour
             GameObject newBulletFire = Instantiate(bulletEffectPrefab,
                 new Vector2(bullet.transform.position.x, bullet.transform.position.y + offset),
                     bullet.transform.rotation);
+
+            Destroy(bullet);
         }
     }
 

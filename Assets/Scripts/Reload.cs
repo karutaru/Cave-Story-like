@@ -5,7 +5,7 @@ using UnityEngine;
 public class Reload : MonoBehaviour
 {
     public BulletCountController bulletCountController;
-    public float gunReloadTime = 100f; //武器のリロードの長さ
+    public float gunReloadTime = 1; //武器のリロードの長さ
     public float needReloadTime;
     public int maxbullets; //最大弾数
     public float timer; //時間
@@ -58,12 +58,13 @@ public class Reload : MonoBehaviour
     }
 
 
-    public void ReloadBullets(int amount)
+    public void ReloadBullets(int amount, float time)
     {
         reloadObject.SetActive (true);
         this.gameObject.SetActive (true);
 
-        maxbullets = amount; //弾の最大数
+        maxbullets = amount; // 武器の装弾数
+        gunReloadTime = time; // 武器のリロード速度
 
         if (seTimer >= 0.08f)
         {

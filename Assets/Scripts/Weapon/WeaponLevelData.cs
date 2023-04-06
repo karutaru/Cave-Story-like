@@ -9,6 +9,9 @@ public class WeaponLevelData
     public int exp;
     public int damage;
     public int maxAmmo;
-    public float shotSpeed;
+    public float shotSpeed = 10;
+    public float reloadTime = 1;
+    public float shotRange = 0.3f;
     public BulletController gunShellPrefab;
+    public float prefabPositionOffsetY = 0;
 }

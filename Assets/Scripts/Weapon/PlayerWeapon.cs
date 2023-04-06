@@ -107,9 +107,9 @@ public class PlayerWeapon : MonoBehaviour
                     currentWeaponLevel = weaponLevelDataSO.weaponLevelDataList[i].level;
                     currentWeaponLevelData = weaponLevelDataSO.weaponLevelDataList[i];
 
+                    // UI‚ÉŒ»İ‚Ì•ŠíƒŒƒxƒ‹‚ğ•\¦
                     playerGunLevel.text = currentWeaponLevel.ToString();
 
-                    Debug.Log(currentWeaponLevelData);
                     // for •¶ˆ—‚ğI—¹‚·‚é
                     break;
                 }
