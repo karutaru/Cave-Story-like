@@ -5605,6 +5605,7 @@ MonoBehaviour:
   shotSound: {fileID: 8300000, guid: c8b9bd4740757cc45a1d7510d0ed1c48, type: 3}
   playerController: {fileID: 740703566}
   bulletCountController: {fileID: 2145670040}
+  reload: {fileID: 1571330522}
   playerWeapon: {fileID: 1291054103}
 --- !u!1 &579483439
 GameObject:
@@ -32472,6 +32473,7 @@ MonoBehaviour:
   weaponLevelDataSO: {fileID: 11400000, guid: cfc8da06fddd108449f1886276ff7398, type: 2}
   currentExp: 0
   currentWeaponLevel: 0
+  playerGunLevel: {fileID: 1427935094}
 --- !u!1 &1339623680
 GameObject:
   m_ObjectHideFlags: 0
@@ -33401,7 +33403,7 @@ GameObject:
   - component: {fileID: 1427935095}
   - component: {fileID: 1427935094}
   m_Layer: 5
-  m_Name: ExpController
+  m_Name: GunLevelController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

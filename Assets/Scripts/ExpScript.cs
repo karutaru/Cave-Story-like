@@ -40,7 +40,6 @@ public class ExpScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        Debug.Log("ExpƒQƒbƒg");
         if (col.TryGetComponent(out PlayerWeapon playerWeapon))
         {
             AudioSource.PlayClipAtPoint(expGetSE, transform.position);

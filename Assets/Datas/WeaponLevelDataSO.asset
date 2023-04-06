@@ -13,18 +13,21 @@ MonoBehaviour:
   m_Name: WeaponLevelDataSO
   m_EditorClassIdentifier: 
   weaponLevelDataList:
-  - level: 0
+  - level: 1
     exp: 0
     damage: 2
+    maxAmmo: 5
     shotSpeed: 10
     gunShellPrefab: {fileID: -3986194673877613549, guid: 340daa7fc53b32643bb2447379dd2b47, type: 3}
-  - level: 1
+  - level: 2
     exp: 6
     damage: 6
+    maxAmmo: 10
     shotSpeed: 20
     gunShellPrefab: {fileID: 2577471654045476920, guid: 644a5fc434cdec24ab438ce36c3f92c3, type: 3}
-  - level: 2
+  - level: 3
     exp: 10
     damage: 12
+    maxAmmo: 20
     shotSpeed: 30
     gunShellPrefab: {fileID: 3376689575188039399, guid: cb3107c753010d944be33cf997523da1, type: 3}

@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Linq;
+using UnityEngine.UI;
 
 /// <summary>
 /// プレイヤーの武器情報の管理クラス
@@ -20,6 +21,9 @@ public class PlayerWeapon : MonoBehaviour
     public WeaponLevelData CurrentWeaponLevelData => currentWeaponLevelData; // プロパティ
 
     private int maxLevel = 0;
+    [SerializeField]
+    private Text playerGunLevel;
+
 
     /// <summary>
     /// 武器情報の初期化
@@ -102,6 +106,8 @@ public class PlayerWeapon : MonoBehaviour
                     // 武器レベルと武器レベルデータを更新
                     currentWeaponLevel = weaponLevelDataSO.weaponLevelDataList[i].level;
                     currentWeaponLevelData = weaponLevelDataSO.weaponLevelDataList[i];
+
+                    playerGunLevel.text = currentWeaponLevel.ToString();
 
                     Debug.Log(currentWeaponLevelData);
                     // for 文処理を終了する

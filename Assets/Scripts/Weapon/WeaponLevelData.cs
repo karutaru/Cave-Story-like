@@ -8,6 +8,7 @@ public class WeaponLevelData
     public int level;
     public int exp;
     public int damage;
+    public int maxAmmo;
     public float shotSpeed;
     public BulletController gunShellPrefab;
 }

@@ -34,10 +34,10 @@ public class BulletCountController : MonoBehaviour
     /// <summary>
     /// 残弾数のリロード
     /// </summary>
-    public void Reloaded()
+    public void Reloaded(int amount)
     {
         // 最大値に戻す
-        currentAmmoCount = gunMaxAmmo;
+        currentAmmoCount = amount;
         bulletDisplay.UpdateBulletDisplay(currentAmmoCount);
     }
 }

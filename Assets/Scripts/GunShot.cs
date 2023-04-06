@@ -16,6 +16,7 @@ public class GunShot : MonoBehaviour
     [SerializeField]
     PlayerController playerController;
     public BulletCountController bulletCountController;
+    public Reload reload;
 
     [SerializeField]
     private PlayerWeapon playerWeapon;
@@ -73,7 +74,7 @@ public class GunShot : MonoBehaviour
         if (bulletCountController.CurrentAmmoCount <= 0)
         {
             // リロード
-            bulletCountController.Reloaded();
+            reload.ReloadBullets(playerWeapon.CurrentWeaponLevelData.maxAmmo);
         }
         else
         {
@@ -130,9 +131,18 @@ public class GunShot : MonoBehaviour
         }
         else
         {
-            bullet.Shoot(
-                new Vector2(0, playerWeapon.CurrentWeaponLevelData.shotSpeed * playerController.playerLookDirection),
+            if (currentFaceDirection == FaceDirection.Up)
+            {
+                bullet.Shoot(
+                new Vector2(0, playerWeapon.CurrentWeaponLevelData.shotSpeed * 1),
                 playerWeapon.CurrentWeaponLevelData.damage);
+            }
+            else
+            {
+                bullet.Shoot(
+                new Vector2(0, playerWeapon.CurrentWeaponLevelData.shotSpeed * -1),
+                playerWeapon.CurrentWeaponLevelData.damage);
+            }
         }
 
         // 発射音を再生する
