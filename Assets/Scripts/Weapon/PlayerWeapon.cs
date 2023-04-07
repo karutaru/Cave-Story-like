@@ -11,10 +11,7 @@ public class PlayerWeapon : MonoBehaviour
     [SerializeField, Header("武器レベルデータのスクリプタブルオブジェクト")]
     private WeaponLevelDataSO weaponLevelDataSO;
 
-    [Header("現在の武器の状態")]
-    [SerializeField]
     private int currentExp; // 現在の経験値
-    [SerializeField]
     private int currentWeaponLevel; // 現在の武器レベル
 
     private WeaponLevelData currentWeaponLevelData; // 現在の武器レベルデータ（弾の速度、ダメージ、プレハブ）

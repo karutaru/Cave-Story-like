@@ -76,7 +76,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 7
+  m_SortingOrder: 40
   m_Sprite: {fileID: -368859528, guid: 867a35438efca4046afa6c30fcc80c9b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -124,6 +124,7 @@ MonoBehaviour:
   expValue: 0
   expBoundSE: {fileID: 8300000, guid: 1e086fb2ba9aff64699efe5df33ea5b5, type: 3}
   expGetSE: {fileID: 8300000, guid: 216ff59eaf39a2348bbe2990297bd85a, type: 3}
+  isRemoveExp: 0
 --- !u!58 &5324519282543160071
 CircleCollider2D:
   m_ObjectHideFlags: 0
