@@ -26,32 +26,32 @@ MonoBehaviour:
     explanation: 
     BuyingPrice: 0
     sellingPrice: 0
-    itemPrefab: {fileID: 5395086445418014793, guid: 6f16a6a3c8e1dfb41ae46f6fee419c8a, type: 3}
+    itemPrefab: {fileID: 6544162808861847862, guid: 6f16a6a3c8e1dfb41ae46f6fee419c8a, type: 3}
   - itemID: 2
     name: "\u9285\u9244\u306E\u304B\u3051\u3089"
     itemRarity: 1
     explanation: 
     BuyingPrice: 0
     sellingPrice: 0
-    itemPrefab: {fileID: 4871208562512118622, guid: 4f547a6227cef6b4cba06709664568cf, type: 3}
+    itemPrefab: {fileID: 8302193238233971814, guid: 4f547a6227cef6b4cba06709664568cf, type: 3}
   - itemID: 3
     name: "\u91D1\u306E\u304B\u3051\u3089"
     itemRarity: 2
     explanation: 
     BuyingPrice: 0
     sellingPrice: 0
-    itemPrefab: {fileID: 4395411991160906558, guid: dc444f47fe162cc4aa187ffa44eea6b9, type: 3}
+    itemPrefab: {fileID: 5658852383598675163, guid: dc444f47fe162cc4aa187ffa44eea6b9, type: 3}
   - itemID: 4
     name: "\u6DF1\u7DD1\u306E\u304B\u3051\u3089"
     itemRarity: 3
     explanation: 
     BuyingPrice: 0
     sellingPrice: 0
-    itemPrefab: {fileID: 561709822319129953, guid: 423254a280d40bf4cbf3f7fd349a9d15, type: 3}
+    itemPrefab: {fileID: 807680350905784869, guid: 423254a280d40bf4cbf3f7fd349a9d15, type: 3}
   - itemID: 5
     name: "\u91CD\u529B\u77F3\u306E\u304B\u3051\u3089"
     itemRarity: 4
     explanation: 
     BuyingPrice: 0
     sellingPrice: 0
-    itemPrefab: {fileID: 2877037285714788084, guid: 9c042a8494620f34097180120e806451, type: 3}
+    itemPrefab: {fileID: 5811475489580024007, guid: 9c042a8494620f34097180120e806451, type: 3}
