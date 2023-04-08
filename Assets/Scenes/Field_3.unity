@@ -32392,6 +32392,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1291054100}
   - component: {fileID: 1291054102}
+  - component: {fileID: 1291054104}
   - component: {fileID: 1291054101}
   - component: {fileID: 1291054103}
   m_Layer: 8
@@ -32471,9 +32472,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponLevelDataSO: {fileID: 11400000, guid: cfc8da06fddd108449f1886276ff7398, type: 2}
-  currentExp: 0
-  currentWeaponLevel: 0
   playerGunLevel: {fileID: 1427935094}
+--- !u!114 &1291054104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1291054099}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52a81ab7d6682394e9a9d7d8bcb0d078, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemDataSO: {fileID: 11400000, guid: bbc370bd71734ab4f9cd6b1bd33bd255, type: 2}
+  playerGetItemID: 0
+  itemCountTexts:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &1339623680
 GameObject:
   m_ObjectHideFlags: 0
@@ -81235,7 +81254,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2110324722}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.83, y: -0.5, z: 0}
+  m_LocalPosition: {x: -0.37, y: -0.38, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

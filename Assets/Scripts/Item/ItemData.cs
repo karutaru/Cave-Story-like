@@ -16,6 +16,7 @@ public class ItemData
     public int itemID;
     public string name;
     public ItemRarity itemRarity;
+    public int rarityWait = 1; // 同レアリティ何個分の価値か
     [SerializeField, Multiline(3)]
     public string explanation;
     public int BuyingPrice;

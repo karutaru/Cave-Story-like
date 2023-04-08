@@ -16,6 +16,7 @@ MonoBehaviour:
   - itemID: 0
     name: "\u5B58\u5728\u3057\u306A\u3044\u30A2\u30A4\u30C6\u30E0"
     itemRarity: 0
+    rarityWait: 0
     explanation: "\u30A8\u30E9\u30FC"
     BuyingPrice: 0
     sellingPrice: 0
@@ -23,6 +24,7 @@ MonoBehaviour:
   - itemID: 1
     name: "\u9244\u306E\u304B\u3051\u3089"
     itemRarity: 0
+    rarityWait: 1
     explanation: 
     BuyingPrice: 0
     sellingPrice: 0
@@ -30,6 +32,7 @@ MonoBehaviour:
   - itemID: 2
     name: "\u9285\u9244\u306E\u304B\u3051\u3089"
     itemRarity: 1
+    rarityWait: 1
     explanation: 
     BuyingPrice: 0
     sellingPrice: 0
@@ -37,13 +40,15 @@ MonoBehaviour:
   - itemID: 3
     name: "\u91D1\u306E\u304B\u3051\u3089"
     itemRarity: 2
+    rarityWait: 1
     explanation: 
     BuyingPrice: 0
     sellingPrice: 0
     itemPrefab: {fileID: 5658852383598675163, guid: dc444f47fe162cc4aa187ffa44eea6b9, type: 3}
   - itemID: 4
-    name: "\u6DF1\u7DD1\u306E\u304B\u3051\u3089"
+    name: "\u6DF1\u7DD1\u77F3\u306E\u304B\u3051\u3089"
     itemRarity: 3
+    rarityWait: 1
     explanation: 
     BuyingPrice: 0
     sellingPrice: 0
@@ -51,7 +56,104 @@ MonoBehaviour:
   - itemID: 5
     name: "\u91CD\u529B\u77F3\u306E\u304B\u3051\u3089"
     itemRarity: 4
+    rarityWait: 1
     explanation: 
     BuyingPrice: 0
     sellingPrice: 0
     itemPrefab: {fileID: 5811475489580024007, guid: 9c042a8494620f34097180120e806451, type: 3}
+  - itemID: 6
+    name: "\u9244\u306E\u584A"
+    itemRarity: 0
+    rarityWait: 10
+    explanation: 
+    BuyingPrice: 0
+    sellingPrice: 0
+    itemPrefab: {fileID: 6544162808861847862, guid: efc8b5ec071ab2f47bb4513e0c934753, type: 3}
+  - itemID: 7
+    name: "\u9285\u9244\u306E\u584A"
+    itemRarity: 1
+    rarityWait: 10
+    explanation: 
+    BuyingPrice: 0
+    sellingPrice: 0
+    itemPrefab: {fileID: 8302193238233971814, guid: 0ef8f87e7fe3d524b82293e84aae8a1d, type: 3}
+  - itemID: 8
+    name: "\u91D1\u306E\u584A"
+    itemRarity: 2
+    rarityWait: 10
+    explanation: 
+    BuyingPrice: 0
+    sellingPrice: 0
+    itemPrefab: {fileID: 5658852383598675163, guid: 79b3fe06e7f4eae498d65376e1b184da, type: 3}
+  - itemID: 9
+    name: "\u6DF1\u7DD1\u77F3\u306E\u584A"
+    itemRarity: 3
+    rarityWait: 10
+    explanation: 
+    BuyingPrice: 0
+    sellingPrice: 0
+    itemPrefab: {fileID: 807680350905784869, guid: ce8533ca7b793cc4d8fcc57797cd8419, type: 3}
+  - itemID: 10
+    name: "\u91CD\u529B\u77F3\u306E\u584A"
+    itemRarity: 4
+    rarityWait: 10
+    explanation: 
+    BuyingPrice: 0
+    sellingPrice: 0
+    itemPrefab: {fileID: 5811475489580024007, guid: 45c4330cb0f6baa4a916f93db5450517, type: 3}
+  - itemID: 11
+    name: "\u9244\u306E\u30A2\u30FC\u30C6\u30A3\u30D5\u30A1\u30AF\u30C8"
+    itemRarity: 0
+    rarityWait: 100
+    explanation: 
+    BuyingPrice: 0
+    sellingPrice: 0
+    itemPrefab: {fileID: 6544162808861847862, guid: bcaa2f9fa114d914ca507de92d81822d, type: 3}
+  - itemID: 12
+    name: "\u9285\u9244\u306E\u30A2\u30FC\u30C6\u30A3\u30D5\u30A1\u30AF\u30C8"
+    itemRarity: 1
+    rarityWait: 100
+    explanation: 
+    BuyingPrice: 0
+    sellingPrice: 0
+    itemPrefab: {fileID: 8302193238233971814, guid: 12c087d65759d984bbd44fbcfc33274e, type: 3}
+  - itemID: 13
+    name: "\u91D1\u306E\u30A2\u30FC\u30C6\u30A3\u30D5\u30A1\u30AF\u30C8"
+    itemRarity: 2
+    rarityWait: 100
+    explanation: 
+    BuyingPrice: 0
+    sellingPrice: 0
+    itemPrefab: {fileID: 5658852383598675163, guid: 391d2e1023d99e14192be0e44f91f9f2, type: 3}
+  - itemID: 14
+    name: "\u6DF1\u7DD1\u77F3\u306E\u30A2\u30FC\u30C6\u30A3\u30D5\u30A1\u30AF\u30C8"
+    itemRarity: 3
+    rarityWait: 100
+    explanation: 
+    BuyingPrice: 0
+    sellingPrice: 0
+    itemPrefab: {fileID: 807680350905784869, guid: 007e5ebc1f0548e489c74a96cd1a19f8, type: 3}
+  - itemID: 15
+    name: "\u91CD\u529B\u77F3\u306E\u30A2\u30FC\u30C6\u30A3\u30D5\u30A1\u30AF\u30C8"
+    itemRarity: 4
+    rarityWait: 100
+    explanation: 
+    BuyingPrice: 0
+    sellingPrice: 0
+    itemPrefab: {fileID: 5811475489580024007, guid: 42d85d83683846a4e8d242e93f00ffbe, type: 3}
+  - itemID: 16
+    name: "\u898B\u805E\u8349\u306E\u7A2E"
+    itemRarity: 0
+    rarityWait: 1
+    explanation: 
+    BuyingPrice: 0
+    sellingPrice: 0
+    itemPrefab: {fileID: 6544162808861847862, guid: 6eb1bda69d69113489502bb0542e3ccf, type: 3}
+  - itemID: 17
+    name: "\u719F\u3057\u305F\u898B\u805E\u8349\u306E\u7A2E"
+    itemRarity: 2
+    rarityWait: 1
+    explanation: 
+    BuyingPrice: 0
+    sellingPrice: 0
+    itemPrefab: {fileID: 5658852383598675163, guid: 210bc1d6d74284f42a4834f8c745b678, type: 3}
