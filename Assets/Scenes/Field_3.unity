@@ -920,6 +920,7 @@ MonoBehaviour:
   deathSE: {fileID: 8300000, guid: 06946702844f3364296e9be8fe9c689c, type: 3}
   walkSoundCounter: 0.2
   expPrefabs: {fileID: 5324519282543160065, guid: 7f6cc12a0089a3c4bbaaec96f1ba25ca, type: 3}
+  damagePrefabs: {fileID: 0}
   ExplosionFirstPrefab: {fileID: 8227313046198943524, guid: 344320bac3152a5449583d5348a826fe, type: 3}
   ExplosionPrefab: {fileID: 4740678945645832136, guid: 0556537c0dbbb0348a75292d06ea41a4, type: 3}
   groundLayer:
@@ -1674,6 +1675,7 @@ MonoBehaviour:
   deathSE: {fileID: 8300000, guid: 06946702844f3364296e9be8fe9c689c, type: 3}
   walkSoundCounter: 0.2
   expPrefabs: {fileID: 5324519282543160065, guid: 7f6cc12a0089a3c4bbaaec96f1ba25ca, type: 3}
+  damagePrefabs: {fileID: 0}
   ExplosionFirstPrefab: {fileID: 8227313046198943524, guid: 344320bac3152a5449583d5348a826fe, type: 3}
   ExplosionPrefab: {fileID: 4740678945645832136, guid: 0556537c0dbbb0348a75292d06ea41a4, type: 3}
   groundLayer:
@@ -4470,6 +4472,7 @@ MonoBehaviour:
   deathSE: {fileID: 8300000, guid: 06946702844f3364296e9be8fe9c689c, type: 3}
   walkSoundCounter: 0.2
   expPrefabs: {fileID: 5324519282543160065, guid: 7f6cc12a0089a3c4bbaaec96f1ba25ca, type: 3}
+  damagePrefabs: {fileID: 0}
   ExplosionFirstPrefab: {fileID: 8227313046198943524, guid: 344320bac3152a5449583d5348a826fe, type: 3}
   ExplosionPrefab: {fileID: 4740678945645832136, guid: 0556537c0dbbb0348a75292d06ea41a4, type: 3}
   groundLayer:
@@ -5121,6 +5124,7 @@ MonoBehaviour:
   deathSE: {fileID: 8300000, guid: 06946702844f3364296e9be8fe9c689c, type: 3}
   walkSoundCounter: 0.2
   expPrefabs: {fileID: 5324519282543160065, guid: 7f6cc12a0089a3c4bbaaec96f1ba25ca, type: 3}
+  damagePrefabs: {fileID: 0}
   ExplosionFirstPrefab: {fileID: 8227313046198943524, guid: 344320bac3152a5449583d5348a826fe, type: 3}
   ExplosionPrefab: {fileID: 4740678945645832136, guid: 0556537c0dbbb0348a75292d06ea41a4, type: 3}
   groundLayer:
@@ -6250,6 +6254,7 @@ MonoBehaviour:
   deathSE: {fileID: 8300000, guid: 06946702844f3364296e9be8fe9c689c, type: 3}
   walkSoundCounter: 0
   expPrefabs: {fileID: 5324519282543160065, guid: 7f6cc12a0089a3c4bbaaec96f1ba25ca, type: 3}
+  damagePrefabs: {fileID: 0}
   ExplosionFirstPrefab: {fileID: 8227313046198943524, guid: 344320bac3152a5449583d5348a826fe, type: 3}
   ExplosionPrefab: {fileID: 4740678945645832136, guid: 0556537c0dbbb0348a75292d06ea41a4, type: 3}
   groundLayer:
@@ -29145,6 +29150,7 @@ MonoBehaviour:
   deathSE: {fileID: 8300000, guid: 06946702844f3364296e9be8fe9c689c, type: 3}
   walkSoundCounter: 0.2
   expPrefabs: {fileID: 5324519282543160065, guid: 7f6cc12a0089a3c4bbaaec96f1ba25ca, type: 3}
+  damagePrefabs: {fileID: 0}
   ExplosionFirstPrefab: {fileID: 8227313046198943524, guid: 344320bac3152a5449583d5348a826fe, type: 3}
   ExplosionPrefab: {fileID: 4740678945645832136, guid: 0556537c0dbbb0348a75292d06ea41a4, type: 3}
   groundLayer:
@@ -32136,6 +32142,7 @@ MonoBehaviour:
   deathSE: {fileID: 8300000, guid: 06946702844f3364296e9be8fe9c689c, type: 3}
   walkSoundCounter: 0
   expPrefabs: {fileID: 5324519282543160065, guid: 7f6cc12a0089a3c4bbaaec96f1ba25ca, type: 3}
+  damagePrefabs: {fileID: 0}
   ExplosionFirstPrefab: {fileID: 8227313046198943524, guid: 344320bac3152a5449583d5348a826fe, type: 3}
   ExplosionPrefab: {fileID: 4740678945645832136, guid: 0556537c0dbbb0348a75292d06ea41a4, type: 3}
   groundLayer:
@@ -32493,6 +32500,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  itemInventryDataList: []
 --- !u!1 &1339623680
 GameObject:
   m_ObjectHideFlags: 0
@@ -33267,6 +33275,7 @@ MonoBehaviour:
   deathSE: {fileID: 8300000, guid: 06946702844f3364296e9be8fe9c689c, type: 3}
   walkSoundCounter: 0
   expPrefabs: {fileID: 5324519282543160065, guid: 7f6cc12a0089a3c4bbaaec96f1ba25ca, type: 3}
+  damagePrefabs: {fileID: 0}
   ExplosionFirstPrefab: {fileID: 8227313046198943524, guid: 344320bac3152a5449583d5348a826fe, type: 3}
   ExplosionPrefab: {fileID: 4740678945645832136, guid: 0556537c0dbbb0348a75292d06ea41a4, type: 3}
   groundLayer:
@@ -34369,6 +34378,7 @@ MonoBehaviour:
   deathSE: {fileID: 8300000, guid: 06946702844f3364296e9be8fe9c689c, type: 3}
   walkSoundCounter: 0
   expPrefabs: {fileID: 5324519282543160065, guid: 7f6cc12a0089a3c4bbaaec96f1ba25ca, type: 3}
+  damagePrefabs: {fileID: 1091784171529675915, guid: 81c8e0f0c9c94a44585a2db9ce8caf7d, type: 3}
   ExplosionFirstPrefab: {fileID: 8227313046198943524, guid: 344320bac3152a5449583d5348a826fe, type: 3}
   ExplosionPrefab: {fileID: 4740678945645832136, guid: 0556537c0dbbb0348a75292d06ea41a4, type: 3}
   groundLayer:
@@ -40544,6 +40554,7 @@ MonoBehaviour:
   deathSE: {fileID: 8300000, guid: 06946702844f3364296e9be8fe9c689c, type: 3}
   walkSoundCounter: 0.2
   expPrefabs: {fileID: 5324519282543160065, guid: 7f6cc12a0089a3c4bbaaec96f1ba25ca, type: 3}
+  damagePrefabs: {fileID: 0}
   ExplosionFirstPrefab: {fileID: 8227313046198943524, guid: 344320bac3152a5449583d5348a826fe, type: 3}
   ExplosionPrefab: {fileID: 4740678945645832136, guid: 0556537c0dbbb0348a75292d06ea41a4, type: 3}
   groundLayer:
@@ -41194,6 +41205,7 @@ MonoBehaviour:
   deathSE: {fileID: 8300000, guid: 06946702844f3364296e9be8fe9c689c, type: 3}
   walkSoundCounter: 0
   expPrefabs: {fileID: 5324519282543160065, guid: 7f6cc12a0089a3c4bbaaec96f1ba25ca, type: 3}
+  damagePrefabs: {fileID: 0}
   ExplosionFirstPrefab: {fileID: 8227313046198943524, guid: 344320bac3152a5449583d5348a826fe, type: 3}
   ExplosionPrefab: {fileID: 4740678945645832136, guid: 0556537c0dbbb0348a75292d06ea41a4, type: 3}
   groundLayer:
@@ -41427,7 +41439,7 @@ GameObject:
   - component: {fileID: 1628885034}
   - component: {fileID: 1628885033}
   m_Layer: 5
-  m_Name: PlayerDamageController
+  m_Name: PlayerHPController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -42212,6 +42224,7 @@ MonoBehaviour:
   deathSE: {fileID: 8300000, guid: 06946702844f3364296e9be8fe9c689c, type: 3}
   walkSoundCounter: 0.2
   expPrefabs: {fileID: 5324519282543160065, guid: 7f6cc12a0089a3c4bbaaec96f1ba25ca, type: 3}
+  damagePrefabs: {fileID: 0}
   ExplosionFirstPrefab: {fileID: 8227313046198943524, guid: 344320bac3152a5449583d5348a826fe, type: 3}
   ExplosionPrefab: {fileID: 4740678945645832136, guid: 0556537c0dbbb0348a75292d06ea41a4, type: 3}
   groundLayer:
@@ -43120,6 +43133,7 @@ MonoBehaviour:
   deathSE: {fileID: 8300000, guid: 06946702844f3364296e9be8fe9c689c, type: 3}
   walkSoundCounter: 0.2
   expPrefabs: {fileID: 5324519282543160065, guid: 7f6cc12a0089a3c4bbaaec96f1ba25ca, type: 3}
+  damagePrefabs: {fileID: 0}
   ExplosionFirstPrefab: {fileID: 8227313046198943524, guid: 344320bac3152a5449583d5348a826fe, type: 3}
   ExplosionPrefab: {fileID: 4740678945645832136, guid: 0556537c0dbbb0348a75292d06ea41a4, type: 3}
   groundLayer:
@@ -82109,6 +82123,7 @@ MonoBehaviour:
   deathSE: {fileID: 8300000, guid: 06946702844f3364296e9be8fe9c689c, type: 3}
   walkSoundCounter: 0.2
   expPrefabs: {fileID: 5324519282543160065, guid: 7f6cc12a0089a3c4bbaaec96f1ba25ca, type: 3}
+  damagePrefabs: {fileID: 0}
   ExplosionFirstPrefab: {fileID: 8227313046198943524, guid: 344320bac3152a5449583d5348a826fe, type: 3}
   ExplosionPrefab: {fileID: 4740678945645832136, guid: 0556537c0dbbb0348a75292d06ea41a4, type: 3}
   groundLayer:

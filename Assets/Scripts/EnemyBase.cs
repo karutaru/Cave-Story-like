@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
 using DG.Tweening;
+using TMPro;
 
 public class EnemyBase : MonoBehaviour
 {
@@ -44,7 +45,8 @@ public class EnemyBase : MonoBehaviour
     public float walkSoundCounter;              // 足音の鳴る間隔
 
     [Header("プレハブ 関連")]
-    public GameObject expPrefabs;              // 経験値のプレハブ
+    public GameObject expPrefabs;               // 経験値のプレハブ
+    public GameObject damagePrefabs;            // ダメージテキストのプレハブ
     public GameObject ExplosionFirstPrefab;     // 最初の大きな爆発のプレハブ
     public GameObject ExplosionPrefab;          // 次点の細かな爆発のプレハブ
 
@@ -311,10 +313,33 @@ public class EnemyBase : MonoBehaviour
     // プレイヤーの弾がぶつかった時
     protected virtual void OnTriggerEnter2D(Collider2D col)
     {
-        if (bulletController = col.GetComponent<BulletController>())
+        //if (bulletController == col.GetComponent<BulletController>())
+        if (col.TryGetComponent(out BulletController bulletController))
         {
             // プレイヤーの弾からダメージを持ってくる
             damage = bulletController.WeaponDamage;
+
+            // ダメージをポップアップ
+            GameObject damageTextObject = Instantiate(damagePrefabs, new Vector2(this.transform.position.x, this.transform.position.y), Quaternion.identity);
+            Debug.Log(damageTextObject.name);
+            damageTextObject.GetComponent<TMP_Text>().text = damage.ToString();
+
+            // プレイヤーの弾が当たった位置との差分を計算
+            Vector2 hitDiff = transform.position - bulletController.transform.position;
+            // テキストをプレイヤーの弾が当たった位置とは逆方向に向かってポップアップするように、AddForceで力を加える
+            //Rigidbody2D textRb = damageTextObject.GetComponent<Rigidbody2D>();
+            //textRb.AddForce(hitDiff.normalized * 50f, ForceMode2D.Impulse);
+
+            if (damageTextObject.TryGetComponent(out Rigidbody2D rb))
+            {
+                int randomValue = Random.Range(30, 40);
+                int randomUpValue = Random.Range(3, 8);
+                rb.AddForce(Vector2.up * 0.2f * randomValue, ForceMode2D.Impulse);
+                rb.AddForce(hitDiff.normalized * 0.2f * randomUpValue, ForceMode2D.Impulse);
+            }
+
+
+
 
             // 現在のHPからダメージ分を引く
             currentHP -= damage;

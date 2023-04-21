@@ -247,18 +247,6 @@ public class EnemyAI_Hide : EnemyBase
 
     //-------------------------------------------------------------ステータス関連------------------------------------------------------------------
 
-    // プレイヤーの弾がぶつかった時
-    protected override void OnTriggerEnter2D(Collider2D col)
-    {
-        if (bulletController = col.GetComponent<BulletController>())
-        {
-            // プレイヤーの弾からダメージを持ってくる
-            damage = bulletController.WeaponDamage;
-
-            // 現在のHPからダメージ分を引く
-            currentHP -= damage;
-        }
-    }
 
     //----------------------------------------------------------------↓-パス関連-↓-----------------------------------------------------------------
 

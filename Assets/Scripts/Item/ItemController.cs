@@ -3,6 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+[System.Serializable]
+public class ItemInventryData
+{
+    public int itemID;
+    public int amount;
+}
+
 public class ItemController : MonoBehaviour
 {
     [SerializeField, Header("アイテムデータのスクリプタブルオブジェクト")]
@@ -14,6 +21,7 @@ public class ItemController : MonoBehaviour
     public Dictionary<int, int> itemCounts = new Dictionary<int, int>();
 
     [SerializeField] private List<Text> itemCountTexts;
+    [SerializeField] private List<ItemInventryData> itemInventryDataList = new List<ItemInventryData>();
 
     //private void Update()
     //{

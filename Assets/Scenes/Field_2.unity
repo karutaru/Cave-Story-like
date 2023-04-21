@@ -4865,6 +4865,9 @@ MonoBehaviour:
   - {fileID: 542368292}
   - {fileID: 1511160647}
   - {fileID: 535705610}
+  itemInventryDataList:
+  - itemID: 0
+    amount: 0
 --- !u!1 &1339623680
 GameObject:
   m_ObjectHideFlags: 0
@@ -6898,7 +6901,7 @@ GameObject:
   - component: {fileID: 1863261342}
   m_Layer: 0
   m_Name: Gacha
-  m_TagString: Untagged
+  m_TagString: CanTalkObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

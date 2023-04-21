@@ -38,27 +38,27 @@ public class GachaScript : MonoBehaviour
         }
     }
 
-    //void Update()
-    //{
-    //    if (isGachaStay == false)
-    //    {
-    //        return;
-    //    }
-    //    if (Input.GetKeyDown(KeyCode.E))
-    //    {
-    //        randomGachaValue = Random.Range(1, 1001);
-    //        ItemData selectedItem = RollRarity();
-    //        if (selectedItem != null && selectedItem.itemPrefab != null)
-    //        {
-    //            ItemScript item = Instantiate(selectedItem.itemPrefab,
-    //        new Vector3(this.transform.position.x, this.transform.position.y + 1f, 0), transform.rotation);
-    //        }
-    //        else
-    //        {
-    //            Debug.LogWarning("選択されたアイテムまたはアイテムのプレハブがnull");
-    //        }
-    //    }
-    //}
+    void Update()
+    {
+        if (isGachaStay == false)
+        {
+            return;
+        }
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            randomGachaValue = Random.Range(1, 1001);
+            ItemData selectedItem = RollRarity();
+            if (selectedItem != null && selectedItem.itemPrefab != null)
+            {
+                ItemScript item = Instantiate(selectedItem.itemPrefab,
+            new Vector3(this.transform.position.x, this.transform.position.y + 1f, 0), transform.rotation);
+            }
+            else
+            {
+                Debug.LogWarning("選択されたアイテムまたはアイテムのプレハブがnull");
+            }
+        }
+    }
 
 
 

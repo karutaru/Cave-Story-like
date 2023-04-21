@@ -22,4 +22,5 @@ public class ItemData
     public int BuyingPrice;
     public int sellingPrice;
     public ItemScript itemPrefab;
+    public Sprite itemSprite;
 }
