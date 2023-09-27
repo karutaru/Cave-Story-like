@@ -102,9 +102,9 @@ public class InventoryManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.W))
         {
             cursor_vertical--;
-            if (cursor_vertical < 0)
+            if (cursor_vertical <= 0)
             {
-                cursor_vertical = 0;
+                cursor_vertical = 1;
             }
         }
         if (Input.GetKeyDown(KeyCode.S))
@@ -118,9 +118,9 @@ public class InventoryManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.A))
         {
             cursor_horizontal--;
-            if (cursor_horizontal < 0)
+            if (cursor_horizontal <= 0)
             {
-                cursor_horizontal = 0;
+                cursor_horizontal = 1;
             }
         }
     }
@@ -259,6 +259,21 @@ public class InventoryManager : MonoBehaviour
         if (inventory_menu == 2)
         {
 
+        }
+
+        if (cursor_vertical >= 5)
+        {
+            cursor_vertical = 4;
+        }
+
+        if (cursor_horizontal >= 5)
+        {
+            cursor_horizontal = 4;
+        }
+
+        if (cursor_vertical == 2 && cursor_horizontal >= 3)
+        {
+            cursor_vertical++;
         }
     }
 
