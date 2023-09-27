@@ -1,0 +1,87 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16137db8834fb9146a819125fd45feb8, type: 3}
+  m_Name: WeaponLevelDataSO
+  m_EditorClassIdentifier: 
+  weaponLevelDataList:
+  - gunName: 
+    weaponEvolutionEnumField: 0
+    gunImage: {fileID: 21300000, guid: 42b81968783f18948ba9af447de13ded, type: 3}
+    level: 1
+    exp: 0
+    maxDamage: 2
+    minDamage: 1
+    maxAmmo: 5
+    shotSpeed: 20
+    reloadTime: 1
+    shotRange: 0.2
+    gunShellPrefab: {fileID: -3986194673877613549, guid: 340daa7fc53b32643bb2447379dd2b47, type: 3}
+    prefabPositionOffsetY: 0
+    gunImage_Evo: {fileID: 0}
+    level_Evo: 1
+    exp_Evo: 0
+    maxDamage_Evo: 0
+    minDamage_Evo: 0
+    maxAmmo_Evo: 0
+    shotSpeed_Evo: 10
+    reloadTime_Evo: 1
+    shotRange_Evo: 0.3
+    gunShellPrefab_Evo: {fileID: 0}
+    prefabPositionOffsetY_Evo: 0
+  - gunName: 
+    weaponEvolutionEnumField: 0
+    gunImage: {fileID: 0}
+    level: 2
+    exp: 6
+    maxDamage: 0
+    minDamage: 0
+    maxAmmo: 10
+    shotSpeed: 20
+    reloadTime: 1
+    shotRange: 0.25
+    gunShellPrefab: {fileID: 2577471654045476920, guid: 644a5fc434cdec24ab438ce36c3f92c3, type: 3}
+    prefabPositionOffsetY: 0.15
+    gunImage_Evo: {fileID: 0}
+    level_Evo: 1
+    exp_Evo: 0
+    maxDamage_Evo: 0
+    minDamage_Evo: 0
+    maxAmmo_Evo: 0
+    shotSpeed_Evo: 10
+    reloadTime_Evo: 1
+    shotRange_Evo: 0.3
+    gunShellPrefab_Evo: {fileID: 0}
+    prefabPositionOffsetY_Evo: 0
+  - gunName: 
+    weaponEvolutionEnumField: 0
+    gunImage: {fileID: 0}
+    level: 3
+    exp: 10
+    maxDamage: 0
+    minDamage: 0
+    maxAmmo: 20
+    shotSpeed: 30
+    reloadTime: 1
+    shotRange: 0.3
+    gunShellPrefab: {fileID: 3376689575188039399, guid: cb3107c753010d944be33cf997523da1, type: 3}
+    prefabPositionOffsetY: 0.17
+    gunImage_Evo: {fileID: 0}
+    level_Evo: 1
+    exp_Evo: 0
+    maxDamage_Evo: 0
+    minDamage_Evo: 0
+    maxAmmo_Evo: 0
+    shotSpeed_Evo: 10
+    reloadTime_Evo: 1
+    shotRange_Evo: 0.3
+    gunShellPrefab_Evo: {fileID: 0}
+    prefabPositionOffsetY_Evo: 0

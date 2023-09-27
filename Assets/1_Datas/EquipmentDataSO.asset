@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cba6535cbb3ca440aa37d4d134ac52c, type: 3}
+  m_Name: EquipmentDataSO
+  m_EditorClassIdentifier: 
+  wideEnumField: 2
+  EquipmentDataList_Head:
+  - EquipmentImage: {fileID: 21300000, guid: 2eaf379ec9ef9a34882e28f520004dd8, type: 3}
+    EquipmentName: "\u56DA\u4EBA\u306E\u5E3D\u5B50"
+    EquipmentNumber: 1
+    hp: 0
+    attackPower: 0
+    DefensePower: 0
+    speed: 0
+    attackSpeed: 0
+  EquipmentDataList_Body:
+  - EquipmentImage: {fileID: 21300000, guid: 93cb5e23281332747a3d96ac67249ee5, type: 3}
+    EquipmentName: "\u56DA\u4EBA\u670D"
+    EquipmentNumber: 1
+    hp: 0
+    attackPower: 0
+    DefensePower: 0
+    speed: 0
+    attackSpeed: 0
+  EquipmentDataList_Leg:
+  - EquipmentImage: {fileID: 21300000, guid: 946105814045bfd40a5e3d1ab8cf5260, type: 3}
+    EquipmentName: "\u56DA\u4EBA\u306E\u30BA\u30DC\u30F3"
+    EquipmentNumber: 1
+    hp: 0
+    attackPower: 0
+    DefensePower: 0
+    speed: 0
+    attackSpeed: 0
+  EquipmentDataList_accessories: []
