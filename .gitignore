@@ -98,3 +98,5 @@ crashlytics-build.properties
 
 # Gradle cache directory
 .gradle
+
+/[Aa]ssets/DownloadAssets/Fonts/misaki_gothic*
