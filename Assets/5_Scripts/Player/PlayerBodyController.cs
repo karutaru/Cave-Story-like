@@ -251,13 +251,13 @@ public class PlayerBodyController : MonoBehaviour
             if (temp.x > 0)
             {
                 //0‚æ‚è‚à‘å‚«‚¯‚ê‚Î1‚É‚·‚é
-                this.transform.rotation = Quaternion.Euler(0f, 180f, 0f); //‰EŒü‚«
+                //this.transform.rotation = Quaternion.Euler(0f, 180f, 0f); //‰EŒü‚«
                 playerLookDirection = 1f;
             }
             else
             {
                 //0‚æ‚è‚à¬‚³‚¯‚ê‚Î-1‚É‚·‚é
-                this.transform.rotation = Quaternion.Euler(0f, 0f, 0f); //¶Œü‚«
+                //this.transform.rotation = Quaternion.Euler(0f, 0f, 0f); //¶Œü‚«
                 playerLookDirection = -1f;
             }
             //ƒLƒƒƒ‰‚ÌŒü‚«‚ğˆÚ“®•ûŒü‚É‡‚í‚¹‚é

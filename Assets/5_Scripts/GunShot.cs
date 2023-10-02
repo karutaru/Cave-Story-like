@@ -14,7 +14,7 @@ public class GunShot : MonoBehaviour
     public GameObject bulletEffectPrefab;
     public AudioClip shotSound;
     [SerializeField]
-    PlayerController playerController;
+    PlayerBodyController playerController;
     public BulletCountController bulletCountController;
     public Reload reload;
 

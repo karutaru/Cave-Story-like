@@ -34,5 +34,4 @@ public class PlayerHandsScript : MonoBehaviour
             anim.Play("Hands_Normal");
         }
     }
-
 }

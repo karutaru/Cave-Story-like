@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GunController : MonoBehaviour
 {
-    public PlayerController playerController;
+    public PlayerBodyController playerController;
     private bool isUp;
     private bool firstUp;
     private bool isDown;
@@ -127,5 +127,13 @@ public class GunController : MonoBehaviour
                 myTransform.localEulerAngles = pos2;
             }
         }
+        //if (playerController.playerLookDirection == 1f)
+        //{
+        //    this.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+        //}
+        //if (playerController.playerLookDirection == -1f)
+        //{
+        //    this.transform.rotation = Quaternion.Euler(0f, 180f, 0f);
+        //}
     }
 }
