@@ -12,6 +12,7 @@ public class PlayerHead : MonoBehaviour
     public Sprite downSprite; // 下のスプライト
     public Sprite normalSprite; // 通常時のスプライト
     public Sprite rightSprite; // 右向きのスプライト
+    public Sprite upRightSprite; // 上と右向きのスプライト
 
     public bool look_L = true;
 
@@ -37,6 +38,19 @@ public class PlayerHead : MonoBehaviour
         Vector2 direction = mousePosition - (Vector2)transform.position;
         float angle = Vector2.SignedAngle(transform.up, direction);
         float angle_down = Vector2.SignedAngle(-transform.up, direction);
+
+        if (angle_down > 110 && angle_down <= 180 && look_L == true)
+        {
+            // マウスの位置がプレイヤーの上と右側の90度以内にある場合の処理
+            spriteRenderer.sprite = upRightSprite;
+            return;
+        }
+        if (angle > 0 && angle <= 70 && look_L == false)
+        {
+            // マウスの位置がプレイヤーの上と右側の90度以内にある場合の処理
+            spriteRenderer.sprite = upRightSprite;
+            return;
+        }
 
         if (Mathf.Abs(angle) <= 50)
         {

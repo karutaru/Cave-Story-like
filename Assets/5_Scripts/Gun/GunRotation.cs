@@ -5,6 +5,15 @@ using UnityEngine;
 public class GunRotation : MonoBehaviour
 {
     public Camera mainCamera; // シーン内のカメラ
+    private SpriteRenderer spriteRenderer;
+
+    private Sprite currentSprite;
+
+
+    private void Start()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+    }
 
     public Vector3 EulerAngles { 
         get { return transform.eulerAngles; }
@@ -32,6 +41,19 @@ public class GunRotation : MonoBehaviour
             // その方向に武器を回転させる
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             transform.eulerAngles = new Vector3(0, 0, angle);
+
+
+            // マウスのスクリーン座標がスクリーンの中央よりも右側にあるかを判断
+            if (Input.mousePosition.x > Screen.width / 2)
+            {
+                // 右側にある場合、スプライトのY軸を反転
+                spriteRenderer.flipY = true;
+            }
+            else
+            {
+                // 左側にある場合、反転を解除
+                spriteRenderer.flipY = false;
+            }
         }
 
         //Vector3 angles = EulerAngles; // ﾌﾟﾛﾊﾟﾃｨの使い方
