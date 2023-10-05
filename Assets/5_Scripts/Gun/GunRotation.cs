@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using BehaviorDesigner.Runtime.Tasks.Unity.UnityVector2;
+using System.Text;
+using UnityEngine;
 
 public class GunRotation : MonoBehaviour
 {
@@ -82,7 +84,9 @@ public class GunRotation : MonoBehaviour
 
         // 弾の方向と回転を更新
         bulletEulerAngles = new Vector3(0, 0, angle);
-        bulletDirection = direction;
+        bulletDirection = direction.normalized;
+
+        Debug.Log(bulletDirection);
     }
 
     /// <summary>
