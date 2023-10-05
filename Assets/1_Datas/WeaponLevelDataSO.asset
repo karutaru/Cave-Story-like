@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: WeaponLevelDataSO
   m_EditorClassIdentifier: 
   weaponLevelDataList:
-  - gunName: 
+  - gunName: "\u30C6\u30B9\u30C8"
+    gunID: 1
     weaponEvolutionEnumField: 0
     gunImage: {fileID: 21300000, guid: 42b81968783f18948ba9af447de13ded, type: 3}
     level: 1
@@ -26,7 +27,7 @@ MonoBehaviour:
     shotRange: 0.2
     gunShellPrefab: {fileID: -3986194673877613549, guid: 340daa7fc53b32643bb2447379dd2b47, type: 3}
     prefabPositionOffsetY: 0
-    gunImage_Evo: {fileID: 0}
+    gunImage_Evo: {fileID: 21300000, guid: 42b81968783f18948ba9af447de13ded, type: 3}
     level_Evo: 1
     exp_Evo: 0
     maxDamage_Evo: 0
@@ -35,48 +36,25 @@ MonoBehaviour:
     shotSpeed_Evo: 10
     reloadTime_Evo: 1
     shotRange_Evo: 0.3
-    gunShellPrefab_Evo: {fileID: 0}
+    gunShellPrefab_Evo: {fileID: -3986194673877613549, guid: 340daa7fc53b32643bb2447379dd2b47, type: 3}
     prefabPositionOffsetY_Evo: 0
-  - gunName: 
+  - gunName: "\u30C6\u30B9\u30C8\uFF12"
+    gunID: 
     weaponEvolutionEnumField: 0
     gunImage: {fileID: 0}
-    level: 2
-    exp: 6
+    level: 0
+    exp: 2
     maxDamage: 0
     minDamage: 0
-    maxAmmo: 10
-    shotSpeed: 20
-    reloadTime: 1
-    shotRange: 0.25
-    gunShellPrefab: {fileID: 2577471654045476920, guid: 644a5fc434cdec24ab438ce36c3f92c3, type: 3}
-    prefabPositionOffsetY: 0.15
-    gunImage_Evo: {fileID: 0}
-    level_Evo: 1
-    exp_Evo: 0
-    maxDamage_Evo: 0
-    minDamage_Evo: 0
-    maxAmmo_Evo: 0
-    shotSpeed_Evo: 10
-    reloadTime_Evo: 1
-    shotRange_Evo: 0.3
-    gunShellPrefab_Evo: {fileID: 0}
-    prefabPositionOffsetY_Evo: 0
-  - gunName: 
-    weaponEvolutionEnumField: 0
-    gunImage: {fileID: 0}
-    level: 3
-    exp: 10
-    maxDamage: 0
-    minDamage: 0
-    maxAmmo: 20
-    shotSpeed: 30
+    maxAmmo: 0
+    shotSpeed: 10
     reloadTime: 1
     shotRange: 0.3
-    gunShellPrefab: {fileID: 3376689575188039399, guid: cb3107c753010d944be33cf997523da1, type: 3}
-    prefabPositionOffsetY: 0.17
+    gunShellPrefab: {fileID: 0}
+    prefabPositionOffsetY: 0
     gunImage_Evo: {fileID: 0}
-    level_Evo: 1
-    exp_Evo: 0
+    level_Evo: 0
+    exp_Evo: 2
     maxDamage_Evo: 0
     minDamage_Evo: 0
     maxAmmo_Evo: 0

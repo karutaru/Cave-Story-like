@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public enum FaceDirection
@@ -21,6 +22,9 @@ public class GunShot : MonoBehaviour
     [SerializeField]
     private PlayerWeapon playerWeapon;
     private FaceDirection faceDirection;
+
+    [SerializeField]
+    private GunRotation gunRotation;
 
 
     void Start()
@@ -89,6 +93,7 @@ public class GunShot : MonoBehaviour
         }
     }
 
+
     /// <summary>
     /// 弾の生成
     /// </summary>
@@ -115,38 +120,40 @@ public class GunShot : MonoBehaviour
         // 高さの調整値を向きから取得
         float offsetY = GetOffsetFromFaceDirection();
 
+        if (playerWeapon == null)
+        {
+            Debug.LogError("playerWeapon is null!");
+            return;
+        }
+
+        if (playerWeapon.CurrentWeaponLevelData == null)
+        {
+            Debug.LogError("CurrentWeaponLevelData is null!");
+            return;
+        }
+
+        if (playerWeapon.CurrentWeaponLevelData.gunShellPrefab == null)
+        {
+            Debug.LogError("gunShellPrefab is null!");
+            return;
+        }
+
         // 弾をインスタンス化する
         BulletController bullet = Instantiate(playerWeapon.CurrentWeaponLevelData.gunShellPrefab,
             new Vector3(transform.position.x, transform.position.y + offsetY + playerWeapon.CurrentWeaponLevelData.prefabPositionOffsetY, 0), transform.rotation);
-
-        bullet.transform.eulerAngles = transform.eulerAngles;
+        
+        //bullet.transform.eulerAngles = transform.eulerAngles;
 
         // マズルフラッシュをインスタンス化する
         GameObject bulletFire = Instantiate(bulletEffectPrefab,
             new Vector2(transform.position.x, transform.position.y + offsetY), transform.rotation);
 
+        bullet.transform.eulerAngles = gunRotation.BulletEulerAngles;
+
         // 弾の設定を行い発射
-        if (faceDirection == FaceDirection.Flat)
-        {
-            bullet.Shoot(
-                new Vector2(playerWeapon.CurrentWeaponLevelData.shotSpeed * playerController.playerLookDirection, 0),
-                playerWeapon.CurrentWeaponLevelData.maxDamage, playerWeapon.CurrentWeaponLevelData.minDamage);
-        }
-        else
-        {
-            if (currentFaceDirection == FaceDirection.Up)
-            {
-                bullet.Shoot(
-                new Vector2(0, playerWeapon.CurrentWeaponLevelData.shotSpeed * 1),
-                playerWeapon.CurrentWeaponLevelData.maxDamage, playerWeapon.CurrentWeaponLevelData.minDamage);
-            }
-            else
-            {
-                bullet.Shoot(
-                new Vector2(0, playerWeapon.CurrentWeaponLevelData.shotSpeed * -1),
-                playerWeapon.CurrentWeaponLevelData.maxDamage, playerWeapon.CurrentWeaponLevelData.minDamage);
-            }
-        }
+        bullet.Shoot(
+            gunRotation.BulletDirection * playerWeapon.CurrentWeaponLevelData.shotSpeed,
+            playerWeapon.CurrentWeaponLevelData.maxDamage, playerWeapon.CurrentWeaponLevelData.minDamage);
 
         // 発射音を再生する
         AudioSource.PlayClipAtPoint(shotSound, transform.position);

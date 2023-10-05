@@ -14,6 +14,9 @@ public class WeaponLevelData
     [LabelText("■■■■■銃の名前■■■■"), HideLabel]
     public string gunName;
 
+    [LabelText("銃のID"), HideLabel]
+    public string gunID;
+
     [Title("武器の状態"), EnumToggleButtons, HideLabel]
     public WeaponEvolutionEnum weaponEvolutionEnumField;
 
@@ -108,4 +111,9 @@ public class WeaponLevelData
     [LabelText("プレハブのY軸オフセット"), HideLabel]
     [ShowIf("weaponEvolutionEnumField", WeaponEvolutionEnum.進化)]
     public float prefabPositionOffsetY_Evo = 0;
+
+    public override string ToString()
+    {
+        return $"{gunID} {gunName}";
+    }
 }

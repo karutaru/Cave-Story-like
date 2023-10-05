@@ -23,4 +23,9 @@ public class ItemData
     public int sellingPrice;
     public ItemScript itemPrefab;
     public Sprite itemSprite;
+
+    public override string ToString()
+    {
+        return $"{itemID} {name}";
+    }
 }
