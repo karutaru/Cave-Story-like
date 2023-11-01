@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using static Sirenix.OdinInspector.Editor.Internal.FastDeepCopier;
+using DG.Tweening;
 
 public class PlayerBodyController : MonoBehaviour
 {
@@ -25,6 +27,7 @@ public class PlayerBodyController : MonoBehaviour
     private float t;
     private float power;
     private float gravity;
+    private bool isMove;
 
     [SerializeField]
     private Rigidbody2D rb;                         // プレイヤーのRigidbody2D
@@ -47,6 +50,8 @@ public class PlayerBodyController : MonoBehaviour
     public AudioClip jumpLandingSE;
     public AudioClip jumpSE;
     public AudioClip stepSE;
+
+    public Knockback_Player knockback_Player;
 
     [SerializeField]
     CinemachineVirtualCamera artViewCamera;
@@ -222,6 +227,10 @@ public class PlayerBodyController : MonoBehaviour
     /// </summary>
     private void Move()                                           //移動◆◆
     {
+        if (isMove)
+        {
+            return;
+        }
         // 水平方向への入力受付
         float x = Input.GetAxis(horizontal);
 
@@ -241,7 +250,18 @@ public class PlayerBodyController : MonoBehaviour
             }
 
             // x の値が 0 ではない場合 = キー入力がある場合
-            rb.velocity = new Vector2(x * moveSpeed, rb.velocity.y);
+            //rb.velocity = new Vector2(x * moveSpeed, rb.velocity.y);
+
+
+            float targetVelocityX = x * moveSpeed;
+
+            // 現在の速度を目標速度に向けて徐々に変更
+            float newVelocityX = Mathf.MoveTowards(rb.velocity.x, targetVelocityX, 10 * Time.deltaTime);
+
+            // Rigidbodyの速度を更新
+            rb.velocity = new Vector2(newVelocityX, rb.velocity.y);
+
+
             // temp 変数に現在の Rotation 値を代入
             Vector3 temp = new Vector3(this.transform.rotation.x, this.transform.rotation.y, this.transform.rotation.z);
             // 現在のキー入力値 x を temp.x に代入
@@ -279,11 +299,11 @@ public class PlayerBodyController : MonoBehaviour
             //走っていない時
             isRun = false;
             // 左右の入力がなかったら横移動の速度を0にしてすぐに停止する
-            rb.velocity = new Vector2(0, rb.velocity.y);
+            //rb.velocity = new Vector2(0, rb.velocity.y);
             //// 走るアニメの再生を止めて、待機状態のアニメの再生への遷移を行う
             //anim.SetFloat("Run", 0.0f);
             // velocity(速度)に新しい値を代入して移動
-            rb.velocity = new Vector2(0, rb.velocity.y);
+            //rb.velocity = new Vector2(0, rb.velocity.y);
         }
     }
 
@@ -317,20 +337,20 @@ public class PlayerBodyController : MonoBehaviour
     }
 
 
-    private void OnCollisionEnter2D(Collision2D col)
-    { //接触したなら
+    //private void OnCollisionEnter2D(Collision2D col)
+    //{ //接触したなら
 
-        // 接触したコライダーを持つゲームオブジェクトのTagがEnemyなら 
-        if (col.gameObject.tag == "Enemy")
-        {
+    //    // 接触したコライダーを持つゲームオブジェクトのTagがEnemyなら 
+    //    if (col.gameObject.tag == "Enemy")
+    //    {
 
-            // キャラと敵の位置から距離と方向を計算
-            Vector3 direction = (transform.position - col.transform.position).normalized;
+    //        // キャラと敵の位置から距離と方向を計算
+    //        Vector3 direction = (transform.position - col.transform.position).normalized;
 
-            // 敵の反対側にキャラを吹き飛ばす
-            transform.position += direction * knockbackPower;
-        }
-    }
+    //        // 敵の反対側にキャラを吹き飛ばす
+    //        transform.position += direction * knockbackPower;
+    //    }
+    //}
 
     public void WaterMove(bool waterIn)                     //水の中◆◆
     {
@@ -355,5 +375,18 @@ public class PlayerBodyController : MonoBehaviour
             rb.gravityScale = 2f;
             moveSpeed = moveSpeedKeep;
         }
+    }
+
+    public void MoveControl(bool amount)
+    {
+        isMove = amount;
+
+        // 移動速度を0にする
+        rb.velocity = new Vector2(0, rb.velocity.y);
+
+        // 0.3秒待ってからisMoveをfalseに設定し移動開始
+        DOVirtual.DelayedCall(0.3f, () => {
+            isMove = false;
+        });
     }
 }

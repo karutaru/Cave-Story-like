@@ -25,7 +25,7 @@ public class PlayerStatus : MonoBehaviour
     //---------------------------ここまで---------------------------
 
     private EnemyController enemyController;
-    public AudioClip damageSE;
+    //public AudioClip damageSE;
     [SerializeField]
     private Text playerDamage;
     [SerializeField]
@@ -42,7 +42,7 @@ public class PlayerStatus : MonoBehaviour
         if (enemyController = col.GetComponent<EnemyController>())
         {
             currentHP -= enemyController.atk;
-            AudioSource.PlayClipAtPoint(damageSE, transform.position);
+            //AudioSource.PlayClipAtPoint(damageSE, transform.position);
 
             playerDamage.text = currentHP.ToString();
         }

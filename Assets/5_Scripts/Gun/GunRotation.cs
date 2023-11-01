@@ -86,7 +86,7 @@ public class GunRotation : MonoBehaviour
         bulletEulerAngles = new Vector3(0, 0, angle);
         bulletDirection = direction.normalized;
 
-        Debug.Log(bulletDirection);
+        //Debug.Log(bulletDirection);
     }
 
     /// <summary>
