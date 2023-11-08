@@ -8,8 +8,7 @@ public class BulletCountController : MonoBehaviour
     private int currentAmmoCount = 0; // 現在の弾数
     public int CurrentAmmoCount => currentAmmoCount; // プロパティ（外部アクセス用）
 
-    [SerializeField]
-    private int gunMaxAmmo = 5; // 最大装弾数
+    private int gunMaxAmmo; // 最大装弾数
 
     [SerializeField]
     private BulletDisplay bulletDisplay;
@@ -18,6 +17,11 @@ public class BulletCountController : MonoBehaviour
     void Start()
     {
         currentAmmoCount = gunMaxAmmo;
+    }
+
+    public void StartBullets(int amount)
+    {
+        gunMaxAmmo = amount;
         bulletDisplay.UpdateBulletDisplay(gunMaxAmmo);
     }
 

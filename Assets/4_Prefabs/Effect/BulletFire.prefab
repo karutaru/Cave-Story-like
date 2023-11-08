@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4292963306959589446}
   - component: {fileID: 4292963306959589445}
   - component: {fileID: 2877363840654533009}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: BulletFire
   m_TagString: Untagged
   m_Icon: {fileID: 0}

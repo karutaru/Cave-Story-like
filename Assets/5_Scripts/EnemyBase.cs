@@ -316,6 +316,9 @@ public class EnemyBase : MonoBehaviour
         //if (bulletController == col.GetComponent<BulletController>())
         if (col.TryGetComponent(out BulletController bulletController))
         {
+            // ダメージを受けた時に索敵距離を最大にする
+            activateDistance = 150f;
+
             // プレイヤーの弾からダメージを持ってくる
             damage = bulletController.WeaponDamage;
 

@@ -3,15 +3,19 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public enum FaceDirection
-{
-    Up,
-    Down,
-    Flat
-}
+//public enum FaceDirection
+//{
+//    Up,
+//    Down,
+//    Flat
+//}
 
 public class GunShot : MonoBehaviour
 {
+    // スクリプタブルオブジェクトの登録（アセットをアサイン）
+    [SerializeField, Header("武器レベルデータのスクリプタブルオブジェクト")]
+    private WeaponLevelDataSO weaponLevelDataSO;
+
     public GameObject bulletEffectPrefab;
     public AudioClip shotSound;
     [SerializeField]
@@ -19,9 +23,17 @@ public class GunShot : MonoBehaviour
     public BulletCountController bulletCountController;
     public Reload reload;
 
+    private WeaponLevelData currentWeaponLevelData; // 現在の武器レベルデータ（弾の速度、ダメージ、プレハブ）
+    public WeaponLevelData CurrentWeaponLevelData => currentWeaponLevelData; // プロパティ
+
     [SerializeField]
     private PlayerWeapon playerWeapon;
-    private FaceDirection faceDirection;
+    //private FaceDirection faceDirection;
+    public float shotTimeIntervalCount = 0; // 射撃間隔のカウンターを追加
+    private bool canShoot = true;           // 射撃可能かどうかのフラグを追加
+    private int currentWeaponID = 0;            // 現在持っている武器のID
+    private float firstAccuracy = 0;
+    private float shotAccuracy = 0;
 
     [SerializeField]
     private GunRotation gunRotation;
@@ -32,44 +44,82 @@ public class GunShot : MonoBehaviour
         // 武器情報の初期化
         playerWeapon.Init();
 
-        faceDirection = FaceDirection.Flat;
+        //faceDirection = FaceDirection.Flat;
+
+        bulletCountController.StartBullets(weaponLevelDataSO.weaponLevelDataList[currentWeaponID].maxAmmo);
     }
 
     private void Update()
     {
         if (Time.timeScale == 1)
         {
-            // 左クリックが押されたら
+            // 左クリックが押されたかどうかをチェック
             if (Input.GetButtonDown("Fire1"))
             {
-                // 弾が生成できるかを確認し、生成するか、リロードする
-                TryShoot();
+                // shotTimeIntervalCountがshotIntervalを超えていれば、またはcanShootがtrueであれば射撃
+                if (shotTimeIntervalCount >= weaponLevelDataSO.weaponLevelDataList[currentWeaponID].shotInterval || canShoot)
+                {
+                    TryShoot();
+                    shotTimeIntervalCount = 0; // 射撃後はカウンターをリセット
+                    canShoot = false; // 射撃可能フラグをfalseに設定
+                }
             }
-            // 向いている方向の取得
-            faceDirection = GetFaceDirection();
+            else if (Input.GetButton("Fire1"))
+            {
+                // 左クリックを押し続けている場合はカウンターを増やす
+                if (!canShoot) // canShootがfalseのときのみカウンターを増やす
+                {
+                    shotTimeIntervalCount += Time.deltaTime * 100; // 実際の時間に基づいてカウンターを増やす
+                    if (shotTimeIntervalCount >= weaponLevelDataSO.weaponLevelDataList[currentWeaponID].shotInterval)
+                    {
+                        // 射撃間隔が十分に経過していれば射撃
+                        TryShoot();
+                        shotTimeIntervalCount = 0; // 射撃後はカウンターをリセット
+                    }
+                }
+            }
+            else if (Input.GetButtonUp("Fire1"))
+            {
+                // 左クリックを離したら、canShootをfalseに設定し、カウンターを増加させ続ける
+                canShoot = false;
+            }
+            else if (!Input.GetButton("Fire1") && !canShoot) // 左クリックが押されていない間はカウンターを増やす
+            {
+                shotTimeIntervalCount += Time.deltaTime * 100; // 実際の時間に基づいてカウンターを増やす
+                if (shotTimeIntervalCount >= weaponLevelDataSO.weaponLevelDataList[currentWeaponID].shotInterval)
+                {
+                    // 射撃間隔が十分に経過していれば、次にクリックしたときにすぐに射撃できるようにする
+                    canShoot = true;
+                }
+            }
         }
+    }
+
+    public void ChangeWeapon(int amount)
+    {
+        currentWeaponID = amount;
     }
 
     /// <summary>
     /// 向いている方向の取得
     /// </summary>
     /// <returns></returns>
-    private FaceDirection GetFaceDirection()
-    {
-        // Wか↑を押した時
-        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
-        {
-            return FaceDirection.Up;
-        }
+    //private FaceDirection GetFaceDirection()
+    //{
+    //    // Wか↑を押した時
+    //    if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
+    //    {
+    //        return FaceDirection.Up;
+    //    }
 
-        // Sか↓を押した時
-        if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
-        {
-            return FaceDirection.Down;
-        }
+    //    // Sか↓を押した時
+    //    if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
+    //    {
+    //        return FaceDirection.Down;
+    //    }
 
-        return FaceDirection.Flat;
-    }
+    //    return FaceDirection.Flat;
+    //}
 
     /// <summary>
     /// 弾が生成できるか確認してから弾を生成する
@@ -81,7 +131,7 @@ public class GunShot : MonoBehaviour
         if (bulletCountController.CurrentAmmoCount <= 0)
         {
             // リロード
-            reload.ReloadBullets(playerWeapon.CurrentWeaponLevelData.maxAmmo, playerWeapon.CurrentWeaponLevelData.reloadTime);
+            reload.ReloadBullets(weaponLevelDataSO.weaponLevelDataList[currentWeaponID].maxAmmo, weaponLevelDataSO.weaponLevelDataList[currentWeaponID].reloadTime);
         }
         else
         {
@@ -99,26 +149,26 @@ public class GunShot : MonoBehaviour
     /// </summary>
     private void GenerateBullet()
     {
-        Debug.Log("最初" + transform.eulerAngles);
-        FaceDirection currentFaceDirection = faceDirection;
+        //Debug.Log("最初" + transform.eulerAngles);
+        //FaceDirection currentFaceDirection = faceDirection;
 
         // プレイヤーの向いている方向から角度を取得
-        float offsetAngle = GetAngleFromFaceDirection();
+        //float offsetAngle = GetAngleFromFaceDirection();
 
-        // 上か下を向いている場合
-        if (currentFaceDirection != FaceDirection.Flat)
-        {
-            // 発射位置を頭上か足元に変更
-            ChangePosition(playerController.playerLookDirection);
+        //// 上か下を向いている場合
+        //if (currentFaceDirection != FaceDirection.Flat)
+        //{
+        //    // 発射位置を頭上か足元に変更
+        //    ChangePosition(playerController.playerLookDirection);
 
-            // 回転を変更
-            ChangeAngle(offsetAngle);
-        }
-        Debug.Log("生成直前"+ transform.eulerAngles);
+        //    // 回転を変更
+        //    ChangeAngle(offsetAngle);
+        //}
+        //Debug.Log("生成直前"+ transform.eulerAngles);
 
         // 向きに関わらず、共通の処理
         // 高さの調整値を向きから取得
-        float offsetY = GetOffsetFromFaceDirection();
+        //float offsetY = GetOffsetFromFaceDirection();
 
         if (playerWeapon == null)
         {
@@ -132,100 +182,107 @@ public class GunShot : MonoBehaviour
             return;
         }
 
-        if (playerWeapon.CurrentWeaponLevelData.gunShellPrefab == null)
+        if (weaponLevelDataSO.weaponLevelDataList[currentWeaponID].gunShellPrefab == null)
         {
             Debug.LogError("gunShellPrefab is null!");
             return;
         }
+        // 弾の位置の初期ランダム性
+        firstAccuracy = Random.Range(- weaponLevelDataSO.weaponLevelDataList[currentWeaponID].firstAccuracy, weaponLevelDataSO.weaponLevelDataList[currentWeaponID].firstAccuracy);
+
+        //// 弾の終着点のランダム性
+        //shotAccuracy = Random.Range(-weaponLevelDataSO.weaponLevelDataList[currentWeaponID].shotAccuracy, weaponLevelDataSO.weaponLevelDataList[currentWeaponID].shotAccuracy);
 
         // 弾をインスタンス化する
-        BulletController bullet = Instantiate(playerWeapon.CurrentWeaponLevelData.gunShellPrefab,
-            new Vector3(transform.position.x, transform.position.y + offsetY + playerWeapon.CurrentWeaponLevelData.prefabPositionOffsetY, 0), transform.rotation);
-        
+        BulletController bullet = Instantiate(weaponLevelDataSO.weaponLevelDataList[currentWeaponID].gunShellPrefab,
+            new Vector3(transform.position.x, transform.position.y + weaponLevelDataSO.weaponLevelDataList[currentWeaponID].prefabPositionOffsetY + firstAccuracy, 0), transform.rotation);
+
+        bullet.transform.localScale = new Vector3(weaponLevelDataSO.weaponLevelDataList[currentWeaponID].shellSize, weaponLevelDataSO.weaponLevelDataList[currentWeaponID].shellSize, 1f);
+
         //bullet.transform.eulerAngles = transform.eulerAngles;
 
         // マズルフラッシュをインスタンス化する
         GameObject bulletFire = Instantiate(bulletEffectPrefab,
-            new Vector2(transform.position.x, transform.position.y + offsetY), transform.rotation);
+            new Vector2(transform.position.x, transform.position.y), transform.rotation);
 
         bullet.transform.eulerAngles = gunRotation.BulletEulerAngles;
 
         // 弾の設定を行い発射
         bullet.Shoot(
-            gunRotation.BulletDirection * playerWeapon.CurrentWeaponLevelData.shotSpeed,
-            playerWeapon.CurrentWeaponLevelData.maxDamage, playerWeapon.CurrentWeaponLevelData.minDamage);
+            gunRotation.BulletDirection * weaponLevelDataSO.weaponLevelDataList[currentWeaponID].shotSpeed,
+            weaponLevelDataSO.weaponLevelDataList[currentWeaponID].maxDamage, weaponLevelDataSO.weaponLevelDataList[currentWeaponID].minDamage);
 
         // 発射音を再生する
         AudioSource.PlayClipAtPoint(shotSound, transform.position);
 
         // 回転を修正
-        ChangeAngle(0);
+        //ChangeAngle(0);
 
         Debug.Log("生成後" + transform.eulerAngles);
 
-        // 上も下も向いていない場合
-        if (currentFaceDirection == FaceDirection.Flat)
-        {
-            StartCoroutine(RespawnBulletEffect(playerWeapon.CurrentWeaponLevelData.shotRange, bullet.gameObject));
-            // 終了
-            return;
-        }
+        //// 上も下も向いていない場合
+        //if (currentFaceDirection == FaceDirection.Flat)
+        //{
+        //    StartCoroutine(RespawnBulletEffect(playerWeapon.CurrentWeaponLevelData.shotRange, bullet.gameObject));
+        //    // 終了
+        //    return;
+        //}
 
         // ここは上か下を向いている時に動く
-        StartCoroutine(RespawnBulletEffect(playerWeapon.CurrentWeaponLevelData.shotRange, bullet.gameObject, 0.6f));
+        StartCoroutine(RespawnBulletEffect(weaponLevelDataSO.weaponLevelDataList[currentWeaponID].shotRange, bullet.gameObject, 0f));
 
         // 発射位置を元の位置に戻す
-        ChangePosition(-playerController.playerLookDirection);
+        //ChangePosition(-playerController.playerLookDirection);
     }
 
     /// <summary>
     /// 回転を変更
     /// </summary>
     /// <param name="offsetAngle"></param>
-    private void ChangeAngle(float offsetAngle)
-    {
-        transform.eulerAngles = new Vector3(0, 0, offsetAngle);
-    }
+    //private void ChangeAngle(float offsetAngle)
+    //{
+    //    transform.eulerAngles = new Vector3(0, 0, offsetAngle);
+    //}
 
     /// <summary>
     /// 位置を変更
     /// </summary>
     /// <param name="direction"></param>
-    private void ChangePosition(float direction)
-    {
-        Vector2 pos = new Vector2(transform.position.x - (0.68f * direction), transform.position.y);
-        transform.position = pos;
-    }
+    //private void ChangePosition(float direction)
+    //{
+    //    Vector2 pos = new Vector2(transform.position.x - (0.68f * direction), transform.position.y);
+    //    transform.position = pos;
+    //}
 
-    /// <summary>
-    /// プレイヤーの向きから Y軸の調整値を取得
-    /// </summary>
-    /// <returns></returns>
-    private float GetOffsetFromFaceDirection()
-    {
-        return faceDirection switch
-        {
-            FaceDirection.Up => 0.6f,
-            FaceDirection.Down => -0.6f,
-            FaceDirection.Flat => -0.2f,
-            _ => 0f
-        };
-    }
+    ///// <summary>
+    ///// プレイヤーの向きから Y軸の調整値を取得
+    ///// </summary>
+    ///// <returns></returns>
+    //private float GetOffsetFromFaceDirection()
+    //{
+    //    return faceDirection switch
+    //    {
+    //        FaceDirection.Up => 0.6f,
+    //        FaceDirection.Down => -0.6f,
+    //        FaceDirection.Flat => -0.2f,
+    //        _ => 0f
+    //    };
+    //}
 
-    /// <summary>
-    /// プレイヤーの向きから角度を取得
-    /// </summary>
-    /// <returns></returns>
-    private float GetAngleFromFaceDirection()
-    {
-        return faceDirection switch
-        {
-            FaceDirection.Up => 90f,
-            FaceDirection.Down => -90f,
-            FaceDirection.Flat => 0f,
-            _ => 0f
-        };
-    }
+    ///// <summary>
+    ///// プレイヤーの向きから角度を取得
+    ///// </summary>
+    ///// <returns></returns>
+    //private float GetAngleFromFaceDirection()
+    //{
+    //    return faceDirection switch
+    //    {
+    //        FaceDirection.Up => 90f,
+    //        FaceDirection.Down => -90f,
+    //        FaceDirection.Flat => 0f,
+    //        _ => 0f
+    //    };
+    //}
 
     /// <summary>
     /// 終端のマズルフラッシュの生成

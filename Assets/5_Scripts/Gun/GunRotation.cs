@@ -1,14 +1,18 @@
 ﻿using BehaviorDesigner.Runtime.Tasks.Unity.UnityVector2;
 using System.Text;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GunRotation : MonoBehaviour
 {
-    //public Camera mainCamera; // シーン内のカメラ
+    // スクリプタブルオブジェクトの登録（アセットをアサイン）
+    [SerializeField, Header("武器レベルデータのスクリプタブルオブジェクト")]
+    private WeaponLevelDataSO weaponLevelDataSO;
 
     private SpriteRenderer spriteRenderer;
 
-    //private Sprite currentSprite;
+    private int currentWeaponID = 0;
+    private float shotAccuracy = 0;
 
     // 弾に提供する回転情報
     private Vector3 bulletEulerAngles;
@@ -21,11 +25,6 @@ public class GunRotation : MonoBehaviour
 
     private void Start()
     {
-        //spriteRenderer = GetComponent<SpriteRenderer>();
-
-        // TryGetComponent の方が簡潔に書けます
-        //TryGetComponent(out spriteRenderer);
-
         // また、TryGetComponent の場合、取得有無の確認もできるので、if 文と組み合わせて安全に利用する手法も選べます
         if (!TryGetComponent(out spriteRenderer))
         {
@@ -62,7 +61,6 @@ public class GunRotation : MonoBehaviour
     /// <param name="mousePosition"></param>
     private void RotateGun(Vector3 mousePosition)
     {
-
         // マウスの方向を計算
         Vector2 direction = -(mousePosition - transform.position).normalized;
 
@@ -77,9 +75,12 @@ public class GunRotation : MonoBehaviour
     /// <param name="mousePosition"></param>
     private void CalculateBulletDirectionAndRotation(Vector3 mousePosition)
     {
+        // 弾の終着点のランダム性
+        shotAccuracy = Random.Range(-weaponLevelDataSO.weaponLevelDataList[currentWeaponID].shotAccuracy, weaponLevelDataSO.weaponLevelDataList[currentWeaponID].shotAccuracy);
 
         // 弾の方向と回転方向用に計算
-        Vector2 direction = (mousePosition - transform.position).normalized;
+        //Vector2 direction = (mousePosition - transform.position).normalized;
+        Vector2 direction = (new Vector3(mousePosition.x, mousePosition.y + shotAccuracy, mousePosition.z) - transform.position).normalized;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
         // 弾の方向と回転を更新
@@ -129,5 +130,15 @@ public class GunRotation : MonoBehaviour
             // 左側にある場合、反転を解除
             spriteRenderer.flipY = false;
         }
+    }
+
+    public void ChangeWeapon(int amount)
+    {
+        currentWeaponID = amount;
+
+        spriteRenderer.sprite = weaponLevelDataSO.weaponLevelDataList[currentWeaponID].gunImage;
+
+        // 弾の終着点のランダム性
+        shotAccuracy = Random.Range(-weaponLevelDataSO.weaponLevelDataList[currentWeaponID].shotAccuracy, weaponLevelDataSO.weaponLevelDataList[currentWeaponID].shotAccuracy);
     }
 }

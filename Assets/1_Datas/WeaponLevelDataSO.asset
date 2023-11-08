@@ -14,52 +14,56 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponLevelDataList:
   - gunName: "\u30C6\u30B9\u30C8"
+    gunID: 0
+    gunImage: {fileID: 21300000, guid: 4d30fb6445fb30f44a0c17225c892ba8, type: 3}
+    gunIconImage: {fileID: 21300000, guid: 1f7315ad6f09d7344a8d74925ef5d730, type: 3}
+    level: 1
+    exp: 0
+    maxDamage: 5
+    minDamage: 3
+    maxAmmo: 10
+    shotInterval: 70
+    shotSpeed: 20
+    reloadTime: 1
+    shotRange: 0.2
+    firstAccuracy: 0
+    shotAccuracy: 0
+    gunShellPrefab: {fileID: -3986194673877613549, guid: 340daa7fc53b32643bb2447379dd2b47, type: 3}
+    prefabPositionOffsetY: 0
+    shellSize: 0.8
+  - gunName: "\u30C6\u30B9\u30C8\uFF12"
     gunID: 1
-    weaponEvolutionEnumField: 0
-    gunImage: {fileID: 21300000, guid: 42b81968783f18948ba9af447de13ded, type: 3}
+    gunImage: {fileID: 21300000, guid: 09150a0467121d4408fe517652215a45, type: 3}
+    gunIconImage: {fileID: 21300000, guid: 8d95fcbb92360a14ba27f5354e40d573, type: 3}
     level: 1
     exp: 0
     maxDamage: 2
     minDamage: 1
-    maxAmmo: 5
+    maxAmmo: 139
+    shotInterval: 10
     shotSpeed: 20
-    reloadTime: 1
-    shotRange: 0.2
-    gunShellPrefab: {fileID: -3986194673877613549, guid: 340daa7fc53b32643bb2447379dd2b47, type: 3}
+    reloadTime: 1.5
+    shotRange: 0.3
+    firstAccuracy: 0.3
+    shotAccuracy: 2
+    gunShellPrefab: {fileID: -3986194673877613549, guid: c0b047d0039b15547b38ad0c45cf2513, type: 3}
     prefabPositionOffsetY: 0
-    gunImage_Evo: {fileID: 21300000, guid: 42b81968783f18948ba9af447de13ded, type: 3}
-    level_Evo: 1
-    exp_Evo: 0
-    maxDamage_Evo: 0
-    minDamage_Evo: 0
-    maxAmmo_Evo: 0
-    shotSpeed_Evo: 10
-    reloadTime_Evo: 1
-    shotRange_Evo: 0.3
-    gunShellPrefab_Evo: {fileID: -3986194673877613549, guid: 340daa7fc53b32643bb2447379dd2b47, type: 3}
-    prefabPositionOffsetY_Evo: 0
-  - gunName: "\u30C6\u30B9\u30C8\uFF12"
-    gunID: 
-    weaponEvolutionEnumField: 0
-    gunImage: {fileID: 0}
-    level: 0
-    exp: 2
-    maxDamage: 0
-    minDamage: 0
-    maxAmmo: 0
+    shellSize: 2
+  - gunName: "\u30C6\u30B9\u30C83"
+    gunID: 2
+    gunImage: {fileID: 21300000, guid: eb9ac594b7855c94f808bd1c5f98127a, type: 3}
+    gunIconImage: {fileID: 21300000, guid: a0c5046d998a3e14494ea3d40686a021, type: 3}
+    level: 1
+    exp: 0
+    maxDamage: 15
+    minDamage: 10
+    maxAmmo: 5
+    shotInterval: 160
     shotSpeed: 10
     reloadTime: 1
-    shotRange: 0.3
-    gunShellPrefab: {fileID: 0}
+    shotRange: 4
+    firstAccuracy: 0.3
+    shotAccuracy: 0.3
+    gunShellPrefab: {fileID: -5572749555315560886, guid: 520c26b5917c69742a1a3c7372a08b74, type: 3}
     prefabPositionOffsetY: 0
-    gunImage_Evo: {fileID: 0}
-    level_Evo: 0
-    exp_Evo: 2
-    maxDamage_Evo: 0
-    minDamage_Evo: 0
-    maxAmmo_Evo: 0
-    shotSpeed_Evo: 10
-    reloadTime_Evo: 1
-    shotRange_Evo: 0.3
-    gunShellPrefab_Evo: {fileID: 0}
-    prefabPositionOffsetY_Evo: 0
+    shellSize: 1
