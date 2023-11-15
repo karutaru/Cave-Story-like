@@ -256,7 +256,7 @@ public class PlayerBodyController : MonoBehaviour
             float targetVelocityX = x * moveSpeed;
 
             // 現在の速度を目標速度に向けて徐々に変更
-            float newVelocityX = Mathf.MoveTowards(rb.velocity.x, targetVelocityX, 10 * Time.deltaTime);
+            float newVelocityX = Mathf.MoveTowards(rb.velocity.x, targetVelocityX, 20 * Time.deltaTime);
 
             // Rigidbodyの速度を更新
             rb.velocity = new Vector2(newVelocityX, rb.velocity.y);
@@ -377,6 +377,10 @@ public class PlayerBodyController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// ノックバック時の行動停止
+    /// </summary>
+    /// <param name="amount"></param>
     public void MoveControl(bool amount)
     {
         isMove = amount;
