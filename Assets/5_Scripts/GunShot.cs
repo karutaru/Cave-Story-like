@@ -47,7 +47,7 @@ public class GunShot : MonoBehaviour
         //faceDirection = FaceDirection.Flat;
 
         bulletCountController.StartBullets(weaponLevelDataSO.weaponLevelDataList[currentWeaponID].maxAmmo);
-    }
+}
 
     private void Update()
     {
@@ -218,7 +218,7 @@ public class GunShot : MonoBehaviour
         // 回転を修正
         //ChangeAngle(0);
 
-        Debug.Log("生成後" + transform.eulerAngles);
+        //Debug.Log("生成後" + transform.eulerAngles);
 
         //// 上も下も向いていない場合
         //if (currentFaceDirection == FaceDirection.Flat)

@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - EnemyShell
   - CanTalkObject
+  - Stage_Tag
   layers:
   - Default
   - TransparentFX
