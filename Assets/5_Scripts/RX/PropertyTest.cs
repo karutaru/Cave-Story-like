@@ -17,7 +17,7 @@ public class PropertyTest : MonoBehaviour
     {
         Score.Subscribe(score  => {
             UpdateDisplayScore(score);
-            Debug.Log(score); });
+             });
 
         this.UpdateAsObservable()
             .Where(_ => Input.GetMouseButtonDown(0))

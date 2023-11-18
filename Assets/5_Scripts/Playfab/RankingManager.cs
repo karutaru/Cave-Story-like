@@ -42,6 +42,5 @@ public class RankingManager
         {
             Debug.Log(response.Error.GenerateErrorReport());
         }
-        Debug.Log("ƒ‰ƒ“ƒLƒ“ƒOî•ñ ‘—MŠ®—¹");
     }
 }

@@ -2,15 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum Stage_R_Direction
-{
-    Ç»Çµ,
-    è„,
-    â∫,
-    âE,
-    ç∂
-}
-
 public class StageInfScript : MonoBehaviour
 {
     public int stage_ID;

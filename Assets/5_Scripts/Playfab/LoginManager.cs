@@ -17,7 +17,7 @@ public static class LoginManager
         // TitleId 設定
         PlayFabSettings.staticSettings.TitleId = "7E7A7";
 
-        Debug.Log($"Title 設定 : {PlayFabSettings.staticSettings.TitleId}");
+        //Debug.Log($"Title 設定 : {PlayFabSettings.staticSettings.TitleId}");
     }
 
     /// <summary>
@@ -27,12 +27,12 @@ public static class LoginManager
     public static async UniTaskVoid InitializeAsync()
     {
 
-        Debug.Log("初期化開始");
+        //Debug.Log("初期化開始");
 
         // PlayFab へのログイン準備とログイン
         await PrepareLoginPlayFab();
 
-        Debug.Log("初期化完了");
+        //Debug.Log("初期化完了");
     }
 
     /// <summary>
@@ -40,7 +40,7 @@ public static class LoginManager
     /// </summary>
     public static async UniTask PrepareLoginPlayFab()
     {
-        Debug.Log("ログイン準備 開始");
+        //Debug.Log("ログイン準備 開始");
 
         await LoginAndUpdateLocalCacheAsync();
 
@@ -71,7 +71,7 @@ public static class LoginManager
     public static async UniTask LoginAndUpdateLocalCacheAsync()
     {
 
-        Debug.Log("初期化開始");
+        //Debug.Log("初期化開始");
 
         var userId = PlayerPrefsManager.UserId;
 
@@ -80,7 +80,6 @@ public static class LoginManager
             ? await CreateNewUserAsync()
             : await LoadUserAsync(userId);
 
-        Debug.Log(loginResult);
 
 
         //Debug ランキング送信
@@ -94,7 +93,7 @@ public static class LoginManager
     private static async UniTask<LoginResult> CreateNewUserAsync()
     {
 
-        Debug.Log("ユーザーデータなし。新規ユーザー作成");
+        //Debug.Log("ユーザーデータなし。新規ユーザー作成");
 
         while (true)
         {
@@ -115,7 +114,7 @@ public static class LoginManager
             // エラーハンドリング
             if (response.Error != null)
             {
-                Debug.Log($"Error : {response.Error.GenerateErrorReport()}");
+                //Debug.Log($"Error : {response.Error.GenerateErrorReport()}");
             }
 
             // もしも LastLoginTime に値が入っている場合には、採番した ID が既存ユーザーと重複しているのでリトライする
@@ -139,7 +138,7 @@ public static class LoginManager
     private static async UniTask<LoginResult> LoadUserAsync(string userId)
     {
 
-        Debug.Log("ユーザーデータあり。ログイン開始");
+        //Debug.Log("ユーザーデータあり。ログイン開始");
 
         // ログインリクエストの作成
         var request = new LoginWithCustomIDRequest
@@ -154,7 +153,7 @@ public static class LoginManager
         // エラーハンドリング
         if (response.Error != null)
         {
-            Debug.Log("Error");
+            //Debug.Log("Error");
 
             // TODO response.Error にはエラーの種類が値として入っている
             // そのエラーに対応した処理を switch 文などで記述して複数のエラーに対応できるようにする
@@ -165,7 +164,6 @@ public static class LoginManager
             ? $"Login success! My PlayFabID is {response.Result.PlayFabId}"
             : response.Error.GenerateErrorReport();
 
-        Debug.Log(message);
 
         return response.Result;
     }
