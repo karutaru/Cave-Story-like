@@ -40,18 +40,11 @@ public class ExpScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.TryGetComponent(out PlayerWeapon playerWeapon))
+        if (col.TryGetComponent(out PlayerStatus playerStatus))
         {
             AudioSource.PlayClipAtPoint(expGetSE, transform.position);
 
-            if (!isRemoveExp)
-            {
-                playerWeapon.AddExp(expValue);
-            }
-            else
-            {
-                playerWeapon.RemoveExp(expValue);
-            }
+            playerStatus.AddExp(expValue);
 
             Destroy(this.gameObject);
         }

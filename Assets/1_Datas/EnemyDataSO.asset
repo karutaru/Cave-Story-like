@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyDataList:
   - enemyImage: {fileID: 0}
-    enemyName: "\u5B58\u5728\u3057\u306A\u3044\u6575"
     enemyNumber: 0
+    enemyName: "\u5B58\u5728\u3057\u306A\u3044\u6575"
     hp: 1
     attackPower: 0
     speed: 0
@@ -23,8 +23,8 @@ MonoBehaviour:
     enemyPrefab: {fileID: 0}
     enemyAnimPrefab: {fileID: 0}
   - enemyImage: {fileID: -863802402, guid: 51ce456dcef8bc649bfe4a51d8205b7b, type: 3}
-    enemyName: 
     enemyNumber: 1
+    enemyName: 
     hp: 0
     attackPower: 0
     speed: 0
@@ -32,8 +32,8 @@ MonoBehaviour:
     enemyPrefab: {fileID: 0}
     enemyAnimPrefab: {fileID: 0}
   - enemyImage: {fileID: -211283442, guid: c1937ecd3a598ba47b993fd34f08afe5, type: 3}
-    enemyName: 
     enemyNumber: 2
+    enemyName: 
     hp: 0
     attackPower: 0
     speed: 0
@@ -41,8 +41,8 @@ MonoBehaviour:
     enemyPrefab: {fileID: 0}
     enemyAnimPrefab: {fileID: 0}
   - enemyImage: {fileID: 0}
-    enemyName: 
     enemyNumber: 0
+    enemyName: 
     hp: 0
     attackPower: 0
     speed: 0

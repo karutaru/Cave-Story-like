@@ -15,7 +15,6 @@ public class EnemyBase : MonoBehaviour
     public int exp = 1;                         // 経験値
 
     [Header("経路探索")]
-    public Transform target;                    // ターゲットの位置
     public float activateDistance = 50f;        // 索敵距離
     public float pathUpdateSeconds = 0.5f;      //パスの更新時間
 
@@ -41,14 +40,7 @@ public class EnemyBase : MonoBehaviour
     [Header("音 関連")]
     public AudioClip walkSE;                    // 歩くSE
     public AudioClip idleSE;                    // 立ち止まるSE
-    public AudioClip deathSE;                   // 死亡時のSE
     public float walkSoundCounter;              // 足音の鳴る間隔
-
-    [Header("プレハブ 関連")]
-    public GameObject expPrefabs;               // 経験値のプレハブ
-    public GameObject damagePrefabs;            // ダメージテキストのプレハブ
-    public GameObject ExplosionFirstPrefab;     // 最初の大きな爆発のプレハブ
-    public GameObject ExplosionPrefab;          // 次点の細かな爆発のプレハブ
 
     [Header("システム")]
     public LayerMask groundLayer;               // 接地判定用のレイヤー
@@ -78,10 +70,13 @@ public class EnemyBase : MonoBehaviour
     protected bool isGrounded = false; // 接地判定
     protected Vector2 direction;
     protected BulletController bulletController;
+    public Transform target;
 
 
     protected virtual void Start()
     {
+        target = DataBase.instance.player_Target;
+
         if (!TryGetComponent(out rb)) return;
         if (!TryGetComponent(out anim)) return;
         if (!TryGetComponent(out seeker)) return;
@@ -323,8 +318,7 @@ public class EnemyBase : MonoBehaviour
             damage = bulletController.WeaponDamage;
 
             // ダメージをポップアップ
-            GameObject damageTextObject = Instantiate(damagePrefabs, new Vector2(this.transform.position.x, this.transform.position.y), Quaternion.identity);
-            Debug.Log(damageTextObject.name);
+            GameObject damageTextObject = Instantiate(DataBase.instance.damagePrefabs, new Vector2(this.transform.position.x, this.transform.position.y), Quaternion.identity);
             damageTextObject.GetComponent<TMP_Text>().text = damage.ToString();
 
             // プレイヤーの弾が当たった位置との差分を計算
@@ -355,12 +349,12 @@ public class EnemyBase : MonoBehaviour
         if (currentHP <= 0)
         {
             // 死亡時のSE再生
-            AudioSource.PlayClipAtPoint(deathSE, transform.position);
+            AudioSource.PlayClipAtPoint(DataBase.instance.deathSE, transform.position);
 
             // 最初の大きな爆発エフェクトを生成
-            GameObject ExplosionFirstEffect = Instantiate(ExplosionFirstPrefab, transform.position, Quaternion.identity);
+            GameObject ExplosionFirstEffect = Instantiate(DataBase.instance.ExplosionFirstPrefab, transform.position, Quaternion.identity);
             // こまかな爆発エフェクトを生成
-            GameObject ExplosionEffect = Instantiate(ExplosionPrefab, transform.position, Quaternion.identity);
+            GameObject ExplosionEffect = Instantiate(DataBase.instance.ExplosionPrefab, transform.position, Quaternion.identity);
 
             // 生成したエフェクトを破壊
             Destroy(ExplosionFirstEffect, 0.4f);
@@ -369,14 +363,14 @@ public class EnemyBase : MonoBehaviour
             // Expを生成
             ExpScript expScript;
 
-            GameObject expObject = Instantiate(expPrefabs, new Vector2(this.transform.position.x, this.transform.position.y), Quaternion.identity);
+            GameObject expObject = Instantiate(DataBase.instance.expPrefabs, new Vector2(this.transform.position.x, this.transform.position.y), Quaternion.identity);
 
             // Expに経験値の情報を送る
             expScript = expObject.GetComponent<ExpScript>();
             expScript.expValue = exp;
 
             // Expを生成
-            GameObject expObject_2 = Instantiate(expPrefabs, new Vector2(this.transform.position.x, this.transform.position.y), Quaternion.identity);
+            GameObject expObject_2 = Instantiate(DataBase.instance.expPrefabs, new Vector2(this.transform.position.x, this.transform.position.y), Quaternion.identity);
 
             // Expに経験値の情報を送る
             expScript = expObject_2.GetComponent<ExpScript>();

@@ -30,10 +30,10 @@ public class GunShot : MonoBehaviour
     private PlayerWeapon playerWeapon;
     //private FaceDirection faceDirection;
     public float shotTimeIntervalCount = 0; // 射撃間隔のカウンターを追加
+    public bool isShot = true;              // 射撃可能な状態か？
     private bool canShoot = true;           // 射撃可能かどうかのフラグを追加
-    private int currentWeaponID = 0;            // 現在持っている武器のID
+    private int currentWeaponID = 0;        // 現在持っている武器のID
     private float firstAccuracy = 0;
-    private float shotAccuracy = 0;
 
     [SerializeField]
     private GunRotation gunRotation;
@@ -41,17 +41,12 @@ public class GunShot : MonoBehaviour
 
     void Start()
     {
-        // 武器情報の初期化
-        playerWeapon.Init();
-
-        //faceDirection = FaceDirection.Flat;
-
         bulletCountController.StartBullets(weaponLevelDataSO.weaponLevelDataList[currentWeaponID].maxAmmo);
 }
 
     private void Update()
     {
-        if (Time.timeScale == 1)
+        if (Time.timeScale == 1 && isShot)
         {
             // 左クリックが押されたかどうかをチェック
             if (Input.GetButtonDown("Fire1"))
@@ -131,7 +126,7 @@ public class GunShot : MonoBehaviour
         if (bulletCountController.CurrentAmmoCount <= 0)
         {
             // リロード
-            reload.ReloadBullets(weaponLevelDataSO.weaponLevelDataList[currentWeaponID].maxAmmo, weaponLevelDataSO.weaponLevelDataList[currentWeaponID].reloadTime);
+            reload.ReloadBullets(DataBase.instance.weaponSO.weaponLevelDataList[currentWeaponID].maxAmmo, DataBase.instance.weaponSO.weaponLevelDataList[currentWeaponID].reloadTime);
         }
         else
         {
@@ -149,55 +144,31 @@ public class GunShot : MonoBehaviour
     /// </summary>
     private void GenerateBullet()
     {
-        //Debug.Log("最初" + transform.eulerAngles);
-        //FaceDirection currentFaceDirection = faceDirection;
-
-        // プレイヤーの向いている方向から角度を取得
-        //float offsetAngle = GetAngleFromFaceDirection();
-
-        //// 上か下を向いている場合
-        //if (currentFaceDirection != FaceDirection.Flat)
-        //{
-        //    // 発射位置を頭上か足元に変更
-        //    ChangePosition(playerController.playerLookDirection);
-
-        //    // 回転を変更
-        //    ChangeAngle(offsetAngle);
-        //}
-        //Debug.Log("生成直前"+ transform.eulerAngles);
-
-        // 向きに関わらず、共通の処理
-        // 高さの調整値を向きから取得
-        //float offsetY = GetOffsetFromFaceDirection();
-
         if (playerWeapon == null)
         {
             Debug.LogError("playerWeapon is null!");
             return;
         }
 
-        if (playerWeapon.CurrentWeaponLevelData == null)
+        if (DataBase.instance.weaponSO == null)
         {
-            Debug.LogError("CurrentWeaponLevelData is null!");
+            Debug.LogError("CurrentWeaponLevelDataSO is null!");
             return;
         }
 
-        if (weaponLevelDataSO.weaponLevelDataList[currentWeaponID].gunShellPrefab == null)
+        if (DataBase.instance.weaponSO.weaponLevelDataList[currentWeaponID].gunShellPrefab == null)
         {
             Debug.LogError("gunShellPrefab is null!");
             return;
         }
         // 弾の位置の初期ランダム性
-        firstAccuracy = Random.Range(- weaponLevelDataSO.weaponLevelDataList[currentWeaponID].firstAccuracy, weaponLevelDataSO.weaponLevelDataList[currentWeaponID].firstAccuracy);
-
-        //// 弾の終着点のランダム性
-        //shotAccuracy = Random.Range(-weaponLevelDataSO.weaponLevelDataList[currentWeaponID].shotAccuracy, weaponLevelDataSO.weaponLevelDataList[currentWeaponID].shotAccuracy);
+        firstAccuracy = Random.Range(- DataBase.instance.weaponSO.weaponLevelDataList[currentWeaponID].firstAccuracy, weaponLevelDataSO.weaponLevelDataList[currentWeaponID].firstAccuracy);
 
         // 弾をインスタンス化する
-        BulletController bullet = Instantiate(weaponLevelDataSO.weaponLevelDataList[currentWeaponID].gunShellPrefab,
-            new Vector3(transform.position.x, transform.position.y + weaponLevelDataSO.weaponLevelDataList[currentWeaponID].prefabPositionOffsetY + firstAccuracy, 0), transform.rotation);
+        BulletController bullet = Instantiate(DataBase.instance.weaponSO.weaponLevelDataList[currentWeaponID].gunShellPrefab,
+            new Vector3(transform.position.x, transform.position.y + DataBase.instance.weaponSO.weaponLevelDataList[currentWeaponID].prefabPositionOffsetY + firstAccuracy, 0), transform.rotation);
 
-        bullet.transform.localScale = new Vector3(weaponLevelDataSO.weaponLevelDataList[currentWeaponID].shellSize, weaponLevelDataSO.weaponLevelDataList[currentWeaponID].shellSize, 1f);
+        bullet.transform.localScale = new Vector3(DataBase.instance.weaponSO.weaponLevelDataList[currentWeaponID].shellSize, DataBase.instance.weaponSO.weaponLevelDataList[currentWeaponID].shellSize, 1f);
 
         //bullet.transform.eulerAngles = transform.eulerAngles;
 
@@ -209,8 +180,8 @@ public class GunShot : MonoBehaviour
 
         // 弾の設定を行い発射
         bullet.Shoot(
-            gunRotation.BulletDirection * weaponLevelDataSO.weaponLevelDataList[currentWeaponID].shotSpeed,
-            weaponLevelDataSO.weaponLevelDataList[currentWeaponID].maxDamage, weaponLevelDataSO.weaponLevelDataList[currentWeaponID].minDamage);
+            gunRotation.BulletDirection * DataBase.instance.weaponSO.weaponLevelDataList[currentWeaponID].shotSpeed,
+            DataBase.instance.weaponSO.weaponLevelDataList[currentWeaponID].maxDamage, DataBase.instance.weaponSO.weaponLevelDataList[currentWeaponID].minDamage);
 
         // 発射音を再生する
         AudioSource.PlayClipAtPoint(shotSound, transform.position);
@@ -229,7 +200,7 @@ public class GunShot : MonoBehaviour
         //}
 
         // ここは上か下を向いている時に動く
-        StartCoroutine(RespawnBulletEffect(weaponLevelDataSO.weaponLevelDataList[currentWeaponID].shotRange, bullet.gameObject, 0f));
+        StartCoroutine(RespawnBulletEffect(DataBase.instance.weaponSO.weaponLevelDataList[currentWeaponID].shotRange, bullet.gameObject, 0f));
 
         // 発射位置を元の位置に戻す
         //ChangePosition(-playerController.playerLookDirection);

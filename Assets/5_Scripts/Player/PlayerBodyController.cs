@@ -4,6 +4,10 @@ using UnityEngine;
 using Cinemachine;
 using static Sirenix.OdinInspector.Editor.Internal.FastDeepCopier;
 using DG.Tweening;
+using Cysharp.Threading.Tasks;
+using System.Threading;
+using System;
+using AIE2D;
 
 public class PlayerBodyController : MonoBehaviour
 {
@@ -20,6 +24,7 @@ public class PlayerBodyController : MonoBehaviour
     private float maxJumpTime = 1f;             //跳躍の限界
     [SerializeField]
     private string JumpButtonName = "Jump";
+    public bool isJump = true;                  // ジャンプできるか
     private bool jumping = false;               //飛んでいるか
     private bool isRun;                         //走っている
     private Transform thisTransform;
@@ -27,12 +32,12 @@ public class PlayerBodyController : MonoBehaviour
     private float t;
     private float power;
     private float gravity;
-    private bool isMove;
+    public bool isMove;
 
-    [SerializeField]
+
     private Rigidbody2D rb;                         // プレイヤーのRigidbody2D
+    private SpriteRenderer spriteRenderer;
     private string horizontal = "Horizontal";       // キー入力用の文字列指定(InputManager の Horizontal の入力を判定するための文字列)
-    //private Animator anim;
     private GameObject headHitEffect;
     private bool headHit;
     private bool headHitOnce = false;               //頭を打つのはジャンプ中１回だけ
@@ -41,17 +46,24 @@ public class PlayerBodyController : MonoBehaviour
     public bool isGrounded;
     private float rotation = 0;                     // 向きの設定に利用する
     public float playerLookDirection = -1f;         // 今のプレイヤーの向き
-    private float stepTimer;                        //万歩計のカウント用
-    public float moveSpeed;                         //移動速度
-    private float moveSpeedKeep;                    //移動速度の保存
+    private float stepTimer;                        // 万歩計のカウント用
+    public float defaultMoveSpeed = 3.7f;           // プレイヤーの移動速度
+    private float moveSpeed;                         // 移動速度の下限速に用いる数値
+    private float moveSpeedKeep;                    // 移動速度の保存
     public float knockbackPower;                    // 敵と接触した際に吹き飛ばされる力
     public GameObject headHitEffectPrefab;
+    private bool wasGroundedLastFrame = false;      // 前のフレームでの接地状態を記録
+    private bool dodging;                           // 回避中か
+
+    public StaticAfterImageEffect2DPlayer staticAfterImageEffect2DPlayer;
+
     public AudioClip headHitSE;
     public AudioClip jumpLandingSE;
     public AudioClip jumpSE;
     public AudioClip stepSE;
 
     public Knockback_Player knockback_Player;
+    private Animator anim;
 
     [SerializeField]
     CinemachineVirtualCamera artViewCamera;
@@ -65,7 +77,8 @@ public class PlayerBodyController : MonoBehaviour
     {
         artViewCameraTransposer = artViewCamera.GetCinemachineComponent<CinemachineFramingTransposer>();
         rb = GetComponent<Rigidbody2D>();
-        //anim = GetComponent<Animator>();
+        anim = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
         rotation = transform.localRotation.x; //0
         thisTransform = transform;
         playerLookDirection = -1f;
@@ -103,6 +116,15 @@ public class PlayerBodyController : MonoBehaviour
         headHit = Physics2D.Linecast(transform.position + transform.up * 0.5f, transform.position + transform.up * 0.4f, groundLayer);
         Debug.DrawLine(transform.position + transform.up * 0.5f, transform.position + transform.up * 0.4f, Color.red, 0.3f);
 
+        // 地面に付いた瞬間にアイドルアニメーションを再生
+        if (isGrounded && !wasGroundedLastFrame)
+        {
+            anim.Play("Player_Idle");
+        }
+
+        // 現在の接地状態を次のフレームのために記録
+        wasGroundedLastFrame = isGrounded;
+
         if (headHit == true) //天井に頭を打ったら
         {
             if (headHitOnce == false)
@@ -120,12 +142,21 @@ public class PlayerBodyController : MonoBehaviour
             rb.AddForce(power * -Vector2.up, (ForceMode2D)ForceMode.Impulse);
         }
 
+        if (Input.GetMouseButtonDown(1) && !isMove)
+        {
+            isMove = true; // 移動禁止
+            staticAfterImageEffect2DPlayer.enabled = true; // 残像の表示
+            SetIsMoveFalseAfterDelay().Forget();
+            Dodge();
+        }
 
         // ジャンプの開始判定
-        if (isGrounded && Input.GetButtonDown(JumpButtonName)) //接地していて、かつジャンプボタンを押した時
+        if (isGrounded && Input.GetButtonDown(JumpButtonName) && isJump) //接地していて、かつジャンプボタンを押した時にジャンプが許可されていた場合
         {
             if (Time.timeScale == 1)
             {
+                anim.Play("Player_Jump");
+
                 if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow)) //Sか↓を押した時
                 {
 
@@ -141,6 +172,11 @@ public class PlayerBodyController : MonoBehaviour
                 //頭をぶつけられる
                 headHitOnce = false;
             }
+        }
+
+        if (!jumping && !dodging)
+        {
+            PlayerAnim();
         }
 
 
@@ -164,61 +200,57 @@ public class PlayerBodyController : MonoBehaviour
             {
                 if (isRun == true) //走っている最中なら
                 {
-                    //anim.Play("LookUp");
-                    //anim.SetFloat("LookUpIdle", 0.0f);
+
                 }
                 else
                 { //走っていないなら
-                    //anim.Play("LookUpIdle");
-                    //anim.SetFloat("LookUp", 0.0f);
+
                 }
             }
         }
         else
         { //上キーを押していない状態
 
-            //anim.SetFloat("LookUpIdle", 0.0f);
-            //anim.SetFloat("LookUp", 0.0f);
         }
         if (Input.GetKeyUp(KeyCode.UpArrow) || Input.GetKeyUp(KeyCode.W)) //上矢印キー、もしくはWキーを離したら
         {
             if (jumping == true) //飛んでる
             {
-                //anim.SetFloat("LookUpIdle", 0.0f);
-                //anim.SetFloat("LookUp", 0.0f);
-                //anim.Play("Player_Jump");
+
             }
             else
             { //飛んでない
-                //anim.Play("Player_Idle");
+
             }
         }
         if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
         {
             if (Time.timeScale == 1)
             {
-                //anim.Play("Player_LookDown");
+
             }
         }
         if (Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.DownArrow))
         {
             if (jumping == true) //飛んでる
             {
-                //anim.Play("Player_Jump");
+
             }
             else
             { //飛んでない
-                //anim.Play("Player_Idle");
+
             }
         }
     }
 
     void FixedUpdate()
     {
-        //移動
+        // 移動
         Move();
-        //ジャンプ
+        // ジャンプ
         Jump();
+        // 主人公の向き
+        Player_Direction();
 
     }
 
@@ -249,10 +281,6 @@ public class PlayerBodyController : MonoBehaviour
                 stepTimer = 0;
             }
 
-            // x の値が 0 ではない場合 = キー入力がある場合
-            //rb.velocity = new Vector2(x * moveSpeed, rb.velocity.y);
-
-
             float targetVelocityX = x * moveSpeed;
 
             // 現在の速度を目標速度に向けて徐々に変更
@@ -270,27 +298,20 @@ public class PlayerBodyController : MonoBehaviour
             //整数値にする
             if (temp.x > 0)
             {
-                //0よりも大きければ1にする
-                //this.transform.rotation = Quaternion.Euler(0f, 180f, 0f); //右向き
                 playerLookDirection = 1f;
             }
             else
             {
-                //0よりも小さければ-1にする
-                //this.transform.rotation = Quaternion.Euler(0f, 0f, 0f); //左向き
                 playerLookDirection = -1f;
             }
-            //キャラの向きを移動方向に合わせる
-            // transform.localScale = temp;
 
             if (isGrounded == true) //飛んでない
             {
-                ////待機状態のアニメの再生を止めて、走るアニメの再生への遷移を行う
-                //anim.SetFloat("Run", 0.2f);
+                
             }
             if (isGrounded == false)
             {
-                //anim.SetFloat("Run", 0.0f);
+
             }
 
         }
@@ -298,12 +319,6 @@ public class PlayerBodyController : MonoBehaviour
         {
             //走っていない時
             isRun = false;
-            // 左右の入力がなかったら横移動の速度を0にしてすぐに停止する
-            //rb.velocity = new Vector2(0, rb.velocity.y);
-            //// 走るアニメの再生を止めて、待機状態のアニメの再生への遷移を行う
-            //anim.SetFloat("Run", 0.0f);
-            // velocity(速度)に新しい値を代入して移動
-            //rb.velocity = new Vector2(0, rb.velocity.y);
         }
     }
 
@@ -336,21 +351,61 @@ public class PlayerBodyController : MonoBehaviour
         }
     }
 
+    void Dodge()
+    {
+        dodging = true;
+        anim.Play("Player_Dodge");
+        rb.velocity = new Vector2(0, rb.velocity.y); // xの移動速度を一瞬0にリセット
 
-    //private void OnCollisionEnter2D(Collision2D col)
-    //{ //接触したなら
+        if (Input.GetKey(KeyCode.A)) // 左キーを押している場合
+        {
+            rb.AddForce(Vector2.left * 11, ForceMode2D.Impulse); // 左に弾き飛ばす
+        }
+        else if (Input.GetKey(KeyCode.D)) // 右キーを押している場合
+        {
+            rb.AddForce(Vector2.right * 11, ForceMode2D.Impulse); // 右に弾き飛ばす
+        }
+        else      // 何も押していない場合
+        {
+            if (playerLookDirection == 1f)
+            {
+                rb.AddForce(Vector2.right * 11, ForceMode2D.Impulse); // 右に弾き飛ばす
+            }
+            else
+            {
+                rb.AddForce(Vector2.left * 11, ForceMode2D.Impulse); // 左に弾き飛ばす
+            }
+        }
+        if (GameManager.game != null && GameManager.game.knockback_Player != null)
+        {
+            GameManager.game.knockback_Player.PlayerDodge();
+        }
+    }
 
-    //    // 接触したコライダーを持つゲームオブジェクトのTagがEnemyなら 
-    //    if (col.gameObject.tag == "Enemy")
-    //    {
+    void VelocityDeceleration()
+    {
+        rb.velocity = new Vector2(rb.velocity.x * 0.8f, rb.velocity.y);
+    }
 
-    //        // キャラと敵の位置から距離と方向を計算
-    //        Vector3 direction = (transform.position - col.transform.position).normalized;
+    // 0.8秒後にisMove変数をfalseにする
+    async UniTask SetIsMoveFalseAfterDelay()
+    {
+        await UniTask.Delay(TimeSpan.FromSeconds(0.1));
+        VelocityDeceleration();
+        await UniTask.Delay(TimeSpan.FromSeconds(0.1));
+        VelocityDeceleration();
+        await UniTask.Delay(TimeSpan.FromSeconds(0.1));
+        VelocityDeceleration();
+        await UniTask.Delay(TimeSpan.FromSeconds(0.1));
+        VelocityDeceleration();
+        await UniTask.Delay(TimeSpan.FromSeconds(0.3));
 
-    //        // 敵の反対側にキャラを吹き飛ばす
-    //        transform.position += direction * knockbackPower;
-    //    }
-    //}
+        staticAfterImageEffect2DPlayer.enabled = false; // 残像の非表示
+
+        isMove = false;
+        dodging = false;
+    }
+
 
     public void WaterMove(bool waterIn)                     //水の中◆◆
     {
@@ -392,5 +447,53 @@ public class PlayerBodyController : MonoBehaviour
         DOVirtual.DelayedCall(0.3f, () => {
             isMove = false;
         });
+    }
+
+    void PlayerAnim()
+    {
+        if (isGrounded != jumping) // 地面に接地している場合のみ
+        {
+            // Sキーが押されているかどうかをチェック
+            if (Input.GetKey(KeyCode.S))
+            {
+                // Sキーが押された状態でAキーまたはDキーが押されているかをチェック
+                if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
+                {
+                    moveSpeed = defaultMoveSpeed / 2;
+                    anim.Play("Player_Hofuku");
+                }
+                else
+                {
+                    // Sキーのみが押されている時
+                    anim.Play("Player_FirstHofuku");
+                }
+            }
+            else if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
+            {
+                // AキーまたはDキーのみが押されている場合
+                moveSpeed = defaultMoveSpeed;
+
+                anim.Play("Player_Dash");
+            }
+            else
+            {
+                // 何もキーが押されていない場合
+                anim.Play("Player_Idle");
+            }
+        }
+    }
+
+    // 主人公の向き
+    void Player_Direction()
+    {
+        if (Input.GetKey(KeyCode.D) && Time.timeScale != 0)
+        {
+            this.transform.rotation = Quaternion.Euler(0f, 180f, 0f); // 左向き
+        }
+        if (Input.GetKey(KeyCode.A) && Time.timeScale != 0)
+        {
+            this.transform.rotation = Quaternion.Euler(0f, 0f, 0f); // 右向き
+
+        }
     }
 }

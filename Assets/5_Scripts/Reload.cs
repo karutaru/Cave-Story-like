@@ -14,7 +14,7 @@ public class Reload : MonoBehaviour
     [SerializeField] 
     GameObject reloadObject; //同列のリロードオブジェクト
     [SerializeField]
-    PlayerController playerController;
+    PlayerBodyController playerBodyController;
     public AudioClip ReloadSE;
     public AudioClip ReloadedSE;
     public float seTimer;

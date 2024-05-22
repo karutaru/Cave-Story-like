@@ -22,34 +22,44 @@ public class ShotHit : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other) //なにかがぶつかったら
+    private void OnTriggerEnter2D(Collider2D other) // なにかがぶつかったら
     {
-        if (other.CompareTag("Shell")) //プレイヤーの弾だったら
+        if (other.CompareTag("Shell")) // プレイヤーの弾だったら
         {
             Debug.Log("弾が当たった");
 
-            if (other != null) //弾がnullじゃなかったら
+            if (other != null) // 弾がnullじゃなかったら
             {
-                if (wallOrEnemy == true)        //壁なら
+                // BulletControllerコンポーネントを取得
+                BulletController bulletController = other.GetComponent<BulletController>();
+
+                if (CompareTag("Obstacle") && wallOrEnemy == true) // 障害物なら
                 {
-                //壁エフェクトを実体化する
-                GameObject wallEffect = Instantiate(wallEffectPrefab, other.transform.position, Quaternion.identity);
-                //壁エフェクトを0.2秒後に消す
-                Destroy(wallEffect, 0.2f);
+                    // 壁エフェクトを実体化する
+                    GameObject wallEffect = Instantiate(wallEffectPrefab, other.transform.position, Quaternion.identity);
+                    // 壁エフェクトを0.2秒後に消す
+                    Destroy(wallEffect, 0.2f);
 
-                } else {                        //エネミーなら
-
-                //MMFPlayer_Hit.Initialization();
-                MMFPlayer_Hit.PlayFeedbacks();
-                AudioSource.PlayClipAtPoint(shotHitSE, transform.position);
-
-                //出血エフェクトを実体化する
-                GameObject bloodEffect = Instantiate(enemyEffectPrefab, transform.position, Quaternion.identity);
-                //出血エフェクトを0.2秒後に消す
-                Destroy(bloodEffect, 0.2f);
+                    if (bulletController != null && bulletController.wallHit == true)
+                    {
+                        // プレイヤーの弾を破壊
+                        Destroy(other.gameObject);
+                    }
                 }
-                //プレイヤーの弾を破壊
-                Destroy(other.gameObject);
+                else if (CompareTag("Enemy")) // エネミーなら
+                {
+                    // MMFPlayer_Hit.Initialization();
+                    MMFPlayer_Hit.PlayFeedbacks();
+                    AudioSource.PlayClipAtPoint(shotHitSE, transform.position);
+
+                    // 出血エフェクトを実体化する
+                    GameObject bloodEffect = Instantiate(enemyEffectPrefab, transform.position, Quaternion.identity);
+                    // 出血エフェクトを0.2秒後に消す
+                    Destroy(bloodEffect, 0.2f);
+
+                    // プレイヤーの弾を破壊
+                    Destroy(other.gameObject);
+                }
             }
         }
     }

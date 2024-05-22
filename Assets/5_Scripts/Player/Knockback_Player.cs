@@ -11,9 +11,10 @@ public class Knockback_Player : MonoBehaviour
     public AudioClip damageSE;                  // プレイヤーのダメージSE
 
     public Material mutekiMaterial;             // 無敵用のマテリアル
-    public List<GameObject> childrenToChange;   // インスペクタから設定する
+    public List<GameObject> dodgeChange;        // インスペクタから設定する
 
     public PlayerBodyController playerBodyController;
+    public PlayerStatus playerStatus;
 
     private bool isInvulnerable = false;
     private float invulnerableTimer = 0f;
@@ -29,10 +30,11 @@ public class Knockback_Player : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
 
-        // 子オブジェクトのSpriteRendererコンポーネントを取得し、デフォルトのマテリアルを保存
-        foreach (var child in childrenToChange)
+
+        // dodgeChangeリストの各GameObjectからSpriteRendererを取得し、リストに追加
+        foreach (GameObject obj in dodgeChange)
         {
-            SpriteRenderer sr = child.GetComponent<SpriteRenderer>();
+            SpriteRenderer sr = obj.GetComponent<SpriteRenderer>();
             if (sr != null)
             {
                 spriteRenderers.Add(sr);
@@ -62,6 +64,16 @@ public class Knockback_Player : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        PlayerKnockback(other);
+    }
+
+    void OnTriggerStay2D(Collider2D other)
+    {
+        PlayerKnockback(other);
+    }
+
+    public void PlayerKnockback(Collider2D other)
+    {
         if (other.CompareTag("Enemy") && !isInvulnerable)
         {
             // プレイヤーが敵に触れた時の処理
@@ -72,20 +84,18 @@ public class Knockback_Player : MonoBehaviour
             if (knockback_Hit.x < 0)
             {
                 // ノックバック方向が右
-                rb.AddForce(new Vector2(-4, 7), ForceMode2D.Impulse);
+                rb.AddForce(new Vector2(-4.5f, 6), ForceMode2D.Impulse);
             }
             else
             {
-                
+
                 // ノックバック方向が左
-                rb.AddForce(new Vector2(4, 7), ForceMode2D.Impulse);
+                rb.AddForce(new Vector2(4.5f, 6), ForceMode2D.Impulse);
             }
             // プレイヤーがダメージを受ける
-            PlayerDamage();
+            PlayerDamage(other);
 
-            // プレイヤーを無敵状態にする
-            isInvulnerable = true;
-            invulnerableTimer = 0f;
+            PlayerDodge();
 
             // シーケンスの作成
             Sequence sequence = DOTween.Sequence();
@@ -103,10 +113,19 @@ public class Knockback_Player : MonoBehaviour
         }
     }
 
-    void PlayerDamage()
+    public void PlayerDodge()
+    {
+        // プレイヤーを無敵状態にする
+        isInvulnerable = true;
+        invulnerableTimer = 0f;
+    }
+
+    void PlayerDamage(Collider2D other)
     {
         // プレイヤーのダメージSE
         AudioSource.PlayClipAtPoint(damageSE, transform.position);
+
+        playerStatus.HitEnemy(other);
     }
 
 

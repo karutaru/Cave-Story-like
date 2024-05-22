@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BulletController : MonoBehaviour
 {
+    public bool wallHit = true;
     private int weaponDamage;
     public int WeaponDamage => weaponDamage; // プロパティ
 

@@ -6,7 +6,7 @@ namespace Pathfinding {
 	/// Helper class to keep track of references to GameObjects.
 	/// Does nothing more than to hold a GUID value.
 	/// </summary>
-	[HelpURL("http://arongranberg.com/astar/documentation/stable/class_pathfinding_1_1_unity_reference_helper.php")]
+	[HelpURL("https://arongranberg.com/astar/documentation/stable/class_pathfinding_1_1_unity_reference_helper.php")]
 	public class UnityReferenceHelper : MonoBehaviour {
 		[HideInInspector]
 		[SerializeField]
@@ -30,7 +30,7 @@ namespace Pathfinding {
 				foreach (UnityReferenceHelper urh in FindObjectsOfType(typeof(UnityReferenceHelper)) as UnityReferenceHelper[]) {
 					if (urh != this && guid == urh.guid) {
 						guid = Pathfinding.Util.Guid.NewGuid().ToString();
-						//Debug.Log("Created new GUID - " + guid, this);
+						Debug.Log("Created new GUID - " + guid, this);
 						return;
 					}
 				}

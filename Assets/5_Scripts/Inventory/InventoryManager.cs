@@ -183,7 +183,7 @@ public class InventoryManager : MonoBehaviour
     private void ProcessInventoryButtons()
     {
         // インベントリーの表示/非表示の制御
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.X))
         {
             // インベントリーの状態に応じて表示/非表示を切り替える
             if (inventory_UI.activeSelf) {

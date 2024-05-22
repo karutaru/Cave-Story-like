@@ -7,6 +7,7 @@ public class DungeonGenerator : MonoBehaviour
     public GameObject[] roomPrefabs;
     public GameObject startRoomPrefab;
     public GameObject bossRoomPrefab;
+    public GameObject BackgroundPrefab;
     public int minRooms;
     public int maxRooms;
 
@@ -19,6 +20,8 @@ public class DungeonGenerator : MonoBehaviour
 
     void Start()
     {
+        Instantiate(BackgroundPrefab);
+
         GenerateDungeon();
     }
 
@@ -55,22 +58,22 @@ public class DungeonGenerator : MonoBehaviour
     // 次に生成するステージを決める
     GameObject GetNextRoomPrefab(Stage_Direction lastExitDirection, int lastExitBlocksDirection)
     {
-        if (lastrandomValue == 1)
+        if (lastrandomValue <= 2)
         {
-            randomValue = Random.Range(1, 3 + 1); // 1から3のランダム値を取得
+            randomValue = Random.Range(-1, 3 + 1); // -1から3のランダム値を取得
         }
-        else if(lastrandomValue== 4)
+        else if(lastrandomValue >= 4)
         {
-            randomValue = Random.Range(2, 4 + 1); // 2から4のランダム値を取得
+            randomValue = Random.Range(3, 7 + 1); // 3から7のランダム値を取得
         }
         else
         {
-            randomValue = Random.Range(1, 4 + 1); // 1から4のランダム値を取得
+            randomValue = Random.Range(-1, 7 + 1); // -1から7のランダム値を取得
         }
         //Debug.Log(randomValue);
 
         List<GameObject> rightRooms = new List<GameObject>();   // 出口が右のリストを作る
-        List<GameObject> upRooms = new List<GameObject>();      // 出口が上のリストを作る
+        List<GameObject> leftRooms = new List<GameObject>();    // 出口が左のリストを作る
         List<GameObject> underRooms = new List<GameObject>();   // 出口が下のリストを作る
 
 
@@ -81,34 +84,35 @@ public class DungeonGenerator : MonoBehaviour
 
             if (IsDirectionCompatible(lastExitDirection, lastExitBlocksDirection, direction.direction_new, direction.direction_new_Blocks)) // 出口と入り口の方向が一致しているか
             {
-                if (direction.direction_last == Stage_Direction.右) // 確率に基づいて出口が右のステージを選択
-                {
-                    rightRooms.Add(prefab);
-                }
-                else if (direction.direction_last == Stage_Direction.下) // 確率に基づいて出口が下のステージを選択
+                if (direction.direction_last == Stage_Direction.下) // 確率に基づいて出口が下のステージを選択
                 {
                     underRooms.Add(prefab);
                 }
-                else if (direction.direction_last == Stage_Direction.上) // 確率に基づいて出口が上のステージを選択
+                else if (direction.direction_last == Stage_Direction.右) // 確率に基づいて出口が右のステージを選択
                 {
-                    upRooms.Add(prefab);
+                    rightRooms.Add(prefab);
+                }
+                else if (direction.direction_last == Stage_Direction.左) // 確率に基づいて出口が左のステージを選択
+                {
+                    leftRooms.Add(prefab);
                 }
             }
         }
-        if (randomValue == 2 || randomValue == 3)
-        {
-            lastrandomValue = randomValue;
-            return rightRooms[Random.Range(0, rightRooms.Count)];
-        } 
-        else if (randomValue == 1) 
+        //Debug.Log(randomValue);
+        if (randomValue == 3)
         {
             lastrandomValue = randomValue;
             return underRooms[Random.Range(0, underRooms.Count)];
-        }
-        else if (randomValue == 4)
+        } 
+        else if (randomValue <= 2) 
         {
             lastrandomValue = randomValue;
-            return upRooms[Random.Range(0, upRooms.Count)];
+            return rightRooms[Random.Range(0, rightRooms.Count)];
+        }
+        else if (randomValue >= 4)
+        {
+            lastrandomValue = randomValue;
+            return leftRooms[Random.Range(0, leftRooms.Count)];
         }
         //if (validRooms.Count == 0)
         //{
