@@ -142,9 +142,14 @@ public class GunShot : MonoBehaviour
 
         bullet.transform.localScale = new Vector3(DataBase.instance.weaponSO.weaponLevelDataList[currentWeaponID].shellSize, DataBase.instance.weaponSO.weaponLevelDataList[currentWeaponID].shellSize, 1f);
 
+        //// マズルフラッシュをインスタンス化する
+        //GameObject bulletFire = Instantiate(bulletEffectPrefab,
+        //    new Vector2(transform.position.x - 1f, transform.position.y), transform.rotation);
+
         // マズルフラッシュをインスタンス化する
         GameObject bulletFire = Instantiate(bulletEffectPrefab,
-            new Vector2(transform.position.x, transform.position.y), transform.rotation);
+            gunRotation.transform.position + gunRotation.BulletDirection * 1.1f, // 銃の方向に1.1単位進んだ位置にマズルフラッシュを生成
+            Quaternion.Euler(gunRotation.BulletEulerAngles)); // 銃の回転を適用
 
         bullet.transform.eulerAngles = gunRotation.BulletEulerAngles;
 
@@ -185,7 +190,7 @@ public class GunShot : MonoBehaviour
             //    effectScript.OnDestroy();
             //}
 
-            //Destroy(bullet);
+            Destroy(bullet);
         }
     }
 }

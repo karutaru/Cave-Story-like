@@ -1,9 +1,13 @@
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 public class EffectScript : MonoBehaviour
 {
+    [LabelText("パーティクルエフェクトのプレハブ"), HideLabel]
     public GameObject particleEffectPrefab; // パーティクルエフェクトのプレハブ
+    [LabelText("パーティクルエフェクトの発生場所をワールド空間にする"), HideLabel]
     public bool isWorldSpaceEffect = true;  // パーティクルエフェクトの発生場所をワールド空間にする
+    
 
     // パーティクルエフェクトのインスタンス
     private GameObject particleEffectInstance;
@@ -13,6 +17,8 @@ public class EffectScript : MonoBehaviour
         // パーティクルエフェクトを弾の位置にインスタンス化し、弾の子オブジェクトにする
         particleEffectInstance = Instantiate(particleEffectPrefab, transform.position, Quaternion.identity);
         particleEffectInstance.transform.parent = transform;
+
+        Debug.Log("Particle effect instantiated at position: " + transform.position);
 
         if (isWorldSpaceEffect)
         {

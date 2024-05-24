@@ -1,14 +1,33 @@
+using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class BulletController : MonoBehaviour
 {
-    public bool wallHit = true;
+    [LabelText("壁に当たると消える"), HideLabel]
+    public bool isWallHit = true;
+
+
     private int weaponDamage;
     public int WeaponDamage => weaponDamage; // プロパティ
 
-    public void Shoot(Vector2 direction, int maxDamage, int minDamage)
+
+
+    private void Start()
+    {
+        if (!isWallHit)
+        {
+            // 2つ目のCircle Collider 2DをONにする
+            CircleCollider2D[] colliders = GetComponents<CircleCollider2D>();
+            if (colliders.Length > 1)
+            {
+                colliders[1].enabled = true;
+            }
+        }
+    }
+
+    public void Shoot(Vector2 direction, int maxDamage, int minDamage) // --------------------------------------------------------------------------------------------------------------------------------------------
     {
         // 最大値と最小値からダメージを計算し、ダメージセット
         weaponDamage = Random.Range(minDamage, maxDamage + 1);
@@ -17,9 +36,9 @@ public class BulletController : MonoBehaviour
         GetComponent<Rigidbody2D>().velocity = direction;
     }
 
-    private void OnTriggerEnter2D(Collider2D other) // なにかがぶつかったら
+    private void OnTriggerEnter2D(Collider2D other) // トリガーに何かが触れたら ----------------------------------------------------------------------------------------------------------------------------------------
     {
-        if (other.CompareTag("Obstacle")) // 障害物だったら
+        if (other.CompareTag("Obstacle") && isWallHit) // 障害物だったら
         {
             // 壁エフェクトを実体化する
             GameObject wallEffect = Instantiate(GameManager.game.wallEffectPrefab, transform.position, Quaternion.identity);
@@ -27,7 +46,7 @@ public class BulletController : MonoBehaviour
             Destroy(wallEffect, 0.2f);
 
             // bulletにアタッチされているEffectScriptのOnDestroyメソッドを呼び出す
-            EffectScript effectScript = this.GetComponent<EffectScript>();
+            EffectScript effectScript = GetComponent<EffectScript>();
             if (effectScript != null)
             {
                 effectScript.OnDestroy();
@@ -37,6 +56,23 @@ public class BulletController : MonoBehaviour
             Destroy(this.gameObject);
         }
         else if (other.CompareTag("Enemy")) // エネミーだったら
+        {
+            //MMFPlayer_Hit.PlayFeedbacks();
+            AudioSource.PlayClipAtPoint(GameManager.game.shotHitSE, transform.position);
+
+            // 出血エフェクトを実体化する
+            GameObject bloodEffect = Instantiate(GameManager.game.bloodEffectPrefab, transform.position, Quaternion.identity);
+            // 出血エフェクトを0.2秒後に消す
+            Destroy(bloodEffect, 0.2f);
+
+            // プレイヤーの弾を破壊
+            Destroy(this.gameObject);
+        }
+    }
+
+    void OnCollisionEnter2D(Collision2D collision) // 何かが衝突したら（非トリガー）----------------------------------------------------------------------------------------------------------------------------------------
+    {
+        if (collision.gameObject.CompareTag("Enemy") && !isWallHit)
         {
             //MMFPlayer_Hit.PlayFeedbacks();
             AudioSource.PlayClipAtPoint(GameManager.game.shotHitSE, transform.position);

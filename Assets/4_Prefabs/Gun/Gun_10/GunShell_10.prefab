@@ -10,9 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 2185134297141808711}
   - component: {fileID: 2185134297141808728}
-  - component: {fileID: 2185134297141808729}
   - component: {fileID: -3986194673877613549}
   - component: {fileID: -3793935848961928220}
+  - component: {fileID: 2185134297141808729}
+  - component: {fileID: 7885398675933210034}
   - component: {fileID: 129835349945825145}
   m_Layer: 12
   m_Name: GunShell_10
@@ -88,6 +89,33 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &-3986194673877613549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2185134297141808731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b50b23b1005ab5d4b80bc6aa86a57b36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isWallHit: 0
+--- !u!114 &-3793935848961928220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2185134297141808731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd215d7aa4065a14bb02ad83a099a75a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particleEffectPrefab: {fileID: 2510631693483142348, guid: d1239254d1e60a94f8bc2bc74abdee10, type: 3}
+  isWorldSpaceEffect: 1
 --- !u!50 &2185134297141808729
 Rigidbody2D:
   serializedVersion: 4
@@ -109,38 +137,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &-3986194673877613549
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2185134297141808731}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b50b23b1005ab5d4b80bc6aa86a57b36, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  wallHit: 0
---- !u!114 &-3793935848961928220
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2185134297141808731}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd215d7aa4065a14bb02ad83a099a75a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  effect: {fileID: 2510631693483142348, guid: d1239254d1e60a94f8bc2bc74abdee10, type: 3}
-  effectInterva: 0.005
-  effectScale: 1
-  effectFrequency: 0
-  effectRandomPos: 0.2
-  effectRandomScale: 0.2
---- !u!58 &129835349945825145
+--- !u!58 &7885398675933210034
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -148,6 +145,22 @@ CircleCollider2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2185134297141808731}
   m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.2
+--- !u!58 &129835349945825145
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2185134297141808731}
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 6200000, guid: 563f0895301f5fc438dd679dee2a10c8, type: 2}
   m_IsTrigger: 0
