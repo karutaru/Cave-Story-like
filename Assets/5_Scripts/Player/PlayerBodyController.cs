@@ -33,6 +33,7 @@ public class PlayerBodyController : MonoBehaviour
     private float power;
     private float gravity;
     public bool isMove;
+    private float playerDash; // ダッシュ速度
 
 
     private Rigidbody2D rb;                         // プレイヤーのRigidbody2D
@@ -283,6 +284,7 @@ public class PlayerBodyController : MonoBehaviour
 
             float targetVelocityX = x * moveSpeed;
 
+
             // 現在の速度を目標速度に向けて徐々に変更
             float newVelocityX = Mathf.MoveTowards(rb.velocity.x, targetVelocityX, 20 * Time.deltaTime);
 
@@ -468,6 +470,13 @@ public class PlayerBodyController : MonoBehaviour
                     anim.Play("Player_FirstHofuku");
                 }
             }
+            else if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.LeftShift))
+            {
+                // AキーまたはDキーが押され、シフトキーが押されて地面に足を着けている場合
+                moveSpeed = defaultMoveSpeed * 2;
+
+                anim.Play("Player_Dash");
+            }
             else if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
             {
                 // AキーまたはDキーのみが押されている場合
@@ -480,6 +489,10 @@ public class PlayerBodyController : MonoBehaviour
                 // 何もキーが押されていない場合
                 anim.Play("Player_Idle");
             }
+        }
+        if (!isGrounded) 
+        {
+            moveSpeed = defaultMoveSpeed;
         }
     }
 

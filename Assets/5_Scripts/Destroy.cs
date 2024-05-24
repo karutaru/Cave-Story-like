@@ -1,34 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Destroy : MonoBehaviour
 {
-    private float destroyTime;
-    private float timer;
+    // アニメーションの遅延時間（オプション）
+    public float delay = 0f;
 
     void Start()
     {
-        destroyTime = 0.305f;
-        //StartCoroutine("DestroyObj");
-    }
+        // Animatorコンポーネントを取得
+        Animator animator = GetComponent<Animator>();
 
-    void Update()
-    {
-        timer += Time.deltaTime;
-        if (timer >= destroyTime)
-        {
-            Destroy(gameObject);
-        }
-    }
+        // 現在のアニメーションの長さを取得
+        float animationLength = animator.GetCurrentAnimatorStateInfo(0).length;
 
-    IEnumerator DestroyObj()
-    {
-        yield return new WaitForSeconds(0.3f);
-
-        if (this.gameObject != null)
-        {
-            Destroy(this.gameObject);
-        }
+        // アニメーションの長さに遅延時間を加算して、オブジェクトを破壊
+        Destroy(gameObject, animationLength + delay);
     }
 }

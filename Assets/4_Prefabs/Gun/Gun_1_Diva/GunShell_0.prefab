@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 2185134297141808728}
   - component: {fileID: 2185134297141808729}
   - component: {fileID: 2185134297141808730}
-  - component: {fileID: 2185134297141808710}
   - component: {fileID: -3986194673877613549}
+  - component: {fileID: 7974321274305530984}
   m_Layer: 12
   m_Name: GunShell_0
   m_TagString: Shell
@@ -135,18 +135,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.66, y: 0.17}
   m_EdgeRadius: 0
---- !u!114 &2185134297141808710
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2185134297141808731}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b0a54454cee080549980c77618664dd6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &-3986194673877613549
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -159,3 +147,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b50b23b1005ab5d4b80bc6aa86a57b36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  wallHit: 1
+--- !u!114 &7974321274305530984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2185134297141808731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd215d7aa4065a14bb02ad83a099a75a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particleEffectPrefab: {fileID: 2510631693483142348, guid: 10477558ced13124e9eb8f6bf0af5eca, type: 3}
+  isWorldSpaceEffect: 1

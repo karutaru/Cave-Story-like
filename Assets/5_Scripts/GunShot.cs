@@ -3,13 +3,6 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-//public enum FaceDirection
-//{
-//    Up,
-//    Down,
-//    Flat
-//}
-
 public class GunShot : MonoBehaviour
 {
     // スクリプタブルオブジェクトの登録（アセットをアサイン）
@@ -42,7 +35,7 @@ public class GunShot : MonoBehaviour
     void Start()
     {
         bulletCountController.StartBullets(weaponLevelDataSO.weaponLevelDataList[currentWeaponID].maxAmmo);
-}
+    }
 
     private void Update()
     {
@@ -96,27 +89,6 @@ public class GunShot : MonoBehaviour
     }
 
     /// <summary>
-    /// 向いている方向の取得
-    /// </summary>
-    /// <returns></returns>
-    //private FaceDirection GetFaceDirection()
-    //{
-    //    // Wか↑を押した時
-    //    if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
-    //    {
-    //        return FaceDirection.Up;
-    //    }
-
-    //    // Sか↓を押した時
-    //    if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
-    //    {
-    //        return FaceDirection.Down;
-    //    }
-
-    //    return FaceDirection.Flat;
-    //}
-
-    /// <summary>
     /// 弾が生成できるか確認してから弾を生成する
     /// もしも生成できない場合にはリロードする
     /// </summary>
@@ -162,15 +134,13 @@ public class GunShot : MonoBehaviour
             return;
         }
         // 弾の位置の初期ランダム性
-        firstAccuracy = Random.Range(- DataBase.instance.weaponSO.weaponLevelDataList[currentWeaponID].firstAccuracy, weaponLevelDataSO.weaponLevelDataList[currentWeaponID].firstAccuracy);
+        firstAccuracy = Random.Range(-DataBase.instance.weaponSO.weaponLevelDataList[currentWeaponID].firstAccuracy, weaponLevelDataSO.weaponLevelDataList[currentWeaponID].firstAccuracy);
 
         // 弾をインスタンス化する
         BulletController bullet = Instantiate(DataBase.instance.weaponSO.weaponLevelDataList[currentWeaponID].gunShellPrefab,
             new Vector3(transform.position.x, transform.position.y + DataBase.instance.weaponSO.weaponLevelDataList[currentWeaponID].prefabPositionOffsetY + firstAccuracy, 0), transform.rotation);
 
         bullet.transform.localScale = new Vector3(DataBase.instance.weaponSO.weaponLevelDataList[currentWeaponID].shellSize, DataBase.instance.weaponSO.weaponLevelDataList[currentWeaponID].shellSize, 1f);
-
-        //bullet.transform.eulerAngles = transform.eulerAngles;
 
         // マズルフラッシュをインスタンス化する
         GameObject bulletFire = Instantiate(bulletEffectPrefab,
@@ -186,74 +156,9 @@ public class GunShot : MonoBehaviour
         // 発射音を再生する
         AudioSource.PlayClipAtPoint(shotSound, transform.position);
 
-        // 回転を修正
-        //ChangeAngle(0);
-
-        //Debug.Log("生成後" + transform.eulerAngles);
-
-        //// 上も下も向いていない場合
-        //if (currentFaceDirection == FaceDirection.Flat)
-        //{
-        //    StartCoroutine(RespawnBulletEffect(playerWeapon.CurrentWeaponLevelData.shotRange, bullet.gameObject));
-        //    // 終了
-        //    return;
-        //}
-
         // ここは上か下を向いている時に動く
         StartCoroutine(RespawnBulletEffect(DataBase.instance.weaponSO.weaponLevelDataList[currentWeaponID].shotRange, bullet.gameObject, 0f));
-
-        // 発射位置を元の位置に戻す
-        //ChangePosition(-playerController.playerLookDirection);
     }
-
-    /// <summary>
-    /// 回転を変更
-    /// </summary>
-    /// <param name="offsetAngle"></param>
-    //private void ChangeAngle(float offsetAngle)
-    //{
-    //    transform.eulerAngles = new Vector3(0, 0, offsetAngle);
-    //}
-
-    /// <summary>
-    /// 位置を変更
-    /// </summary>
-    /// <param name="direction"></param>
-    //private void ChangePosition(float direction)
-    //{
-    //    Vector2 pos = new Vector2(transform.position.x - (0.68f * direction), transform.position.y);
-    //    transform.position = pos;
-    //}
-
-    ///// <summary>
-    ///// プレイヤーの向きから Y軸の調整値を取得
-    ///// </summary>
-    ///// <returns></returns>
-    //private float GetOffsetFromFaceDirection()
-    //{
-    //    return faceDirection switch
-    //    {
-    //        FaceDirection.Up => 0.6f,
-    //        FaceDirection.Down => -0.6f,
-    //        FaceDirection.Flat => -0.2f,
-    //        _ => 0f
-    //    };
-    //}
-
-    ///// <summary>
-    ///// プレイヤーの向きから角度を取得
-    ///// </summary>
-    ///// <returns></returns>
-    //private float GetAngleFromFaceDirection()
-    //{
-    //    return faceDirection switch
-    //    {
-    //        FaceDirection.Up => 90f,
-    //        FaceDirection.Down => -90f,
-    //        FaceDirection.Flat => 0f,
-    //        _ => 0f
-    //    };
-    //}
 
     /// <summary>
     /// 終端のマズルフラッシュの生成
@@ -268,17 +173,19 @@ public class GunShot : MonoBehaviour
 
         if (bullet != null)
         {
+            // bulletの位置に新しいマズルフラッシュエフェクトを生成
             GameObject newBulletFire = Instantiate(bulletEffectPrefab,
                 new Vector2(bullet.transform.position.x, bullet.transform.position.y + offset),
                     bullet.transform.rotation);
 
-            Destroy(bullet);
+            //// bulletにアタッチされているEffectScriptのOnDestroyメソッドを呼び出す
+            //EffectScript effectScript = bullet.GetComponent<EffectScript>();
+            //if (effectScript != null)
+            //{
+            //    effectScript.OnDestroy();
+            //}
+
+            //Destroy(bullet);
         }
     }
-
-
-
-
-
-    
 }

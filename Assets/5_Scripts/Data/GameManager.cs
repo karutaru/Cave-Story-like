@@ -22,6 +22,15 @@ public class GameManager : MonoBehaviour
     public Transform tran_EventCamera; // イベント用のカメラポイント
     public CinemachineVirtualCamera system_mainCamera; // カメラ
 
+    // エフェクト◆◆◆
+    [Header("エフェクト")]
+    public GameObject wallEffectPrefab;
+    public GameObject bloodEffectPrefab;
+
+    // SE◆◆◆
+    [Header("SE")]
+    public AudioClip shotHitSE;
+
     // スクリプト◆◆◆◆
     [Header("スクリプト")]
     public CameraFollowMouse cameraFollowMouse;         // マウスをカメラが追従する処理
@@ -60,6 +69,18 @@ public class GameManager : MonoBehaviour
     }
 
     // ------------------------------------------------------------------------------------- ◆↓スクリプト↓◆ -------------------------------------------------------------------------------------------
+
+    void Awake()
+    {
+        if (game == null)
+        {
+            game = this;
+        }
+        else if (game != this)
+        {
+            Destroy(gameObject);
+        }
+    }
 
     private void Start()
     {
