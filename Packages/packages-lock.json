@@ -1,5 +1,12 @@
 {
   "dependencies": {
+    "com.masyo-lab.favorites-asset": {
+      "version": "https://github.com/MasyoLab/UnityTools-FavoritesAsset.git?path=Assets/MasyoLab/FavoritesAsset",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "8a01bf0a4df716bdd6133888885b52d283578774"
+    },
     "com.unity.2d.animation": {
       "version": "7.0.10",
       "depth": 1,
