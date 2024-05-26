@@ -470,8 +470,8 @@ public class PlayerBodyController : MonoBehaviour
                     anim.Play("Player_FirstHofuku");
                 }
             }
-            else if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.LeftShift))
-            {
+            else if ((Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.LeftShift)) || (Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.LeftShift)))
+                {
                 // AキーまたはDキーが押され、シフトキーが押されて地面に足を着けている場合
                 moveSpeed = defaultMoveSpeed * 2;
 
