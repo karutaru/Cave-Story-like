@@ -147,7 +147,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b50b23b1005ab5d4b80bc6aa86a57b36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wallHit: 1
+  isWallHit: 1
 --- !u!114 &7974321274305530984
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -160,5 +160,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd215d7aa4065a14bb02ad83a099a75a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  particleEffectPrefab: {fileID: 2510631693483142348, guid: 10477558ced13124e9eb8f6bf0af5eca, type: 3}
+  particleEffectPrefabs:
+  - {fileID: 2510631693483142348, guid: 10477558ced13124e9eb8f6bf0af5eca, type: 3}
+  particleEffectPrefabs_Last:
+  - {fileID: 2347070903044254817, guid: edcc36264feda5340999566f7d15f555, type: 3}
+  - {fileID: 7677833162469444508, guid: c56a2e38901924347a5b0bbac0a46b09, type: 3}
   isWorldSpaceEffect: 1
+  sizeMode: 1
+  sizeMultiplier: 1
+  minSize: 0.5
+  maxSize: 0.8
+  sizeCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4

@@ -3,7 +3,7 @@ using UnityEngine;
 public class Destroy : MonoBehaviour
 {
     // アニメーションの遅延時間（オプション）
-    public float delay = 0f;
+    public float delay = 0.2f;
 
     void Start()
     {

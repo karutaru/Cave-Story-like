@@ -8,11 +8,8 @@ public class BulletController : MonoBehaviour
     [LabelText("壁に当たると消える"), HideLabel]
     public bool isWallHit = true;
 
-
     private int weaponDamage;
     public int WeaponDamage => weaponDamage; // プロパティ
-
-
 
     private void Start()
     {
@@ -43,14 +40,7 @@ public class BulletController : MonoBehaviour
             // 壁エフェクトを実体化する
             GameObject wallEffect = Instantiate(GameManager.game.wallEffectPrefab, transform.position, Quaternion.identity);
             // 壁エフェクトを0.2秒後に消す
-            Destroy(wallEffect, 0.2f);
-
-            // bulletにアタッチされているEffectScriptのOnDestroyメソッドを呼び出す
-            EffectScript effectScript = GetComponent<EffectScript>();
-            if (effectScript != null)
-            {
-                effectScript.OnDestroy();
-            }
+            Destroy(wallEffect, 0.5f);
 
             // プレイヤーの弾を破壊
             Destroy(this.gameObject);
