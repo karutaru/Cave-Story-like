@@ -164,11 +164,11 @@ MonoBehaviour:
   - {fileID: 2510631693483142348, guid: 10477558ced13124e9eb8f6bf0af5eca, type: 3}
   particleEffectPrefabs_Last:
   - {fileID: 2347070903044254817, guid: edcc36264feda5340999566f7d15f555, type: 3}
-  - {fileID: 7677833162469444508, guid: c56a2e38901924347a5b0bbac0a46b09, type: 3}
+  - {fileID: 7599763539490579977, guid: 2a8a41fa95caa0344a7c0b81effec249, type: 3}
   isWorldSpaceEffect: 1
   sizeMode: 1
   sizeMultiplier: 1
-  minSize: 0.5
+  minSize: 0.4
   maxSize: 0.8
   sizeCurve:
     serializedVersion: 2

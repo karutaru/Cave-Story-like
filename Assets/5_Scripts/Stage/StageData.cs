@@ -7,12 +7,25 @@ using Sirenix.OdinInspector;
 
 public class StageData
 {
-    [LabelText("　■■■ステージ名■■■"), HideLabel]
-    public string enemyName;
+    [HorizontalGroup("Row 0")]
+    [PropertySpace(SpaceBefore = 0, SpaceAfter = 5)]
+    [LabelText("ステージ名"), HideLabel, LabelWidth(100)]
+    public string stage_Name;
 
-    [LabelText("　ステージ番号"), HideLabel]
-    public int enemyNumber;
+    [HorizontalGroup("Row 1")]
+    [LabelText("ステージ番号"), HideLabel]
+    public int stage_Number;
 
-    [LabelText("　プレハブ"), HideLabel]
-    public GameObject stagePrefab;
+    [HorizontalGroup("Row 1")]
+    [LabelText("ステージプレハブ"), HideLabel]
+    public GameObject stage_Prefab;
+
+    [HorizontalGroup("Row 2")]
+    [LabelText("プレイヤーPos"), HideLabel]
+    public Transform stage_PlayerPos;
+
+    [HorizontalGroup("Row 2")]
+    [LabelText("カメラPos"), HideLabel]
+    public Transform stage_CameraPos;
 }
+
