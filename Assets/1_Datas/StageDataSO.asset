@@ -13,9 +13,13 @@ MonoBehaviour:
   m_Name: StageDataSO
   m_EditorClassIdentifier: 
   stageDataList:
-  - enemyName: "\u30C7\u30D0\u30C3\u30AF\u30EB\u30FC\u30E0"
-    enemyNumber: 0
-    stagePrefab: {fileID: 8966078672699904190, guid: 9b2c4fcfb72adf244ad2627bf7a1f92e, type: 3}
-  - enemyName: "\u30B9\u30C6\u30FC\u30B81"
-    enemyNumber: 1
-    stagePrefab: {fileID: 2535120543671153625, guid: 357ce8af40cb75544a00e666155b452a, type: 3}
+  - stage_Name: 
+    stage_Number: 0
+    stage_Prefab: {fileID: 0}
+    stage_PlayerPos: {fileID: 0}
+    stage_CameraPos: {fileID: 0}
+  - stage_Name: 
+    stage_Number: 0
+    stage_Prefab: {fileID: 0}
+    stage_PlayerPos: {fileID: 0}
+    stage_CameraPos: {fileID: 0}

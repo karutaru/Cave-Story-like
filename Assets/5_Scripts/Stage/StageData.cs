@@ -4,7 +4,6 @@ using UnityEngine;
 using Sirenix.OdinInspector;
 
 [System.Serializable]
-
 public class StageData
 {
     [HorizontalGroup("Row 0")]
@@ -27,5 +26,10 @@ public class StageData
     [HorizontalGroup("Row 2")]
     [LabelText("カメラPos"), HideLabel]
     public Transform stage_CameraPos;
-}
 
+    // リスト要素のラベルをカスタマイズするプロパティ
+    public string ElementLabel
+    {
+        get { return $"{stage_Number}: {stage_Name}"; }
+    }
+}
