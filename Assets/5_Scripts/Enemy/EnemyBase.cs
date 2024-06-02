@@ -4,32 +4,86 @@ using UnityEngine;
 using Pathfinding;
 using DG.Tweening;
 using TMPro;
+using Sirenix.OdinInspector;
 
 public class EnemyBase : MonoBehaviour
 {
-    [Header("ステータス")]
-    public int hp = 5;                          // 最大HP
-    public int attack = 2;                      // 攻撃力
-    public float speed = 40f;                   // 足の速さ
-    public float jumpPower = 20f;               // ジャンプ力
+    [Title("ステータス")]
+    [HorizontalGroup("Row 1", Width = 0.5f)]
+    [LabelText("最大HP"), HideLabel, LabelWidth(100)]
+    public int hp = 5;
+
+    [Title("")]
+    [HorizontalGroup("Row 1")]
+    [LabelText("移動速度"), HideLabel, LabelWidth(100)]
+    public float speed = 40f;
+
+    [HorizontalGroup("Row 2", Width = 0.5f)]
+    [LabelText("攻撃力"), HideLabel, LabelWidth(100)]
+    public int attack = 2;
+
+    [HorizontalGroup("Row 2")]
+    [LabelText("ジャンプ力"), HideLabel, LabelWidth(100)]
+    public float jumpPower = 20f;
+
+    [PropertySpace(SpaceBefore = 0, SpaceAfter = 5)]
+    [HorizontalGroup("Row 3", Width = 0.5f)]
+    [LabelText("落とす経験値"), HideLabel, LabelWidth(100)]
     public int exp = 1;                         // 経験値
 
-    [Header("経路探索")]
+    [Title("経路探索")]
+    [HorizontalGroup("Row 4", Width = 0.5f)]
+    [LabelText("索敵距離"), HideLabel, LabelWidth(100)]
     public float activateDistance = 50f;        // 索敵距離
+
+    [Title("")]
+    [HorizontalGroup("Row 4")]
+    [LabelText("索敵パス更新時間"), HideLabel, LabelWidth(100)]
     public float pathUpdateSeconds = 0.5f;      //パスの更新時間
 
-    [Header("パス挙動")]
+    [Title("パス挙動")]
+    [HorizontalGroup("Row 5", Width = 0.5f)]
+    [LabelText("次のｳｪｲﾎﾟｲﾝﾄまでの距離"), HideLabel, LabelWidth(150)]
     public float nextWayPointDistance = 0.5f;
+
+    [Title("")]
+    [HorizontalGroup("Row 5")]
+    [LabelText("ジャンプが必要なノードの高さ"), HideLabel, LabelWidth(150)]
     public float jumpNodeHeightRequirement = 0.8f;
 
-    [Header("行動の許可")]
+    [Title("行動")]
+    [HorizontalGroup("Row 6", Width = 0.253f)]
+    [LabelText("追跡が可能"), HideLabel, LabelWidth(100)]
     public bool followEnabled = true;           // 追跡が可能
+
+    [Title("")]
+    [HorizontalGroup("Row 6", Width = 0.253f)]
+    [LabelText("ジャンプが可能"), HideLabel, LabelWidth(100)]
     public bool jumpEnabled = true;             // ジャンプが可能
+
+    [Title("")]
+    [HorizontalGroup("Row 6", Width = 0.253f)]
+    [LabelText("方向変化が可能"), HideLabel, LabelWidth(100)]
     public bool directionLookEnabled = true;    // 方向変化が可能
+
+    [Title("")]
+    [HorizontalGroup("Row 6", Width = 0.253f)]
+    [LabelText("歩行が可能"), HideLabel, LabelWidth(100)]
     public bool walkEnabled = true;             // 歩行が可能
+
+    [HorizontalGroup("Row 7", Width = 0.253f)]
+    [LabelText("歩行サウンドを鳴らす"), HideLabel, LabelWidth(100)]
     public bool stepSound = false;              // 歩行サウンドを鳴らす
+
+    [HorizontalGroup("Row 7", Width = 0.253f)]
+    [LabelText("攻撃が可能"), HideLabel, LabelWidth(100)]
     public bool attackEnabled = false;          // 攻撃が可能
+
+    [HorizontalGroup("Row 7", Width = 0.253f)]
+    [LabelText("飛行が可能"), HideLabel, LabelWidth(100)]
     public bool flyEnabled = false;             // 飛行が可能
+
+
     [Header("素材の有無")]
     public bool walkAnimEnable = false;         // 歩くアニメの有無
     public bool walkSoundEnable = false;        // 歩く音の有無
@@ -75,7 +129,7 @@ public class EnemyBase : MonoBehaviour
 
     protected virtual void Start()
     {
-        target = DataBase.instance.player_Target;
+        target = GameManager.game.playerObj;
 
         if (!TryGetComponent(out rb)) return;
         if (!TryGetComponent(out anim)) return;
@@ -323,9 +377,6 @@ public class EnemyBase : MonoBehaviour
 
             // プレイヤーの弾が当たった位置との差分を計算
             Vector2 hitDiff = transform.position - bulletController.transform.position;
-            // テキストをプレイヤーの弾が当たった位置とは逆方向に向かってポップアップするように、AddForceで力を加える
-            //Rigidbody2D textRb = damageTextObject.GetComponent<Rigidbody2D>();
-            //textRb.AddForce(hitDiff.normalized * 50f, ForceMode2D.Impulse);
 
             if (damageTextObject.TryGetComponent(out Rigidbody2D rb))
             {

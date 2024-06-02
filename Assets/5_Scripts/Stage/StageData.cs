@@ -30,6 +30,6 @@ public class StageData
     // リスト要素のラベルをカスタマイズするプロパティ
     public string ElementLabel
     {
-        get { return $"{stage_Number}: {stage_Name}"; }
+        get { return $"{stage_Name}"; }
     }
 }

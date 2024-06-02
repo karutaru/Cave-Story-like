@@ -6,7 +6,7 @@ public class Water : MonoBehaviour
 {
     public bool inWater;                            //水に入った
     public WaterController waterController;         //水中呼吸
-    public PlayerController playerController;       //移動関連
+    public PlayerBodyController playerBodyController;       //移動関連
 
 
 
@@ -20,7 +20,7 @@ public class Water : MonoBehaviour
                 inWater = true;
 
                 waterController.WaterAir(inWater);
-                playerController.WaterMove(inWater);
+                playerBodyController.WaterMove(inWater);
             }
         }
     }
@@ -35,7 +35,7 @@ public class Water : MonoBehaviour
                 inWater = false;
 
                 waterController.WaterAir(inWater);
-                playerController.WaterMove(inWater);
+                playerBodyController.WaterMove(inWater);
             }
         }
     }

@@ -27,7 +27,7 @@ public class SystemTextManager : MonoBehaviour
     private string beforeText;
 
     public PlayerStatus playerStatus;
-    public PlayerController playerController;
+    public PlayerBodyController playerBodyController;
 
     public CinemachineVirtualCamera virtualCamera;
     private float originalXDamping;
@@ -126,12 +126,12 @@ public class SystemTextManager : MonoBehaviour
         if (afterPlayerPos == PosEnum.左)
         {
             // プレイヤーのワープ
-            playerController.gameObject.transform.position = tranPointGameObject.transform.position + new Vector3(-1, -0.5f, 0);
+            playerBodyController.gameObject.transform.position = tranPointGameObject.transform.position + new Vector3(-1, -0.5f, 0);
         }
         if (afterPlayerPos == PosEnum.右)
         {
             // プレイヤーのワープ
-            playerController.gameObject.transform.position = tranPointGameObject.transform.position + new Vector3(1, -0.5f, 0);
+            playerBodyController.gameObject.transform.position = tranPointGameObject.transform.position + new Vector3(1, -0.5f, 0);
         }
 
         // 1秒後にDampingとLookaheadTimeを元の値に戻す
@@ -161,12 +161,12 @@ public class SystemTextManager : MonoBehaviour
         if (afterPlayerPos == PosEnum.左)
         {
             // プレイヤーのワープ
-            playerController.gameObject.transform.position = tranPointGameObject.transform.position + new Vector3(-1, -0.5f, 0);
+            playerBodyController.gameObject.transform.position = tranPointGameObject.transform.position + new Vector3(-1, -0.5f, 0);
         }
         if (afterPlayerPos == PosEnum.右)
         {
             // プレイヤーのワープ
-            playerController.gameObject.transform.position = tranPointGameObject.transform.position + new Vector3(1, -0.5f, 0);
+            playerBodyController.gameObject.transform.position = tranPointGameObject.transform.position + new Vector3(1, -0.5f, 0);
         }
 
         // 1秒後にDampingとLookaheadTimeを元の値に戻す

@@ -7,6 +7,6 @@ using Sirenix.OdinInspector;
 public class WeaponLevelDataSO : ScriptableObject
 {
     // Odinの属性を使用してリストを編集しやすくする
-    [ListDrawerSettings(Expanded = true, DraggableItems = true, ShowIndexLabels = true, ListElementLabelName = "gunName")]
+    [ListDrawerSettings(ShowFoldout = true, DraggableItems = true, ShowIndexLabels = true, ListElementLabelName = "gunName")]
     public List<WeaponLevelData> weaponLevelDataList = new();
 }

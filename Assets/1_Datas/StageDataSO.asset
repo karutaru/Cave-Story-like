@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: StageDataSO
   m_EditorClassIdentifier: 
   stageDataList:
-  - stage_Name: 
+  - stage_Name: "\u5B58\u5728\u3057\u306A\u3044\u90E8\u5C4B"
     stage_Number: 0
     stage_Prefab: {fileID: 0}
     stage_PlayerPos: {fileID: 0}
     stage_CameraPos: {fileID: 0}
   - stage_Name: 
-    stage_Number: 0
+    stage_Number: 1
     stage_Prefab: {fileID: 0}
     stage_PlayerPos: {fileID: 0}
     stage_CameraPos: {fileID: 0}

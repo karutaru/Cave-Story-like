@@ -848,7 +848,7 @@ public class AstarPath : VersionedMonoBehaviour {
 			} else if (path.error) {
 				Debug.LogWarning(debug);
 			} else {
-				Debug.Log(debug);
+				//Debug.Log(debug);
 			}
 		}
 	}
@@ -1836,7 +1836,7 @@ public class AstarPath : VersionedMonoBehaviour {
 		lastScanTime = (float)watch.Elapsed.TotalSeconds;
 
 		if (logPathResults != PathLog.None && logPathResults != PathLog.OnlyErrors) {
-			Debug.Log("Scanned graphs in " + (lastScanTime*1000).ToString("0") + " ms");
+			//Debug.Log("Scanned graphs in " + (lastScanTime*1000).ToString("0") + " ms");
 		}
 	}
 

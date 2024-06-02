@@ -45,15 +45,21 @@ public class BulletController : MonoBehaviour
             // プレイヤーの弾を破壊
             Destroy(this.gameObject);
         }
-        else if (other.CompareTag("Enemy")) // エネミーだったら
+        else if (other.CompareTag("Enemy") || other.CompareTag("Breakable")) // エネミーまたは破壊可能オブジェクトだったら
         {
             //MMFPlayer_Hit.PlayFeedbacks();
             AudioSource.PlayClipAtPoint(GameManager.game.shotHitSE, transform.position);
 
-            // 出血エフェクトを実体化する
-            GameObject bloodEffect = Instantiate(GameManager.game.bloodEffectPrefab, transform.position, Quaternion.identity);
-            // 出血エフェクトを0.2秒後に消す
-            Destroy(bloodEffect, 0.2f);
+            // 出血エフェクトをリスト内の全てのプレハブから実体化し、親オブジェクトを設定する
+            foreach (var bloodEffectPrefab in GameManager.game.bloodEffectPrefabs)
+            {
+                GameObject bloodEffect = Instantiate(bloodEffectPrefab, transform.position, Quaternion.identity);
+                bloodEffect.transform.SetParent(other.transform); // 親オブジェクトを設定
+                // 出血エフェクトを2秒後に消す
+                Destroy(bloodEffect, 2f);
+
+                Debug.Log("1");
+            }
 
             // プレイヤーの弾を破壊
             Destroy(this.gameObject);
@@ -62,15 +68,19 @@ public class BulletController : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision) // 何かが衝突したら（非トリガー）----------------------------------------------------------------------------------------------------------------------------------------
     {
-        if (collision.gameObject.CompareTag("Enemy") && !isWallHit)
+        if (collision.gameObject.CompareTag("Enemy") && !isWallHit || collision.gameObject.CompareTag("Breakable") && !isWallHit)
         {
             //MMFPlayer_Hit.PlayFeedbacks();
             AudioSource.PlayClipAtPoint(GameManager.game.shotHitSE, transform.position);
 
-            // 出血エフェクトを実体化する
-            GameObject bloodEffect = Instantiate(GameManager.game.bloodEffectPrefab, transform.position, Quaternion.identity);
-            // 出血エフェクトを0.2秒後に消す
-            Destroy(bloodEffect, 0.2f);
+            // 出血エフェクトをリスト内の全てのプレハブから実体化し、親オブジェクトを設定する
+            foreach (var bloodEffectPrefab in GameManager.game.bloodEffectPrefabs)
+            {
+                GameObject bloodEffect = Instantiate(bloodEffectPrefab, transform.position, Quaternion.identity);
+                bloodEffect.transform.SetParent(collision.transform); // 親オブジェクトを設定
+                // 出血エフェクトを2秒後に消す
+                Destroy(bloodEffect, 2f);
+            }
 
             // プレイヤーの弾を破壊
             Destroy(this.gameObject);

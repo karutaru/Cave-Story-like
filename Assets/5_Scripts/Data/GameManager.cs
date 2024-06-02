@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
 
     // オブジェクト◆◆◆
     [Header("オブジェクト")]
+    public Transform playerObj; // プレイヤーのオブジェクト
     public GameObject object_UI; // UI画像
     public GameObject object_AIM; // プレイヤーのAIM画像
     public Transform tran_PlayerCamera; // プレイヤー用のカメラポイント
@@ -25,7 +26,7 @@ public class GameManager : MonoBehaviour
     // エフェクト◆◆◆
     [Header("エフェクト")]
     public GameObject wallEffectPrefab;
-    public GameObject bloodEffectPrefab;
+    public List<GameObject> bloodEffectPrefabs;
 
     // SE◆◆◆
     [Header("SE")]
