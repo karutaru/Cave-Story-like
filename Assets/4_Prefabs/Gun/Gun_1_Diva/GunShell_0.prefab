@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 2185134297141808729}
   - component: {fileID: 2185134297141808730}
   - component: {fileID: -3986194673877613549}
-  - component: {fileID: 7974321274305530984}
   m_Layer: 12
   m_Name: GunShell_0
   m_TagString: Shell
@@ -148,28 +147,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isWallHit: 1
---- !u!114 &7974321274305530984
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2185134297141808731}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd215d7aa4065a14bb02ad83a099a75a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
   particleEffectPrefabs:
   - {fileID: 2510631693483142348, guid: 10477558ced13124e9eb8f6bf0af5eca, type: 3}
   particleEffectPrefabs_Last:
   - {fileID: 2347070903044254817, guid: 392e363c64dd9144f8a9452886cbe4f3, type: 3}
   - {fileID: 7599763539490579977, guid: 2a8a41fa95caa0344a7c0b81effec249, type: 3}
   isWorldSpaceEffect: 1
-  sizeMode: 1
+  sizeMode: 0
   sizeMultiplier: 1
-  minSize: 0.6
-  maxSize: 0.8
+  minSize: 0.5
+  maxSize: 1.5
   sizeCurve:
     serializedVersion: 2
     m_Curve:

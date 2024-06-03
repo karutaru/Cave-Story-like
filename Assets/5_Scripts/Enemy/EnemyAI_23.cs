@@ -39,10 +39,10 @@ public class EnemyAI_23 : EnemyBase
         //移動
         if (walkEnabled && Vector2.Distance(transform.position, target.transform.position) < activateDistance)
         {
-            if (anim != null && walkAnimEnable)
+            if (anim != null && anim.HasState(0, walkStateHash))
             {
                 // 歩くアニメーションを再生
-                anim.Play("Awake");
+                anim.Play(walkStateHash);
 
                 if (!headMoved)
                 {
@@ -67,10 +67,10 @@ public class EnemyAI_23 : EnemyBase
     }
     protected override void StopMove()
     {
-        if (walkEnabled && anim != null && moveTimer == 0 && idleAnimEnable && !isPlayer)
+        if (walkEnabled && anim != null && moveTimer == 0 && anim.HasState(0, idleStateHash) && !isPlayer)
         {
             // 止まるアニメーション
-            anim.Play("Idle");
+            anim.Play(idleStateHash);
 
             if (!headStoped)
             {
@@ -90,7 +90,7 @@ public class EnemyAI_23 : EnemyBase
             canStep = false;
 
         }
-        if (idleSE != null && moveTimer == 0 && idleSoundEnable)
+        if (idleSE != null && moveTimer == 0 )
         {
             // 止まるSEを再生
             AudioSource.PlayClipAtPoint(idleSE, transform.position);

@@ -17,20 +17,21 @@ public class EnemyAI : EnemyBase
         //移動
         if (walkEnabled && Vector2.Distance(transform.position, target.transform.position) < activateDistance)
         {
-            if (anim != null && walkAnimEnable)
+            if (anim != null && anim.HasState(0, walkStateHash))
             {
                 // 歩くアニメーションを再生
-                anim.Play("Walk");
+                anim.Play(walkStateHash);
 
                 canStep = true;
             }
             //rb.AddForce(force);
-            this.gameObject.transform.localPosition = new Vector2 (this.gameObject.transform.localPosition.x + (speed / 1000f) * -transform.localScale.x, this.gameObject.transform.localPosition.y);
+            this.gameObject.transform.localPosition = new Vector2(this.gameObject.transform.localPosition.x + (speed / 1000f) * -transform.localScale.x, this.gameObject.transform.localPosition.y);
 
-        } else if (idleAnimEnable)
+        }
+        else if (anim != null && anim.HasState(0, idleStateHash))
         {
             // 立ち止まるアニメーションを再生
-            anim.Play("Idle");
+            anim.Play(idleStateHash);
         }
     }
 
@@ -43,6 +44,18 @@ public class EnemyAI : EnemyBase
         if (canAttack && attackEnabled)
         {
             // TODO エネミーの攻撃処理
+        }
+    }
+
+    /// <summary>
+    /// アニメーションの再生
+    /// </summary>
+    private void PlayAnimation(string animationName)
+    {
+        int stateHash = Animator.StringToHash(animationName);
+        if (anim != null && anim.HasState(0, stateHash))
+        {
+            anim.Play(stateHash);
         }
     }
 }

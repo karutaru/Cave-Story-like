@@ -52,44 +52,39 @@ public class EnemyBase : MonoBehaviour
     public float jumpNodeHeightRequirement = 0.8f;
 
     [Title("行動")]
-    [HorizontalGroup("Row 6", Width = 0.253f)]
-    [LabelText("追跡が可能"), HideLabel, LabelWidth(100)]
+    [HorizontalGroup("Row 6", Width = 0.15f)]
+    [LabelText("追跡"), HideLabel, LabelWidth(30)]
     public bool followEnabled = true;           // 追跡が可能
 
     [Title("")]
-    [HorizontalGroup("Row 6", Width = 0.253f)]
-    [LabelText("ジャンプが可能"), HideLabel, LabelWidth(100)]
+    [HorizontalGroup("Row 6", Width = 0.15f)]
+    [LabelText("ジャンプ"), HideLabel, LabelWidth(40)]
     public bool jumpEnabled = true;             // ジャンプが可能
 
     [Title("")]
-    [HorizontalGroup("Row 6", Width = 0.253f)]
-    [LabelText("方向変化が可能"), HideLabel, LabelWidth(100)]
+    [HorizontalGroup("Row 6", Width = 0.15f)]
+    [LabelText("方向変化"), HideLabel, LabelWidth(50)]
     public bool directionLookEnabled = true;    // 方向変化が可能
 
     [Title("")]
-    [HorizontalGroup("Row 6", Width = 0.253f)]
-    [LabelText("歩行が可能"), HideLabel, LabelWidth(100)]
+    [HorizontalGroup("Row 6", Width = 0.13f)]
+    [LabelText("歩行"), HideLabel, LabelWidth(30)]
     public bool walkEnabled = true;             // 歩行が可能
 
-    [HorizontalGroup("Row 7", Width = 0.253f)]
-    [LabelText("歩行サウンドを鳴らす"), HideLabel, LabelWidth(100)]
+    [Title("")]
+    [HorizontalGroup("Row 6", Width = 0.13f)]
+    [LabelText("足音"), HideLabel, LabelWidth(30)]
     public bool stepSound = false;              // 歩行サウンドを鳴らす
 
-    [HorizontalGroup("Row 7", Width = 0.253f)]
-    [LabelText("攻撃が可能"), HideLabel, LabelWidth(100)]
+    [Title("")]
+    [HorizontalGroup("Row 6", Width = 0.13f)]
+    [LabelText("攻撃"), HideLabel, LabelWidth(30)]
     public bool attackEnabled = false;          // 攻撃が可能
 
-    [HorizontalGroup("Row 7", Width = 0.253f)]
-    [LabelText("飛行が可能"), HideLabel, LabelWidth(100)]
+    [Title("")]
+    [HorizontalGroup("Row 6", Width = 0.13f)]
+    [LabelText("飛行"), HideLabel, LabelWidth(30)]
     public bool flyEnabled = false;             // 飛行が可能
-
-
-    [Header("素材の有無")]
-    public bool walkAnimEnable = false;         // 歩くアニメの有無
-    public bool walkSoundEnable = false;        // 歩く音の有無
-    public bool idleAnimEnable = false;         // 止まるアニメの有無
-    public bool idleSoundEnable = false;        // 止まる音の有無
-    public bool attackSoundEnable = false;      // 攻撃音の有無
 
     [Header("音 関連")]
     public AudioClip walkSE;                    // 歩くSE
@@ -126,6 +121,10 @@ public class EnemyBase : MonoBehaviour
     protected BulletController bulletController;
     public Transform target;
 
+    protected int walkStateHash;
+    protected int idleStateHash;
+    protected int awakeStateHash;
+
 
     protected virtual void Start()
     {
@@ -139,6 +138,11 @@ public class EnemyBase : MonoBehaviour
 
         //現在のHPを最大値まで回復
         currentHP = hp;
+
+        // アニメーションのハッシュを取得
+        walkStateHash = Animator.StringToHash("Walk");
+        idleStateHash = Animator.StringToHash("Idle");
+        awakeStateHash = Animator.StringToHash("Awake");
     }
 
     protected virtual void Update()
@@ -250,7 +254,7 @@ public class EnemyBase : MonoBehaviour
     /// </summary>
     protected virtual void StopMove()
     {
-        if (walkEnabled && anim != null && moveTimer == 0 && idleAnimEnable)
+        if (walkEnabled && anim != null && moveTimer == 0)
         {
             // 止まるアニメーション
             anim.Play("Idle");
@@ -258,7 +262,7 @@ public class EnemyBase : MonoBehaviour
             canStep = false;
 
         }
-        if (idleSE != null && moveTimer == 0 && idleSoundEnable)
+        if (idleSE != null && moveTimer == 0)
         {
             // 止まるSEを再生
             AudioSource.PlayClipAtPoint(idleSE, transform.position);
@@ -388,6 +392,34 @@ public class EnemyBase : MonoBehaviour
 
 
 
+
+            // 現在のHPからダメージ分を引く
+            currentHP -= damage;
+        }
+
+        // EffectDamageコンポーネントを持つオブジェクトとの衝突をチェック
+        if (col.TryGetComponent(out EffectDamage effectDamage))
+        {
+            // ダメージを受けた時に索敵距離を最大にする
+            activateDistance = 150f;
+
+            // エフェクトからダメージを取得
+            int damage = effectDamage.effect_Damage;
+
+            // ダメージをポップアップ
+            GameObject damageTextObject = Instantiate(DataBase.instance.damagePrefabs, new Vector2(this.transform.position.x, this.transform.position.y), Quaternion.identity);
+            damageTextObject.GetComponent<TMP_Text>().text = damage.ToString();
+
+            // エフェクトが当たった位置との差分を計算
+            Vector2 hitDiff = transform.position - col.transform.position;
+
+            if (damageTextObject.TryGetComponent(out Rigidbody2D rb))
+            {
+                int randomValue = Random.Range(30, 40);
+                int randomUpValue = Random.Range(3, 8);
+                rb.AddForce(Vector2.up * 0.2f * randomValue, ForceMode2D.Impulse);
+                rb.AddForce(hitDiff.normalized * 0.2f * randomUpValue, ForceMode2D.Impulse);
+            }
 
             // 現在のHPからダメージ分を引く
             currentHP -= damage;

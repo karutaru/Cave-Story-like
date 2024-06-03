@@ -540,6 +540,11 @@ public class PlayerBodyController : MonoBehaviour
         anim.Play("Player_Fall");
     }
 
+    public void OnDodgedJumpAnimationEnd()
+    {
+        anim.Play("Player_Fall");
+    }
+
     // ålŒö‚ÌŒü‚«
     void Player_Direction()
     {
