@@ -57,7 +57,7 @@ public class EffectScript : MonoBehaviour
         }
     }
 
-    public void OnDestroy()
+    public void isDestroy()
     {
         float size = sizeMultiplier;
         if (sizeMode == SizeMode.RandomBetweenTwoConstants)

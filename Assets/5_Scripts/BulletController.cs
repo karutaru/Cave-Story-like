@@ -59,6 +59,13 @@ public class BulletController : MonoBehaviour
                 Destroy(bloodEffect, 2f);
             }
 
+            // EffectScriptのインスタンスを取得し、isDestroyメソッドを呼び出す
+            EffectScript effectScript = GetComponent<EffectScript>();
+            if (effectScript != null)
+            {
+                effectScript.isDestroy();
+            }
+
             // プレイヤーの弾を破壊
             Destroy(this.gameObject, 0.01f);
         }
