@@ -25,7 +25,7 @@ public class GunShot : MonoBehaviour
     public float shotTimeIntervalCount = 0; // 射撃間隔のカウンターを追加
     public bool isShot = true;              // 射撃可能な状態か？
     private bool canShoot = true;           // 射撃可能かどうかのフラグを追加
-    private int currentWeaponID = 0;        // 現在持っている武器のID
+    private int currentWeaponID = 1;        // 現在持っている武器のID
     private float firstAccuracy = 0;
 
     [SerializeField]

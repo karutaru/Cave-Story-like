@@ -119,8 +119,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1021e0b8c679e6042896f24951daf6cc
-      internalID: -1868213194
+      spriteID: 10b4f49d951f97945a9bd428a1c03054
+      internalID: 1112309367
       vertices: []
       indices: 
       edges: []
@@ -140,8 +140,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 52efb4925d3c316409e9d95ec5774cd7
-      internalID: -1646483592
+      spriteID: 1a5ff220be7c5ed42830f37c0c2c58e3
+      internalID: -1523903908
       vertices: []
       indices: 
       edges: []
@@ -161,8 +161,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3d890b5ee20055a4ba0b5756a3211ecd
-      internalID: -1739575892
+      spriteID: bf8a9083a630e524ea2e5e0f4d49749e
+      internalID: 226096935
       vertices: []
       indices: 
       edges: []
@@ -182,8 +182,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2b196513c23539c48baa3a81ec848252
-      internalID: 460620688
+      spriteID: 1c3384f9e3e29e74cb875f25b4919e12
+      internalID: 1264571172
       vertices: []
       indices: 
       edges: []
@@ -203,8 +203,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3f8d87d854224e746ac011e397accbc2
-      internalID: 1276573221
+      spriteID: 5b0c85c9eb1ce344097e7c2cbc507100
+      internalID: 331006972
       vertices: []
       indices: 
       edges: []
@@ -220,11 +220,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Gun_Explosion2_0: -1868213194
-      Gun_Explosion2_1: -1646483592
-      Gun_Explosion2_2: -1739575892
-      Gun_Explosion2_3: 460620688
-      Gun_Explosion2_4: 1276573221
+      Gun_Explosion2_0: 1112309367
+      Gun_Explosion2_1: -1523903908
+      Gun_Explosion2_2: 226096935
+      Gun_Explosion2_3: 1264571172
+      Gun_Explosion2_4: 331006972
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

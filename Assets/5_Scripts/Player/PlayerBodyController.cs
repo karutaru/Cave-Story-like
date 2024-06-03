@@ -274,7 +274,15 @@ public class PlayerBodyController : MonoBehaviour
             //歩いている間加算
             stepTimer += Time.deltaTime;
 
-            if (stepTimer >= 0.3f && isGrounded == true) //一定距離歩き、かつ接地している時
+            if (stepTimer >= 0.3f && isGrounded == true && Input.GetKey(KeyCode.LeftShift)) //一定距離歩き、かつ接地していてLシフトを押している時
+            {
+                //歩きSE再生
+                AudioSource.PlayClipAtPoint(stepSE, transform.position);
+
+                stepTimer = 0;
+            }
+
+            if (stepTimer >= 0.47f && isGrounded == true) //一定距離歩き、かつ接地している時
             {
                 //歩きSE再生
                 AudioSource.PlayClipAtPoint(stepSE, transform.position);
@@ -361,21 +369,21 @@ public class PlayerBodyController : MonoBehaviour
 
         if (Input.GetKey(KeyCode.A)) // 左キーを押している場合
         {
-            rb.AddForce(Vector2.left * 11, ForceMode2D.Impulse); // 左に弾き飛ばす
+            rb.AddForce(Vector2.left * 15, ForceMode2D.Impulse); // 左に弾き飛ばす
         }
         else if (Input.GetKey(KeyCode.D)) // 右キーを押している場合
         {
-            rb.AddForce(Vector2.right * 11, ForceMode2D.Impulse); // 右に弾き飛ばす
+            rb.AddForce(Vector2.right * 15, ForceMode2D.Impulse); // 右に弾き飛ばす
         }
         else      // 何も押していない場合
         {
             if (playerLookDirection == 1f)
             {
-                rb.AddForce(Vector2.right * 11, ForceMode2D.Impulse); // 右に弾き飛ばす
+                rb.AddForce(Vector2.right * 15, ForceMode2D.Impulse); // 右に弾き飛ばす
             }
             else
             {
-                rb.AddForce(Vector2.left * 11, ForceMode2D.Impulse); // 左に弾き飛ばす
+                rb.AddForce(Vector2.left * 15, ForceMode2D.Impulse); // 左に弾き飛ばす
             }
         }
         if (GameManager.game != null && GameManager.game.knockback_Player != null)
@@ -386,10 +394,10 @@ public class PlayerBodyController : MonoBehaviour
 
     void VelocityDeceleration()
     {
-        rb.velocity = new Vector2(rb.velocity.x * 0.8f, rb.velocity.y);
+        rb.velocity = new Vector2(rb.velocity.x * 0.7f, rb.velocity.y);
     }
 
-    // 0.8秒後にisMove変数をfalseにする
+    // 0.6秒後にisMove変数をfalseにする
     async UniTask SetIsMoveFalseAfterDelay()
     {
         await UniTask.Delay(TimeSpan.FromSeconds(0.1));
@@ -400,7 +408,7 @@ public class PlayerBodyController : MonoBehaviour
         VelocityDeceleration();
         await UniTask.Delay(TimeSpan.FromSeconds(0.1));
         VelocityDeceleration();
-        await UniTask.Delay(TimeSpan.FromSeconds(0.3));
+        await UniTask.Delay(TimeSpan.FromSeconds(0.2));
 
         staticAfterImageEffect2DPlayer.enabled = false; // 残像の非表示
 
@@ -482,7 +490,7 @@ public class PlayerBodyController : MonoBehaviour
                 // AキーまたはDキーのみが押されている場合
                 moveSpeed = defaultMoveSpeed;
 
-                anim.Play("Player_Dash");
+                anim.Play("Player_Walk");
             }
             else
             {

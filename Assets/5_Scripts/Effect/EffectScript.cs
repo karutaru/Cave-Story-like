@@ -44,8 +44,6 @@ public class EffectScript : MonoBehaviour
             instance.transform.parent = transform;
             particleEffectInstances.Add(instance);
 
-            Debug.Log("Particle effect instantiated at position: " + transform.position);
-
             if (isWorldSpaceEffect)
             {
                 // パーティクルシステムのSimulation SpaceをWorldに設定

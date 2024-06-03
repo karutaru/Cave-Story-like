@@ -57,8 +57,6 @@ public class BulletController : MonoBehaviour
                 bloodEffect.transform.SetParent(other.transform); // 親オブジェクトを設定
                 // 出血エフェクトを2秒後に消す
                 Destroy(bloodEffect, 2f);
-
-                Debug.Log("1");
             }
 
             // プレイヤーの弾を破壊
