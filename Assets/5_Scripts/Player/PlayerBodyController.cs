@@ -484,7 +484,7 @@ public class PlayerBodyController : MonoBehaviour
         rb.velocity = new Vector2(0, rb.velocity.y);
 
         // 0.3•b‘Ò‚Á‚Ä‚©‚çisMove‚ðfalse‚ÉÝ’è‚µˆÚ“®ŠJŽn
-        DOVirtual.DelayedCall(0.3f, () => {
+        DOVirtual.DelayedCall(0.05f, () => {
             isMove = false;
         });
     }

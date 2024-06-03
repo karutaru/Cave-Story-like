@@ -84,13 +84,13 @@ public class Knockback_Player : MonoBehaviour
             if (knockback_Hit.x < 0)
             {
                 // ノックバック方向が右
-                rb.AddForce(new Vector2(-4.5f, 6), ForceMode2D.Impulse);
+                rb.AddForce(new Vector2(-4f, 6), ForceMode2D.Impulse);
             }
             else
             {
 
                 // ノックバック方向が左
-                rb.AddForce(new Vector2(4.5f, 6), ForceMode2D.Impulse);
+                rb.AddForce(new Vector2(4f, 6), ForceMode2D.Impulse);
             }
             // プレイヤーがダメージを受ける
             PlayerDamage(other);
@@ -100,7 +100,7 @@ public class Knockback_Player : MonoBehaviour
             // シーケンスの作成
             Sequence sequence = DOTween.Sequence();
             // アニメーションの再生
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < 5; i++)
             {
                 // マテリアルをcustomMaterialに切り替え
                 sequence.AppendCallback(() => ChangeMaterials(mutekiMaterial));
