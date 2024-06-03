@@ -57,6 +57,9 @@ public class PlayerBodyController : MonoBehaviour
     private bool wasGroundedLastFrame = false;      // 前のフレームでの接地状態を記録
     private bool dodging;                           // 回避中か
 
+    private Collider2D playerCollider;
+    private List<Collider2D> enemyColliders = new List<Collider2D>();
+
     public StaticAfterImageEffect2DPlayer staticAfterImageEffect2DPlayer;
 
     public AudioClip headHitSE;
@@ -84,6 +87,7 @@ public class PlayerBodyController : MonoBehaviour
         rotation = transform.localRotation.x; //0
         thisTransform = transform;
         playerLookDirection = -1f;
+        playerCollider = GetComponent<Collider2D>();
     }
 
     void Update()
@@ -408,6 +412,17 @@ public class PlayerBodyController : MonoBehaviour
     // 0.6秒後にisMove変数をfalseにする
     async UniTask SetIsMoveFalseAfterDelay()
     {
+        // Enemyタグの付いたオブジェクトのCollider2Dを取得
+        foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy"))
+        {
+            Collider2D enemyCollider = enemy.GetComponent<Collider2D>();
+            if (enemyCollider != null)
+            {
+                enemyColliders.Add(enemyCollider);
+                Physics2D.IgnoreCollision(playerCollider, enemyCollider, true);
+            }
+        }
+
         await UniTask.Delay(TimeSpan.FromSeconds(0.1));
         VelocityDeceleration();
         await UniTask.Delay(TimeSpan.FromSeconds(0.1));
@@ -422,6 +437,13 @@ public class PlayerBodyController : MonoBehaviour
 
         isMove = false;
         dodging = false;
+
+        // 衝突を再度有効にする
+        foreach (Collider2D enemyCollider in enemyColliders)
+        {
+            Physics2D.IgnoreCollision(playerCollider, enemyCollider, false);
+        }
+        enemyColliders.Clear();
     }
 
 
