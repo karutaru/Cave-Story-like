@@ -26,6 +26,7 @@ public class PlayerBodyController : MonoBehaviour
     private string JumpButtonName = "Jump";
     public bool isJump = true;                  // ジャンプできるか
     private bool jumping = false;               //飛んでいるか
+    private bool jumpingKeep = false;           //飛んで後の空中にいる間true
     private bool isRun;                         //走っている
     private Transform thisTransform;
     private float jumpTime = 0;
@@ -92,6 +93,7 @@ public class PlayerBodyController : MonoBehaviour
 
             if (inWater == false)
             {
+                jumpingKeep = false;
                 rb.gravityScale = 4f;
                 if (jumpLandingOnce == true && rb.velocity.y <= -8f)
                 {
@@ -175,6 +177,12 @@ public class PlayerBodyController : MonoBehaviour
             }
         }
 
+        // ジャンプが終了し、y軸の速度が負の値になった場合に落下アニメーションを再生
+        if (!jumpingKeep && rb.velocity.y < 0)
+        {
+            anim.Play("Player_Fall");
+        }
+
         if (!jumping && !dodging)
         {
             PlayerAnim();
@@ -191,6 +199,7 @@ public class PlayerBodyController : MonoBehaviour
             }
             else if (Input.GetButton(JumpButtonName)) //ジャンプボタンを押し続けている間
             {
+                jumpingKeep = true;
                 jumpTime += Time.deltaTime;
             }
         }
@@ -337,9 +346,8 @@ public class PlayerBodyController : MonoBehaviour
     {
         if (Time.timeScale == 1)
         {
-            if (!jumping) //飛んでいない
+            if (!jumping)
             {
-                //止める
                 return;
             }
 
@@ -481,7 +489,7 @@ public class PlayerBodyController : MonoBehaviour
             else if ((Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.LeftShift)) || (Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.LeftShift)))
                 {
                 // AキーまたはDキーが押され、シフトキーが押されて地面に足を着けている場合
-                moveSpeed = defaultMoveSpeed * 2;
+                moveSpeed = defaultMoveSpeed * 1.8f;
 
                 anim.Play("Player_Dash");
             }
@@ -500,8 +508,14 @@ public class PlayerBodyController : MonoBehaviour
         }
         if (!isGrounded) 
         {
-            moveSpeed = defaultMoveSpeed;
+            //moveSpeed = defaultMoveSpeed;
         }
+    }
+
+    // ジャンプが終わったらアニメーションイベントから呼び出される関数
+    public void OnJumpAnimationEnd()
+    {
+        anim.Play("Player_Fall");
     }
 
     // 主人公の向き

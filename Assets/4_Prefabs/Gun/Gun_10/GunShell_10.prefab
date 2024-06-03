@@ -114,8 +114,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd215d7aa4065a14bb02ad83a099a75a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  particleEffectPrefab: {fileID: 2510631693483142348, guid: d1239254d1e60a94f8bc2bc74abdee10, type: 3}
+  particleEffectPrefabs:
+  - {fileID: 2510631693483142348, guid: d1239254d1e60a94f8bc2bc74abdee10, type: 3}
+  particleEffectPrefabs_Last: []
   isWorldSpaceEffect: 1
+  sizeMode: 0
+  sizeMultiplier: 1
+  minSize: 0.5
+  maxSize: 1.5
+  sizeCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!50 &2185134297141808729
 Rigidbody2D:
   serializedVersion: 4

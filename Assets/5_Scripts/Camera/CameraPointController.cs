@@ -22,13 +22,18 @@ public class CameraPointController : MonoBehaviour
 
         // マウスの位置を取得
         Vector3 mousePosition = Input.mousePosition;
-        mousePosition.z = Camera.main.transform.position.y; // カメラの高さをZ軸に設定
-        Vector3 worldMousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
 
-        // CameraPointの新しい位置を計算
-        Vector3 newPosition = forwardPosition + (worldMousePosition - player.position) * mouseSensitivity;
+        // マウスが画面内にあるかどうかをチェック
+        if (mousePosition.x >= 0 && mousePosition.x <= Screen.width && mousePosition.y >= 0 && mousePosition.y <= Screen.height)
+        {
+            mousePosition.z = Camera.main.transform.position.y; // カメラの高さをZ軸に設定
+            Vector3 worldMousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
 
-        // CameraPointの位置を更新
-        cameraPoint.position = newPosition;
+            // CameraPointの新しい位置を計算
+            Vector3 newPosition = forwardPosition + (worldMousePosition - player.position) * mouseSensitivity;
+
+            // CameraPointの位置を更新
+            cameraPoint.position = newPosition;
+        }
     }
 }

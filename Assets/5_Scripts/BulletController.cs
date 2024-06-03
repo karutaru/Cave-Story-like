@@ -60,7 +60,7 @@ public class BulletController : MonoBehaviour
             }
 
             // ƒvƒŒƒCƒ„[‚Ì’e‚ğ”j‰ó
-            Destroy(this.gameObject);
+            Destroy(this.gameObject, 0.01f);
         }
     }
 
