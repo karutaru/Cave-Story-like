@@ -32,4 +32,6 @@ public class EnemyAI_23_isPlayer : MonoBehaviour
             enemyAI_23.ChildCollidedWithPlayer(this.gameObject, false);
         }
     }
+
+
 }

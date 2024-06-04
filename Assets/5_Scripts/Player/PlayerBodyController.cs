@@ -182,7 +182,7 @@ public class PlayerBodyController : MonoBehaviour
         }
 
         // ジャンプが終了し、y軸の速度が負の値になった場合に落下アニメーションを再生
-        if (!jumpingKeep && rb.velocity.y < 0)
+        if (!jumpingKeep && rb.velocity.y < -0.05f)
         {
             anim.Play("Player_Fall");
         }
@@ -542,7 +542,10 @@ public class PlayerBodyController : MonoBehaviour
 
     public void OnDodgedJumpAnimationEnd()
     {
-        anim.Play("Player_Fall");
+        if (jumpingKeep)
+        {
+            anim.Play("Player_Fall");
+        }
     }
 
     // 主人公の向き
