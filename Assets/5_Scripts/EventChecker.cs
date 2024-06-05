@@ -13,6 +13,7 @@ public class EventChecker : MonoBehaviour
         if (col.TryGetComponent(out eventBase))
         {
             isStay = true;
+            eventBase.ChangeMaterialToTalkObject();
         }
     }
 
@@ -21,6 +22,7 @@ public class EventChecker : MonoBehaviour
         if (col.TryGetComponent(out eventBase))
         {
             isStay = false;
+            eventBase.SetMaterialToNull();
             eventBase = null;
         }
     }

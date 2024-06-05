@@ -14,6 +14,10 @@ public class EventBase : MonoBehaviour
     {
 
     }
+    public virtual void SwitchObject()
+    {
+
+    }
     public virtual void Event_Item()
     {
 
@@ -22,7 +26,15 @@ public class EventBase : MonoBehaviour
     {
 
     }
-    public virtual void SwitchObject()
+    
+
+
+    public virtual void ChangeMaterialToTalkObject()
+    {
+
+    }
+
+    public virtual void SetMaterialToNull()
     {
 
     }

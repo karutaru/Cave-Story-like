@@ -5,7 +5,7 @@ using UnityEngine;
 
 public enum EventTypeEnum
 {
-    エンティティ, 扉, スイッチオブジェクト, 宝箱
+    キャラクター, 扉, スイッチオブジェクト, 宝箱
 }
 
 public class EventPlayer : EventBase
@@ -13,12 +13,22 @@ public class EventPlayer : EventBase
     [Title("イベント設定"), EnumToggleButtons, HideLabel]
     public EventTypeEnum eventTypeEnumField;
 
-    [Title("扉")]
+
+    [ShowIf("eventTypeEnumField", EventTypeEnum.キャラクター)]
+    [Title("キャラクター設定"), EnumToggleButtons, HideLabel]
+
     [ShowIf("eventTypeEnumField", EventTypeEnum.扉)]
     [ValueDropdown("GetStageData")]
-    public StageData selectedStage;
+    public StageData selected_Stage;
 
-    
+    [ShowIf("eventTypeEnumField", EventTypeEnum.スイッチオブジェクト)]
+    public GameObject selected_SwitchObject;
+
+    [ShowIf("eventTypeEnumField", EventTypeEnum.宝箱)]
+    [ValueDropdown("GetChest")]
+    public ItemData selected_Item;
+
+
 
     private List<ValueDropdownItem<StageData>> GetStageData()
     {
@@ -38,6 +48,10 @@ public class EventPlayer : EventBase
 
     protected EventBase eventBase;
 
+    private Material talkMaterial;
+    private Material materialInstance; // 最初のマテリアルを保存する変数
+    private Renderer eventRenderer;
+
     [FoldoutGroup("データ参照", expanded: false)]
     public StageDataSO stageDataReference;
 
@@ -46,6 +60,15 @@ public class EventPlayer : EventBase
 
     //-------------------------------------------------ここまで------------------------------------------------------------------
 
+    private void Start()
+    {
+        talkMaterial = GameManager.game.talkObject;
+        eventRenderer = GetComponent<Renderer>();
+        if (eventRenderer != null)
+        {
+            materialInstance = eventRenderer.material; // 最初のマテリアルを保存
+        }
+    }
 
     /// <summary>
     /// イベントを実行
@@ -74,5 +97,27 @@ public class EventPlayer : EventBase
     {
         eventBase = GetComponent<EventBase>();
         eventBase.isEventPlay = false;
+    }
+
+    /// <summary>
+    /// オブジェクトのマテリアルをGameManager.game.talkObjectに切り替える
+    /// </summary>
+    public override void ChangeMaterialToTalkObject()
+    {
+        if (eventRenderer != null)
+        {
+            eventRenderer.material = talkMaterial;
+        }
+    }
+
+    /// <summary>
+    /// オブジェクトのマテリアルをmaterialInstanceにする
+    /// </summary>
+    public override void SetMaterialToNull()
+    {
+        if (eventRenderer != null)
+        {
+            eventRenderer.material = materialInstance; // 最初のマテリアルに置き換える
+        }
     }
 }
