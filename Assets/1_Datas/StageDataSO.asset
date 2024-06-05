@@ -18,8 +18,18 @@ MonoBehaviour:
     stage_Prefab: {fileID: 0}
     stage_PlayerPos: {fileID: 0}
     stage_CameraPos: {fileID: 0}
-  - stage_Name: 
+  - stage_Name: "\u6700\u521D"
     stage_Number: 1
+    stage_Prefab: {fileID: 0}
+    stage_PlayerPos: {fileID: 0}
+    stage_CameraPos: {fileID: 0}
+  - stage_Name: "2\u3064\u76EE"
+    stage_Number: 2
+    stage_Prefab: {fileID: 0}
+    stage_PlayerPos: {fileID: 0}
+    stage_CameraPos: {fileID: 0}
+  - stage_Name: "3\u3064\u76EE"
+    stage_Number: 3
     stage_Prefab: {fileID: 0}
     stage_PlayerPos: {fileID: 0}
     stage_CameraPos: {fileID: 0}

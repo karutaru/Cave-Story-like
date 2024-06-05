@@ -6,23 +6,23 @@ public class EventBase : MonoBehaviour
 {
     public bool isEventPlay;
 
-    public virtual void ExecuteEvent()
+    public virtual void Event_Door()
     {
 
     }
-    public virtual void ExecuteSelect()
+    public virtual void Event_Entity()
     {
-        
+
+    }
+    public virtual void Event_Item()
+    {
+
     }
     public virtual void FinishEvent()
     {
 
     }
     public virtual void SwitchObject()
-    {
-
-    }
-    public virtual void SceneLoadingObject()
     {
 
     }

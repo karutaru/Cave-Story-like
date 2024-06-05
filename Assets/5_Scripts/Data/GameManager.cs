@@ -10,12 +10,14 @@ using Cinemachine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager game; // GameManager.game.という書き方で記述する。
-    // システム◆◆◆◆◆
-    [Header("システム")]
+
+    [Title("システム")]
     public InitScript init; // 初期化
 
-    // オブジェクト◆◆◆
-    [Header("オブジェクト")]
+    [Title("データ")]
+    public StageDataSO stageDataSO; // 初期化
+
+    [Title("オブジェクト")]
     public Transform playerObj; // プレイヤーのオブジェクト
     public GameObject object_UI; // UI画像
     public GameObject object_AIM; // プレイヤーのAIM画像
@@ -23,17 +25,17 @@ public class GameManager : MonoBehaviour
     public Transform tran_EventCamera; // イベント用のカメラポイント
     public CinemachineVirtualCamera system_mainCamera; // カメラ
 
-    // エフェクト◆◆◆
-    [Header("エフェクト")]
+    [Title("エフェクト")]
     public GameObject wallEffectPrefab;
     public List<GameObject> bloodEffectPrefabs;
 
-    // SE◆◆◆
-    [Header("SE")]
+    [Title("SE")]
     public AudioClip shotHitSE;
 
-    // スクリプト◆◆◆◆
-    [Header("スクリプト")]
+    [Title("マテリアル")]
+    public Material talkObject;
+
+    [Title("スクリプト")]
     public CameraFollowMouse cameraFollowMouse;         // マウスをカメラが追従する処理
     public PlayerBodyController playerBodyController;   // プレイヤーのスクリプト
     public PlayerBodyRotation playerBodyRotation;       // プレイヤーの移動の振りむきスクリプト
@@ -41,8 +43,7 @@ public class GameManager : MonoBehaviour
     public GunShot gunShot;                             // gunShotスクリプト
     public Knockback_Player knockback_Player;
 
-    // スイッチ◆◆◆◆◆
-    [Header("スイッチ")]
+    [Title("スイッチ")]
     public bool changeCamera_If = true;
 
     // ボタン◆◆◆◆◆◆

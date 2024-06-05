@@ -38,10 +38,7 @@ public class EventChecker : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E))
         {
             eventBase.isEventPlay = true;
-            eventBase.ExecuteEvent();           // メッセージ
-            eventBase.ExecuteSelect();          // 回復やワープ
             eventBase.SwitchObject();           // 動作オブジェクト
-            eventBase.SceneLoadingObject();     // シーンの遷移
         }
     }
 }

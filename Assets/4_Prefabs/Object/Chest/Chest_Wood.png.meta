@@ -110,7 +110,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 16
-        width: 18
+        width: 20
         height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -119,8 +119,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2e9b65701aab2e74d9a95436f61554d3
-      internalID: -507171723
+      spriteID: bff250e089e51c640a8ea4ac6b0a3551
+      internalID: 557397417
       vertices: []
       indices: 
       edges: []
@@ -131,7 +131,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 18
+        width: 20
         height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -140,8 +140,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d9b9acf767ecdb547bac56ec267c0acf
-      internalID: 453175302
+      spriteID: e80bee9a9e85fdd48986d3213d33200d
+      internalID: 1442977436
       vertices: []
       indices: 
       edges: []
@@ -157,8 +157,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Chest_Wood_0: -507171723
-      Chest_Wood_1: 453175302
+      Chest_Wood_0: 557397417
+      Chest_Wood_1: 1442977436
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
