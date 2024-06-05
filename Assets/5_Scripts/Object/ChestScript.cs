@@ -3,10 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum ItemTypeEnum
-{
-    ƒAƒCƒeƒ€, •Ší, ‘å–‚È•¨
-}
+
 
 
 public class ChestScript : MonoBehaviour

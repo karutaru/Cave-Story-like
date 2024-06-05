@@ -7,6 +7,14 @@ public enum EventTypeEnum
 {
     キャラクター, 扉, スイッチオブジェクト, 宝箱
 }
+public enum ChestTypeEnum
+{
+    直接獲得, ランダムドロップ
+}
+public enum ItemTypeEnum
+{
+    アイテム, 武器
+}
 
 public class EventPlayer : EventBase
 {
@@ -25,8 +33,25 @@ public class EventPlayer : EventBase
     public GameObject selected_SwitchObject;
 
     [ShowIf("eventTypeEnumField", EventTypeEnum.宝箱)]
-    [ValueDropdown("GetChest")]
-    public ItemData selected_Item;
+    [EnumToggleButtons, HideLabel]
+    public ChestTypeEnum itemChestTypeEnumField;
+
+    [ShowIf("itemChestTypeEnumField", ChestTypeEnum.直接獲得)]
+    [LabelText("アイテムの種類"), HideLabel]
+    [EnumToggleButtons]
+    public ItemTypeEnum itemTypeEnumField;
+
+    [ShowIf("itemTypeEnumField", ItemTypeEnum.アイテム)]
+    [ValueDropdown("GetOneItemData")]
+    public ItemData selected_OneItem;
+
+    [ShowIf("itemTypeEnumField", ItemTypeEnum.武器)]
+    [ValueDropdown("GetOneWeaponData")]
+    public ItemData selected_OneWeapon;
+
+    [ShowIf("itemChestTypeEnumField", ChestTypeEnum.ランダムドロップ)]
+    [ValueDropdown("GetRandomItemData")]
+    public ItemData selected_RandomItem;
 
 
 
@@ -39,6 +64,49 @@ public class EventPlayer : EventBase
             foreach (var stageData in stageDataReference.stageDataList)
             {
                 dropdownItems.Add(new ValueDropdownItem<StageData>(stageData.stage_Name, stageData));
+            }
+        }
+
+        return dropdownItems;
+    }
+
+    private List<ValueDropdownItem<ItemData>> GetOneItemData()
+    {
+        List<ValueDropdownItem<ItemData>> dropdownItems = new List<ValueDropdownItem<ItemData>>();
+
+        if (itemDataReference != null && itemDataReference.itemDataList != null)
+        {
+            foreach (var itemData in itemDataReference.itemDataList)
+            {
+                dropdownItems.Add(new ValueDropdownItem<ItemData>(itemData.name, itemData));
+            }
+        }
+
+        return dropdownItems;
+    }
+    private List<ValueDropdownItem<WeaponLevelData>> GetOneWeaponData()
+    {
+        List<ValueDropdownItem<WeaponLevelData>> dropdownItems = new List<ValueDropdownItem<WeaponLevelData>>();
+
+        if (weaponDataReference != null && weaponDataReference.weaponlevelDataList != null)
+        {
+            foreach (var itemData in itemDataReference.itemDataList)
+            {
+                dropdownItems.Add(new ValueDropdownItem<WeaponLevelData>(itemData.name, itemData));
+            }
+        }
+
+        return dropdownItems;
+    }
+    private List<ValueDropdownItem<ItemData>> GetRandomItemData()
+    {
+        List<ValueDropdownItem<ItemData>> dropdownItems = new List<ValueDropdownItem<ItemData>>();
+
+        if (itemDataReference != null && itemDataReference.itemDataList != null)
+        {
+            foreach (var itemData in itemDataReference.itemDataList)
+            {
+                dropdownItems.Add(new ValueDropdownItem<ItemData>(itemData.name, itemData));
             }
         }
 

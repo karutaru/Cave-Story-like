@@ -175,3 +175,66 @@ MonoBehaviour:
     sellingPrice: 0
     itemPrefab: {fileID: 5658852383598675163, guid: 210bc1d6d74284f42a4834f8c745b678, type: 3}
     itemSprite: {fileID: -2009358768, guid: dd38ff7a459bf044f81a4125640e30af, type: 3}
+  - itemID: 18
+    name: "\u30DE\u30EA\u30CD"
+    itemRarity: 0
+    rarityWait: 1
+    explanation: 
+    BuyingPrice: 0
+    sellingPrice: 0
+    itemPrefab: {fileID: 0}
+    itemSprite: {fileID: 0}
+  - itemID: 19
+    name: "\u30AD\u30E3\u30D0\u30EA\u30A2"
+    itemRarity: 0
+    rarityWait: 1
+    explanation: 
+    BuyingPrice: 0
+    sellingPrice: 0
+    itemPrefab: {fileID: 0}
+    itemSprite: {fileID: 0}
+  - itemID: 20
+    name: "\u30D0\u30D0\u30EA"
+    itemRarity: 0
+    rarityWait: 1
+    explanation: 
+    BuyingPrice: 0
+    sellingPrice: 0
+    itemPrefab: {fileID: 0}
+    itemSprite: {fileID: 0}
+  - itemID: 21
+    name: "\u30BF\u30BF\u30E9"
+    itemRarity: 0
+    rarityWait: 1
+    explanation: 
+    BuyingPrice: 0
+    sellingPrice: 0
+    itemPrefab: {fileID: 0}
+    itemSprite: {fileID: 0}
+  - itemID: 22
+    name: "\u3046\u307E\u307F"
+    itemRarity: 0
+    rarityWait: 1
+    explanation: 
+    BuyingPrice: 0
+    sellingPrice: 0
+    itemPrefab: {fileID: 0}
+    itemSprite: {fileID: 0}
+  - itemID: 23
+    name: "\u3048\u3093\u307F"
+    itemRarity: 0
+    rarityWait: 1
+    explanation: 
+    BuyingPrice: 0
+    sellingPrice: 0
+    itemPrefab: {fileID: 0}
+    itemSprite: {fileID: 0}
+  - itemID: 24
+    name: "\u3053\u3053\u306A\u3064"
+    itemRarity: 0
+    rarityWait: 1
+    explanation: 
+    BuyingPrice: 0
+    sellingPrice: 0
+    itemPrefab: {fileID: 0}
+    itemSprite: {fileID: 0}
