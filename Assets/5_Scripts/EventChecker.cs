@@ -6,41 +6,81 @@ public class EventChecker : MonoBehaviour
 {
     public bool isStay;
     private EventBase eventBase;
-
+    private List<EventBase> eventBases = new List<EventBase>();
 
     private void OnTriggerStay2D(Collider2D col)
     {
-        if (col.TryGetComponent(out eventBase))
+        if (col.TryGetComponent(out EventBase eb))
         {
-            isStay = true;
-            eventBase.ChangeMaterialToTalkObject();
+            if (!eventBases.Contains(eb))
+            {
+                eventBases.Add(eb);
+            }
         }
     }
 
-    void OnTriggerExit2D(Collider2D col)
+    private void OnTriggerExit2D(Collider2D col)
     {
-        if (col.TryGetComponent(out eventBase))
+        if (col.TryGetComponent(out EventBase eb))
         {
-            isStay = false;
-            eventBase.SetMaterialToNull();
-            eventBase = null;
+            if (eventBases.Contains(eb))
+            {
+                eventBases.Remove(eb);
+            }
+
+            if (eventBase == eb)
+            {
+                isStay = false;
+                eventBase.SetMaterialToNull();
+                eventBase = null;
+            }
         }
     }
 
     void Update()
     {
-        if (isStay == false || eventBase == null)
+        if (eventBases.Count == 0)
+        {
+            isStay = false;
+            eventBase = null;
+            return;
+        }
+
+        // 最も近いオブジェクトを探す
+        float closestDistance = Mathf.Infinity;
+        EventBase closestEventBase = null;
+        foreach (var eb in eventBases)
+        {
+            float distance = Vector2.Distance(transform.position, eb.transform.position);
+            if (distance < closestDistance)
+            {
+                closestDistance = distance;
+                closestEventBase = eb;
+            }
+        }
+
+        if (closestEventBase != eventBase)
+        {
+            if (eventBase != null)
+            {
+                eventBase.SetMaterialToNull();
+            }
+
+            eventBase = closestEventBase;
+            eventBase.ChangeMaterialToTalkObject();
+        }
+
+        isStay = true;
+
+        if (eventBase == null || eventBase.isEventPlay)
         {
             return;
         }
-        if (eventBase.isEventPlay == true)
-        {
-            return;
-        }
+
         if (Input.GetKeyDown(KeyCode.E))
         {
             eventBase.isEventPlay = true;
-            eventBase.SwitchObject();           // 動作オブジェクト
+            eventBase.SwitchObject(); // 動作オブジェクト
         }
     }
 }
