@@ -7,7 +7,7 @@ public class GunShot : MonoBehaviour
 {
     // スクリプタブルオブジェクトの登録（アセットをアサイン）
     [SerializeField, Header("武器レベルデータのスクリプタブルオブジェクト")]
-    private WeaponLevelDataSO weaponLevelDataSO;
+    private WeaponDataSO weaponLevelDataSO;
 
     public GameObject bulletEffectPrefab;
     public AudioClip shotSound;
@@ -16,8 +16,8 @@ public class GunShot : MonoBehaviour
     public BulletCountController bulletCountController;
     public Reload reload;
 
-    private WeaponLevelData currentWeaponLevelData; // 現在の武器レベルデータ（弾の速度、ダメージ、プレハブ）
-    public WeaponLevelData CurrentWeaponLevelData => currentWeaponLevelData; // プロパティ
+    private WeaponData currentWeaponLevelData; // 現在の武器レベルデータ（弾の速度、ダメージ、プレハブ）
+    public WeaponData CurrentWeaponLevelData => currentWeaponLevelData; // プロパティ
 
     [SerializeField]
     private PlayerWeapon playerWeapon;
@@ -34,7 +34,7 @@ public class GunShot : MonoBehaviour
 
     void Start()
     {
-        bulletCountController.StartBullets(weaponLevelDataSO.weaponLevelDataList[currentWeaponID].maxAmmo);
+        bulletCountController.StartBullets(weaponLevelDataSO.weaponDataList[currentWeaponID].maxAmmo);
     }
 
     private void Update()
@@ -45,7 +45,7 @@ public class GunShot : MonoBehaviour
             if (Input.GetButtonDown("Fire1"))
             {
                 // shotTimeIntervalCountがshotIntervalを超えていれば、またはcanShootがtrueであれば射撃
-                if (shotTimeIntervalCount >= weaponLevelDataSO.weaponLevelDataList[currentWeaponID].shotInterval || canShoot)
+                if (shotTimeIntervalCount >= weaponLevelDataSO.weaponDataList[currentWeaponID].shotInterval || canShoot)
                 {
                     TryShoot();
                     shotTimeIntervalCount = 0; // 射撃後はカウンターをリセット
@@ -58,7 +58,7 @@ public class GunShot : MonoBehaviour
                 if (!canShoot) // canShootがfalseのときのみカウンターを増やす
                 {
                     shotTimeIntervalCount += Time.deltaTime * 100; // 実際の時間に基づいてカウンターを増やす
-                    if (shotTimeIntervalCount >= weaponLevelDataSO.weaponLevelDataList[currentWeaponID].shotInterval)
+                    if (shotTimeIntervalCount >= weaponLevelDataSO.weaponDataList[currentWeaponID].shotInterval)
                     {
                         // 射撃間隔が十分に経過していれば射撃
                         TryShoot();
@@ -74,7 +74,7 @@ public class GunShot : MonoBehaviour
             else if (!Input.GetButton("Fire1") && !canShoot) // 左クリックが押されていない間はカウンターを増やす
             {
                 shotTimeIntervalCount += Time.deltaTime * 100; // 実際の時間に基づいてカウンターを増やす
-                if (shotTimeIntervalCount >= weaponLevelDataSO.weaponLevelDataList[currentWeaponID].shotInterval)
+                if (shotTimeIntervalCount >= weaponLevelDataSO.weaponDataList[currentWeaponID].shotInterval)
                 {
                     // 射撃間隔が十分に経過していれば、次にクリックしたときにすぐに射撃できるようにする
                     canShoot = true;
@@ -98,7 +98,7 @@ public class GunShot : MonoBehaviour
         if (bulletCountController.CurrentAmmoCount <= 0)
         {
             // リロード
-            reload.ReloadBullets(DataBase.instance.weaponSO.weaponLevelDataList[currentWeaponID].maxAmmo, DataBase.instance.weaponSO.weaponLevelDataList[currentWeaponID].reloadTime);
+            reload.ReloadBullets(DataBase.instance.weaponSO.weaponDataList[currentWeaponID].maxAmmo, DataBase.instance.weaponSO.weaponDataList[currentWeaponID].reloadTime);
         }
         else
         {
@@ -128,19 +128,19 @@ public class GunShot : MonoBehaviour
             return;
         }
 
-        if (DataBase.instance.weaponSO.weaponLevelDataList[currentWeaponID].gunShellPrefab == null)
+        if (DataBase.instance.weaponSO.weaponDataList[currentWeaponID].gunShellPrefab == null)
         {
             Debug.LogError("gunShellPrefab is null!");
             return;
         }
         // 弾の位置の初期ランダム性
-        firstAccuracy = Random.Range(-DataBase.instance.weaponSO.weaponLevelDataList[currentWeaponID].firstAccuracy, weaponLevelDataSO.weaponLevelDataList[currentWeaponID].firstAccuracy);
+        firstAccuracy = Random.Range(-DataBase.instance.weaponSO.weaponDataList[currentWeaponID].firstAccuracy, weaponLevelDataSO.weaponDataList[currentWeaponID].firstAccuracy);
 
         // 弾をインスタンス化する
-        BulletController bullet = Instantiate(DataBase.instance.weaponSO.weaponLevelDataList[currentWeaponID].gunShellPrefab,
-            new Vector3(transform.position.x, transform.position.y + DataBase.instance.weaponSO.weaponLevelDataList[currentWeaponID].prefabPositionOffsetY + firstAccuracy, 0), transform.rotation);
+        BulletController bullet = Instantiate(DataBase.instance.weaponSO.weaponDataList[currentWeaponID].gunShellPrefab,
+            new Vector3(transform.position.x, transform.position.y + DataBase.instance.weaponSO.weaponDataList[currentWeaponID].prefabPositionOffsetY + firstAccuracy, 0), transform.rotation);
 
-        bullet.transform.localScale = new Vector3(DataBase.instance.weaponSO.weaponLevelDataList[currentWeaponID].shellSize, DataBase.instance.weaponSO.weaponLevelDataList[currentWeaponID].shellSize, 1f);
+        bullet.transform.localScale = new Vector3(DataBase.instance.weaponSO.weaponDataList[currentWeaponID].shellSize, DataBase.instance.weaponSO.weaponDataList[currentWeaponID].shellSize, 1f);
 
         //// マズルフラッシュをインスタンス化する
         //GameObject bulletFire = Instantiate(bulletEffectPrefab,
@@ -155,14 +155,14 @@ public class GunShot : MonoBehaviour
 
         // 弾の設定を行い発射
         bullet.Shoot(
-            gunRotation.BulletDirection * DataBase.instance.weaponSO.weaponLevelDataList[currentWeaponID].shotSpeed,
-            DataBase.instance.weaponSO.weaponLevelDataList[currentWeaponID].maxDamage, DataBase.instance.weaponSO.weaponLevelDataList[currentWeaponID].minDamage);
+            gunRotation.BulletDirection * DataBase.instance.weaponSO.weaponDataList[currentWeaponID].shotSpeed,
+            DataBase.instance.weaponSO.weaponDataList[currentWeaponID].maxDamage, DataBase.instance.weaponSO.weaponDataList[currentWeaponID].minDamage);
 
         // 発射音を再生する
         AudioSource.PlayClipAtPoint(shotSound, transform.position);
 
         // ここは上か下を向いている時に動く
-        StartCoroutine(RespawnBulletEffect(DataBase.instance.weaponSO.weaponLevelDataList[currentWeaponID].shotRange, bullet.gameObject, 0f));
+        StartCoroutine(RespawnBulletEffect(DataBase.instance.weaponSO.weaponDataList[currentWeaponID].shotRange, bullet.gameObject, 0f));
     }
 
     /// <summary>

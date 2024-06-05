@@ -10,7 +10,7 @@ public class ChestScript : MonoBehaviour
 {
     public ItemDataSO itemDataReference;
 
-    public WeaponLevelDataSO weaponDataReference;
+    public WeaponDataSO weaponDataReference;
 
 
 
@@ -25,7 +25,7 @@ public class ChestScript : MonoBehaviour
     [Title("宝箱のアイテム")]
     [ShowIf("itemTypeEnumField", ItemTypeEnum.武器)]
     [ValueDropdown("GetAllWeapons")]
-    public WeaponLevelData selectedWeapon;
+    public WeaponData selectedWeapon;
 
 
     private List<ItemData> GetAllItems()
@@ -34,9 +34,9 @@ public class ChestScript : MonoBehaviour
         return itemDataReference.itemDataList;
     }
 
-    private List<WeaponLevelData> GetAllWeapons()
+    private List<WeaponData> GetAllWeapons()
     {
         // ここでWeaponDataSOのインスタンスを参照して、weaponDataListを返す。
-        return weaponDataReference.weaponLevelDataList;
+        return weaponDataReference.weaponDataList;
     }
 }

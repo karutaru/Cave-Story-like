@@ -9,7 +9,7 @@ public class DataBase : MonoBehaviour
 
     public ItemDataSO itemSO;
     public EnemyDataSO enemySO;
-    public WeaponLevelDataSO weaponSO;
+    public WeaponDataSO weaponSO;
     public EquipmentDataSO equipmentSO;
     public StageDataSO stageSO;
 

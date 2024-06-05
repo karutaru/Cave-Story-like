@@ -4,7 +4,7 @@ using UnityEngine;
 using Sirenix.OdinInspector;
 
 [System.Serializable]
-public class WeaponLevelData
+public class WeaponData
 {
     public enum RARITY
     {

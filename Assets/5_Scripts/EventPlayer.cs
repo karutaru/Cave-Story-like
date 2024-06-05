@@ -84,15 +84,15 @@ public class EventPlayer : EventBase
 
         return dropdownItems;
     }
-    private List<ValueDropdownItem<WeaponLevelData>> GetOneWeaponData()
+    private List<ValueDropdownItem<WeaponData>> GetOneWeaponData()
     {
-        List<ValueDropdownItem<WeaponLevelData>> dropdownItems = new List<ValueDropdownItem<WeaponLevelData>>();
+        List<ValueDropdownItem<WeaponData>> dropdownItems = new List<ValueDropdownItem<WeaponData>>();
 
-        if (weaponDataReference != null && weaponDataReference.weaponlevelDataList != null)
+        if (weaponDataReference != null && weaponDataReference.weaponDataList != null)
         {
-            foreach (var itemData in itemDataReference.itemDataList)
+            foreach (var weaponData in weaponDataReference.weaponDataList)
             {
-                dropdownItems.Add(new ValueDropdownItem<WeaponLevelData>(itemData.name, itemData));
+                dropdownItems.Add(new ValueDropdownItem<WeaponData>(weaponData.gunName, weaponData));
             }
         }
 
@@ -125,6 +125,9 @@ public class EventPlayer : EventBase
 
     [FoldoutGroup("データ参照", expanded: false)]
     public ItemDataSO itemDataReference;
+
+    [FoldoutGroup("データ参照", expanded: false)]
+    public WeaponDataSO weaponDataReference;
 
     //-------------------------------------------------ここまで------------------------------------------------------------------
 

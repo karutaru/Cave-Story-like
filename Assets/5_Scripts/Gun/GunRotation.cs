@@ -7,7 +7,7 @@ public class GunRotation : MonoBehaviour
 {
     // スクリプタブルオブジェクトの登録（アセットをアサイン）
     [SerializeField, Header("武器レベルデータのスクリプタブルオブジェクト")]
-    private WeaponLevelDataSO weaponLevelDataSO;
+    private WeaponDataSO weaponLevelDataSO;
 
     private SpriteRenderer spriteRenderer;
 
@@ -76,7 +76,7 @@ public class GunRotation : MonoBehaviour
     private void CalculateBulletDirectionAndRotation(Vector3 mousePosition)
     {
         // 弾の終着点のランダム性
-        shotAccuracy = Random.Range(-weaponLevelDataSO.weaponLevelDataList[currentWeaponID].shotAccuracy, weaponLevelDataSO.weaponLevelDataList[currentWeaponID].shotAccuracy);
+        shotAccuracy = Random.Range(-weaponLevelDataSO.weaponDataList[currentWeaponID].shotAccuracy, weaponLevelDataSO.weaponDataList[currentWeaponID].shotAccuracy);
 
         // 弾の方向と回転方向用に計算
         //Vector2 direction = (mousePosition - transform.position).normalized;
@@ -136,9 +136,9 @@ public class GunRotation : MonoBehaviour
     {
         currentWeaponID = amount;
 
-        spriteRenderer.sprite = weaponLevelDataSO.weaponLevelDataList[currentWeaponID].gunImage;
+        spriteRenderer.sprite = weaponLevelDataSO.weaponDataList[currentWeaponID].gunImage;
 
         // 弾の終着点のランダム性
-        shotAccuracy = Random.Range(-weaponLevelDataSO.weaponLevelDataList[currentWeaponID].shotAccuracy, weaponLevelDataSO.weaponLevelDataList[currentWeaponID].shotAccuracy);
+        shotAccuracy = Random.Range(-weaponLevelDataSO.weaponDataList[currentWeaponID].shotAccuracy, weaponLevelDataSO.weaponDataList[currentWeaponID].shotAccuracy);
     }
 }
