@@ -67,23 +67,23 @@ public class GachaScript : MonoBehaviour
         List<ItemData> itemsByRarity;
         if (randomGachaValue <= 600) // コモン 60%
         {
-            itemsByRarity = itemDataSO.itemDataList.Where((item, index) => item.itemRarity == ItemRarity.コモン && index != 0).ToList();
+            itemsByRarity = itemDataSO.itemDataList.Where((item, index) => item.item_Rarity == Item_Rarity.コモン && index != 0).ToList();
         }
         else if (randomGachaValue <= 900) // アンコモン 30%
         {
-            itemsByRarity = itemDataSO.itemDataList.Where((item, index) => item.itemRarity == ItemRarity.アンコモン && index != 0).ToList();
+            itemsByRarity = itemDataSO.itemDataList.Where((item, index) => item.item_Rarity == Item_Rarity.アンコモン && index != 0).ToList();
         }
         else if (randomGachaValue <= 980) // レア 8%
         {
-            itemsByRarity = itemDataSO.itemDataList.Where((item, index) => item.itemRarity == ItemRarity.レア && index != 0).ToList();
+            itemsByRarity = itemDataSO.itemDataList.Where((item, index) => item.item_Rarity == Item_Rarity.レア && index != 0).ToList();
         }
         else if (randomGachaValue <= 999) // エピック 1.9%
         {
-            itemsByRarity = itemDataSO.itemDataList.Where((item, index) => item.itemRarity == ItemRarity.エピック && index != 0).ToList();
+            itemsByRarity = itemDataSO.itemDataList.Where((item, index) => item.item_Rarity == Item_Rarity.エピック && index != 0).ToList();
         }
         else // ユニーク 0.1%
         {
-            itemsByRarity = itemDataSO.itemDataList.Where((item, index) => item.itemRarity == ItemRarity.ユニーク && index != 0).ToList();
+            itemsByRarity = itemDataSO.itemDataList.Where((item, index) => item.item_Rarity == Item_Rarity.ユニーク && index != 0).ToList();
         }
 
         if (itemsByRarity.Count > 0)

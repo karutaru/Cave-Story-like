@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum ItemRarity
+public enum Item_Rarity
 {
     コモン,         // 約60%
     アンコモン,      // 約30%
@@ -13,12 +13,12 @@ public enum ItemRarity
 [System.Serializable]
 public class ItemData
 {
-    public int itemID;
-    public string name;
-    public ItemRarity itemRarity;
+    public int item_ID;
+    public string item_Name;
+    public Item_Rarity item_Rarity;
     public int rarityWait = 1; // 同レアリティ何個分の価値か
     [SerializeField, Multiline(3)]
-    public string explanation;
+    public string explanation; // 説明
     public int BuyingPrice;
     public int sellingPrice;
     public ItemScript itemPrefab;
@@ -26,6 +26,6 @@ public class ItemData
 
     public override string ToString()
     {
-        return $"{itemID} {name}";
+        return $"{item_ID} {item_Name}";
     }
 }

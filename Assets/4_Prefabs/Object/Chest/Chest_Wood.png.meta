@@ -119,8 +119,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bff250e089e51c640a8ea4ac6b0a3551
-      internalID: 557397417
+      spriteID: 95ba22dabee2d1740afc53a8440c773e
+      internalID: 1237455226
       vertices: []
       indices: 
       edges: []
@@ -140,8 +140,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e80bee9a9e85fdd48986d3213d33200d
-      internalID: 1442977436
+      spriteID: ff2693441597f3f44a4b9080f66e0cf9
+      internalID: -384781079
       vertices: []
       indices: 
       edges: []
@@ -157,8 +157,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Chest_Wood_0: 557397417
-      Chest_Wood_1: 1442977436
+      Chest_Wood_0: 1237455226
+      Chest_Wood_1: -384781079
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

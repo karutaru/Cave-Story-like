@@ -78,7 +78,7 @@ public class EventPlayer : EventBase
         {
             foreach (var itemData in itemDataReference.itemDataList)
             {
-                dropdownItems.Add(new ValueDropdownItem<ItemData>(itemData.name, itemData));
+                dropdownItems.Add(new ValueDropdownItem<ItemData>(itemData.item_Name, itemData));
             }
         }
 
@@ -92,7 +92,7 @@ public class EventPlayer : EventBase
         {
             foreach (var weaponData in weaponDataReference.weaponDataList)
             {
-                dropdownItems.Add(new ValueDropdownItem<WeaponData>(weaponData.gunName, weaponData));
+                dropdownItems.Add(new ValueDropdownItem<WeaponData>(weaponData.gun_Name, weaponData));
             }
         }
 
@@ -106,7 +106,7 @@ public class EventPlayer : EventBase
         {
             foreach (var itemData in itemDataReference.itemDataList)
             {
-                dropdownItems.Add(new ValueDropdownItem<ItemData>(itemData.name, itemData));
+                dropdownItems.Add(new ValueDropdownItem<ItemData>(itemData.item_Name, itemData));
             }
         }
 

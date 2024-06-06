@@ -39,7 +39,7 @@ public class DataBase : MonoBehaviour
 
     public ItemData GetItemDatafromID(int searchID)
     {
-        return itemSO.itemDataList.Find(itemData => itemData.itemID == searchID);
+        return itemSO.itemDataList.Find(itemData => itemData.item_ID == searchID);
     }
 
 }

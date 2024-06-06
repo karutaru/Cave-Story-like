@@ -69,12 +69,12 @@ public class ItemController : MonoBehaviour
     {
         if (itemDataSO != null)
         {
-            ItemData itemData = itemDataSO.itemDataList.Find(item => item.itemID == itemId);
+            ItemData itemData = itemDataSO.itemDataList.Find(item => item.item_ID == itemId);
             if (itemData != null)
             {
                 int totalItemCount = TotalItemCount();
                 float percentage = (float)itemCounts[itemId] / totalItemCount * 100;
-                itemCountTexts[(int)itemData.itemRarity].text = $"{itemData.itemRarity}: Š”: {itemCounts[itemId]} ({percentage:F1}%)";
+                itemCountTexts[(int)itemData.item_Rarity].text = $"{itemData.item_Rarity}: Š”: {itemCounts[itemId]} ({percentage:F1}%)";
             }
         }
     }

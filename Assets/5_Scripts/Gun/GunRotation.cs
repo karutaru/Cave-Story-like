@@ -136,7 +136,7 @@ public class GunRotation : MonoBehaviour
     {
         currentWeaponID = amount;
 
-        spriteRenderer.sprite = weaponLevelDataSO.weaponDataList[currentWeaponID].gunImage;
+        spriteRenderer.sprite = weaponLevelDataSO.weaponDataList[currentWeaponID].gun_Image;
 
         // 弾の終着点のランダム性
         shotAccuracy = Random.Range(-weaponLevelDataSO.weaponDataList[currentWeaponID].shotAccuracy, weaponLevelDataSO.weaponDataList[currentWeaponID].shotAccuracy);

@@ -7,6 +7,14 @@ using Sirenix.OdinInspector;
 public class WeaponDataSO : ScriptableObject
 {
     // Odinの属性を使用してリストを編集しやすくする
-    [ListDrawerSettings(ShowFoldout = true, DraggableItems = true, ShowIndexLabels = true, ListElementLabelName = "gunName")]
+    [ListDrawerSettings(ShowFoldout = true, DraggableItems = true, ShowIndexLabels = true, CustomAddFunction = "CreateNewWeaponData", ListElementLabelName = "gun_Name")]
     public List<WeaponData> weaponDataList = new();
+
+    private WeaponData CreateNewWeaponData()
+    {
+        return new WeaponData
+        {
+            gun_ID = weaponDataList.Count
+        };
+    }
 }
