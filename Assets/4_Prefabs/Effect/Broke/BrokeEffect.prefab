@@ -116,7 +116,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.5
+      scalar: 0.6
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -169,8 +169,8 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 2
-      minScalar: 1
+      scalar: 1
+      minScalar: 0.5
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -285,8 +285,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 1.7
-      minScalar: 0.9
+      scalar: 1.8
+      minScalar: 1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -1306,16 +1306,16 @@ ParticleSystem:
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
-        key1: {r: 0.5036682, g: 0.47552508, b: 0.735849, a: 1}
-        key2: {r: 0, g: 0, b: 0, a: 0}
+        key1: {r: 1, g: 1, b: 1, a: 1}
+        key2: {r: 0.5036682, g: 0.47552508, b: 0.735849, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
         key5: {r: 0, g: 0, b: 0, a: 0}
         key6: {r: 0, g: 0, b: 0, a: 0}
         key7: {r: 0, g: 0, b: 0, a: 0}
         ctime0: 0
-        ctime1: 65535
-        ctime2: 0
+        ctime1: 48766
+        ctime2: 65535
         ctime3: 0
         ctime4: 0
         ctime5: 0
@@ -1330,7 +1330,7 @@ ParticleSystem:
         atime6: 0
         atime7: 0
         m_Mode: 0
-        m_NumColorKeys: 2
+        m_NumColorKeys: 3
         m_NumAlphaKeys: 2
       minGradient:
         serializedVersion: 2
@@ -1482,23 +1482,24 @@ ParticleSystem:
     uvChannelMask: -1
     rowMode: 1
     sprites:
-    - sprite: {fileID: 1749321407, guid: 03c2f5b4babf9a04db17d3a11b776f80, type: 3}
-    - sprite: {fileID: 1359132451, guid: 03c2f5b4babf9a04db17d3a11b776f80, type: 3}
-    - sprite: {fileID: 319252588, guid: 03c2f5b4babf9a04db17d3a11b776f80, type: 3}
-    - sprite: {fileID: 325435169, guid: 03c2f5b4babf9a04db17d3a11b776f80, type: 3}
-    - sprite: {fileID: -206409551, guid: 03c2f5b4babf9a04db17d3a11b776f80, type: 3}
-    - sprite: {fileID: -1227977765, guid: 03c2f5b4babf9a04db17d3a11b776f80, type: 3}
-    - sprite: {fileID: 1383338779, guid: 03c2f5b4babf9a04db17d3a11b776f80, type: 3}
-    - sprite: {fileID: 558888767, guid: 03c2f5b4babf9a04db17d3a11b776f80, type: 3}
+    - sprite: {fileID: 826850912, guid: 03c2f5b4babf9a04db17d3a11b776f80, type: 3}
+    - sprite: {fileID: -292183452, guid: 03c2f5b4babf9a04db17d3a11b776f80, type: 3}
+    - sprite: {fileID: -916472077, guid: 03c2f5b4babf9a04db17d3a11b776f80, type: 3}
+    - sprite: {fileID: 1226215006, guid: 03c2f5b4babf9a04db17d3a11b776f80, type: 3}
+    - sprite: {fileID: -678674254, guid: 03c2f5b4babf9a04db17d3a11b776f80, type: 3}
+    - sprite: {fileID: -446225809, guid: 03c2f5b4babf9a04db17d3a11b776f80, type: 3}
+    - sprite: {fileID: 202568184, guid: 03c2f5b4babf9a04db17d3a11b776f80, type: 3}
+    - sprite: {fileID: 264075533, guid: 03c2f5b4babf9a04db17d3a11b776f80, type: 3}
+    - sprite: {fileID: 1999546653, guid: 03c2f5b4babf9a04db17d3a11b776f80, type: 3}
     flipU: 0
     flipV: 0
   VelocityModule:
-    enabled: 0
+    enabled: 1
     x:
       serializedVersion: 2
-      minMaxState: 0
-      scalar: 0
-      minScalar: 0
+      minMaxState: 3
+      scalar: 2
+      minScalar: -2
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -1549,8 +1550,8 @@ ParticleSystem:
         m_RotationOrder: 4
     y:
       serializedVersion: 2
-      minMaxState: 0
-      scalar: 0
+      minMaxState: 3
+      scalar: -1
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -1602,7 +1603,7 @@ ParticleSystem:
         m_RotationOrder: 4
     z:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 3
       scalar: 0
       minScalar: 0
       maxCurve:
@@ -4786,8 +4787,8 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -2065303227
-  m_SortingLayer: 1
+  m_SortingLayerID: 2089580269
+  m_SortingLayer: -1
   m_SortingOrder: 0
   m_RenderMode: 0
   m_MeshDistribution: 0
