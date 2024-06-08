@@ -120,6 +120,7 @@ public class EnemyBase : MonoBehaviour
     protected Vector2 direction;
     protected BulletController bulletController;
     public Transform target;
+    protected bool isShaking = false;
 
     protected int walkStateHash;
     protected int idleStateHash;
@@ -424,7 +425,35 @@ public class EnemyBase : MonoBehaviour
             // 現在のHPからダメージ分を引く
             currentHP -= damage;
         }
+
+        // オブジェクトを6往復分左右に1ドット揺らす処理
+        if (!isShaking)
+        {
+            StartCoroutine(ShakeObject());
+        }
     }
+
+    /// <summary>
+    /// オブジェクトを6往復分左右に1ドット揺らす
+    /// </summary>
+    protected IEnumerator ShakeObject()
+    {
+        isShaking = true;
+
+        // 1ドット = 1/100ユニット
+        float shakeAmount = 0.09f;
+        int shakeLoops = 6;
+
+        for (int i = 0; i < shakeLoops; i++)
+        {
+            transform.position += new Vector3(shakeAmount, 0, 0);
+            yield return new WaitForSeconds(0.04f);
+            transform.position -= new Vector3(shakeAmount, 0, 0);
+            yield return new WaitForSeconds(0.04f);
+        }
+        isShaking = false;
+    }
+
 
     protected virtual void OrDeath()
     {
