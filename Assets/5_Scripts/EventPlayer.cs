@@ -24,6 +24,7 @@ public class EventPlayer : EventBase
 
     [ShowIf("eventTypeEnumField", EventTypeEnum.キャラクター)]
     [Title("キャラクター設定"), EnumToggleButtons, HideLabel]
+    public GameObject chara_Event;
 
     [ShowIf("eventTypeEnumField", EventTypeEnum.扉)]
     [ValueDropdown("GetStageData")]
@@ -151,7 +152,13 @@ public class EventPlayer : EventBase
 
     public override void Event_Entity()
     {
+        // chara_Eventをインスタンシエイト
+        if (chara_Event != null)
+        {
+            Instantiate(chara_Event, transform.position, transform.rotation);
+        }
 
+        FinishEvent();
     }
 
     public override void SwitchObject()
@@ -161,7 +168,9 @@ public class EventPlayer : EventBase
 
     public override void Event_Item()
     {
+        Debug.Log("Item");
 
+        FinishEvent();
     }
 
     public override void FinishEvent()

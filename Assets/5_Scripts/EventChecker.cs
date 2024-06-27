@@ -80,7 +80,26 @@ public class EventChecker : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E))
         {
             eventBase.isEventPlay = true;
-            eventBase.SwitchObject(); // 動作オブジェクト
+            // EventPlayerを取得し、eventTypeEnumFieldに基づいて適切なメソッドを呼び出す
+            EventPlayer eventPlayer = eventBase as EventPlayer;
+            if (eventPlayer != null)
+            {
+                switch (eventPlayer.eventTypeEnumField)
+                {
+                    case EventTypeEnum.キャラクター:
+                        eventPlayer.Event_Entity();
+                        break;
+                    case EventTypeEnum.扉:
+                        eventPlayer.Event_Door();
+                        break;
+                    case EventTypeEnum.スイッチオブジェクト:
+                        eventPlayer.SwitchObject();
+                        break;
+                    case EventTypeEnum.宝箱:
+                        eventPlayer.Event_Item();
+                        break;
+                }
+            }
         }
     }
 }
