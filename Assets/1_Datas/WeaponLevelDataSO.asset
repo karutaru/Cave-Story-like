@@ -21,7 +21,7 @@ MonoBehaviour:
     gun_Rarity: 0
     maxDamage: 0
     minDamage: 0
-    maxAmmo: 0
+    maxAmmo: 7
     reloadTime: 1
     criticalRate: 0
     shotInterval: 80

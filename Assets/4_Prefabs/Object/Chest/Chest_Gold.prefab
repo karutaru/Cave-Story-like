@@ -1,0 +1,132 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7319460788771021152
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1614594685666408166}
+  - component: {fileID: 2098304996795501668}
+  - component: {fileID: 3123801525250501988}
+  m_Layer: 0
+  m_Name: Chest_Gold
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1614594685666408166
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7319460788771021152}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &2098304996795501668
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7319460788771021152}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 30
+  m_Sprite: {fileID: 702064860, guid: d04768ce5be04344d89d1546a6b21cac, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!114 &3123801525250501988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7319460788771021152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55a32cd22319d3745a1827acaae6347a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemDataReference: {fileID: 11400000, guid: bbc370bd71734ab4f9cd6b1bd33bd255, type: 2}
+  weaponDataReference: {fileID: 11400000, guid: cfc8da06fddd108449f1886276ff7398, type: 2}
+  itemTypeEnumField: 0
+  selectedItem:
+    item_ID: 0
+    item_Name: 
+    item_Rarity: 0
+    rarityWait: 1
+    explanation: 
+    BuyingPrice: 0
+    sellingPrice: 0
+    itemPrefab: {fileID: 5658852383598675163, guid: dc444f47fe162cc4aa187ffa44eea6b9, type: 3}
+    itemSprite: {fileID: 2053407573, guid: 998c6f87821c07d41b021395ec60336a, type: 3}
+  selectedWeapon:
+    gun_Image: {fileID: 0}
+    gun_IconImage: {fileID: 0}
+    gun_Name: 
+    gun_ID: 0
+    gun_CanLevel: 1
+    gun_Rarity: 0
+    maxDamage: 0
+    minDamage: 0
+    maxAmmo: 0
+    reloadTime: 1
+    criticalRate: 0
+    shotInterval: 80
+    shotSpeed: 10
+    shotRange: 0.3
+    shotAccuracy: 0.3
+    firstAccuracy: 0.3
+    gunShellPrefab: {fileID: 0}
+    prefabPositionOffsetY: 0
+    shellSize: 1

@@ -36,7 +36,7 @@ public class GameManager : MonoBehaviour
     public Material talkObject;
 
     [Title("スクリプト")]
-    public CameraFollowMouse cameraFollowMouse;         // マウスをカメラが追従する処理
+    public CameraPointController cameraPointController; // マウスをカメラが追従する処理
     public PlayerBodyController playerBodyController;   // プレイヤーのスクリプト
     public PlayerBodyRotation playerBodyRotation;       // プレイヤーの移動の振りむきスクリプト
     public PlayerHandsScript playerHandsScript;         // プレイヤーの移動の腕振りスクリプト
@@ -101,7 +101,7 @@ public class GameManager : MonoBehaviour
         // AIMマークを非表示
         object_AIM.SetActive(false);
         // カメラのマウスへの追従を禁止
-        cameraFollowMouse.enabled = false;
+        cameraPointController.enabled = false;
         // プレイヤーの動きを停止
         Player_StopMove();
         // 射撃禁止
@@ -116,7 +116,7 @@ public class GameManager : MonoBehaviour
         // AIMマークを非表示
         object_AIM.SetActive(true);
         // カメラのマウスへの追従を禁止
-        cameraFollowMouse.enabled = true;
+        cameraPointController.enabled = true;
         // プレイヤーの動きを停止
         Player_CanMove();
         // 射撃禁止

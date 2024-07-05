@@ -307,7 +307,7 @@ public class PlayerBodyController : MonoBehaviour
 
 
             // 現在の速度を目標速度に向けて徐々に変更
-            float newVelocityX = Mathf.MoveTowards(rb.velocity.x, targetVelocityX, 20 * Time.deltaTime);
+            float newVelocityX = Mathf.MoveTowards(rb.velocity.x, targetVelocityX, 40 * Time.deltaTime);
 
             // Rigidbodyの速度を更新
             rb.velocity = new Vector2(newVelocityX, rb.velocity.y);
