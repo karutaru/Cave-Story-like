@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using DG.Tweening; // DOTweenを使用するために追加
 
 public class TreBlockScript : MonoBehaviour
 {
@@ -10,17 +11,39 @@ public class TreBlockScript : MonoBehaviour
     [Tooltip("インスタンシエイトするプレハブのリスト")]
     public GameObject[] rockShard;
 
+    public GameObject miniRock;
+
     [Title("ブロックの耐久値")]
     [Tooltip("ブロックの耐久値")]
     public int treBlock = 100;
+
+    // 初期位置を記録するための変数
+    private Vector3 initialPosition;
+
+    void Start()
+    {
+        // 初期位置を記録
+        initialPosition = transform.position;
+    }
 
     // プレイヤーの弾がぶつかった時
     protected virtual void OnTriggerEnter2D(Collider2D col)
     {
         if (col.CompareTag("Shell") && col.TryGetComponent(out BulletController bulletController))
         {
+            transform.position = initialPosition;
+
             // treBlock変数の数値をbulletController.WeaponDamageの数値分減らす
             treBlock -= bulletController.WeaponDamage;
+
+            // miniRockをインスタンシエイトして1秒後に破壊
+            GameObject miniRockInstance = Instantiate(miniRock, transform.position, Quaternion.identity);
+            Destroy(miniRockInstance, 1f);
+
+            // 現在のTweenを停止してから震えるTweenを開始
+            transform.DOKill(); // 現在のTweenを停止
+            transform.DOShakePosition(0.5f, strength: new Vector3(0.1f, 0.1f, 0), vibrato: 20, randomness: 90, snapping: false, fadeOut: true)
+                     .OnComplete(() => transform.position = initialPosition); // 震えが終わったら初期位置に戻す
 
             // treBlock変数の数値が0以下になったら
             if (treBlock <= 0)

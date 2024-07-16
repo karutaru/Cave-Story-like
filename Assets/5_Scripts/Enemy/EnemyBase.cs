@@ -91,14 +91,21 @@ public class EnemyBase : MonoBehaviour
     public AudioClip idleSE;                    // 立ち止まるSE
     public float walkSoundCounter;              // 足音の鳴る間隔
 
+    //--------------------------システム-------------------------------
+    private bool showGroup;                     // トグル用の変数
+
+    [HideIfGroup("@showGroup == false")]
+    [FoldoutGroup("showGroup")]
     [Header("システム")]
     public LayerMask groundLayer;               // 接地判定用のレイヤー
 
-    //--------------------------動的な変数-------------------------------
-
+    [FoldoutGroup("showGroup")]
     [Header("※変数確認用")]
-    public int currentHP;                       // 現在のHP
+    public int currentHP;
+    [FoldoutGroup("showGroup")]// 現在のHP
     public bool canAttack = false;              // 攻撃が可能か
+    [FoldoutGroup("showGroup")]
+    public Transform target;
 
     //-----------------------------雑多----------------------------------
 
@@ -119,7 +126,7 @@ public class EnemyBase : MonoBehaviour
     protected bool isGrounded = false; // 接地判定
     protected Vector2 direction;
     protected BulletController bulletController;
-    public Transform target;
+    
     protected bool isShaking = false;
 
     protected int walkStateHash;

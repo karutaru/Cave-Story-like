@@ -13,6 +13,7 @@ public class GunShot : MonoBehaviour
     public AudioClip shotSound;
     [SerializeField]
     PlayerBodyController playerController;
+    public GameObject player_GunImage; // 手に持っている銃の画像
     public BulletCountController bulletCountController;
     public Reload reload;
 
@@ -34,7 +35,19 @@ public class GunShot : MonoBehaviour
 
     void Start()
     {
+        // 現在の武器の弾数を設定
         bulletCountController.StartBullets(weaponLevelDataSO.weaponDataList[currentWeaponID].maxAmmo);
+
+        // 現在の武器のスプライトをプレイヤーに設定
+        SpriteRenderer player_GunSpriteRenderer = player_GunImage.GetComponent<SpriteRenderer>();
+        if (player_GunSpriteRenderer != null)
+        {
+            player_GunSpriteRenderer.sprite = DataBase.instance.weaponSO.weaponDataList[currentWeaponID].gun_Image;
+        }
+        else
+        {
+            Debug.LogError("Player SpriteRenderer is not found!");
+        }
     }
 
     private void Update()

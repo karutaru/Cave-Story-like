@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13b75c95f34a00d4e8c04f76b73312e6, type: 3}
+  m_Name: Kantera
+  m_EditorClassIdentifier: 
+  m_AnimatedSprites:
+  - {fileID: -416045734, guid: 081c6efd4188305428c821b786236e50, type: 3}
+  - {fileID: 1308053060, guid: 081c6efd4188305428c821b786236e50, type: 3}
+  - {fileID: 1364111845, guid: 081c6efd4188305428c821b786236e50, type: 3}
+  - {fileID: 1622697801, guid: 081c6efd4188305428c821b786236e50, type: 3}
+  - {fileID: -381714586, guid: 081c6efd4188305428c821b786236e50, type: 3}
+  m_MinSpeed: 10
+  m_MaxSpeed: 12
+  m_AnimationStartTime: 0
+  m_AnimationStartFrame: 0
+  m_TileColliderType: 0

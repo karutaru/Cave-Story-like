@@ -98,7 +98,7 @@ public class BulletController : MonoBehaviour
             // プレイヤーの弾を破壊
             Destroy(this.gameObject);
         }
-        else if (other.CompareTag("Enemy") || other.CompareTag("Breakable"))
+        else if (other.CompareTag("Enemy"))
         {
             //MMFPlayer_Hit.PlayFeedbacks();
             AudioSource.PlayClipAtPoint(GameManager.game.shotHitSE, transform.position);
@@ -111,6 +111,22 @@ public class BulletController : MonoBehaviour
                 // 出血エフェクトを2秒後に消す
                 Destroy(bloodEffect, 2f);
             }
+
+            // EffectScriptのインスタンスを取得し、isDestroyメソッドを呼び出す
+            isDestroy();
+
+            // プレイヤーの弾を破壊
+            Destroy(this.gameObject, 0.01f);
+        }
+        else if (other.CompareTag("Breakable"))
+        {
+            //MMFPlayer_Hit.PlayFeedbacks();
+            AudioSource.PlayClipAtPoint(GameManager.game.shotHitSE, transform.position);
+
+            GameObject miniRockEffect = Instantiate(GameManager.game.miniRockEffectPrefabs, transform.position, Quaternion.identity);
+            miniRockEffect.transform.SetParent(other.transform); // 親オブジェクトを設定
+            // 出血エフェクトを2秒後に消す
+            Destroy(miniRockEffect, 2f);
 
             // EffectScriptのインスタンスを取得し、isDestroyメソッドを呼び出す
             isDestroy();

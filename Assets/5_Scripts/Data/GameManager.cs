@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
     [Title("エフェクト")]
     public GameObject wallEffectPrefab;
     public List<GameObject> bloodEffectPrefabs;
+    public GameObject miniRockEffectPrefabs;
 
     [Title("SE")]
     public AudioClip shotHitSE;
