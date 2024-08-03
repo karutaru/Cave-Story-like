@@ -21,7 +21,6 @@ public class EventPlayer : EventBase
     [Title("イベント設定"), EnumToggleButtons, HideLabel]
     public EventTypeEnum eventTypeEnumField;
 
-
     [ShowIf("eventTypeEnumField", EventTypeEnum.キャラクター)]
     [Title("キャラクター設定"), EnumToggleButtons, HideLabel]
     public GameObject chara_Event;
@@ -37,24 +36,43 @@ public class EventPlayer : EventBase
     [EnumToggleButtons, HideLabel]
     public ChestTypeEnum itemChestTypeEnumField;
 
-    [ShowIf("itemChestTypeEnumField", ChestTypeEnum.直接獲得)]
+    private bool ShowSelectedGetItem() // selected_GetItemの表示非表示処理
+    {
+        return eventTypeEnumField == EventTypeEnum.宝箱 && itemChestTypeEnumField == ChestTypeEnum.直接獲得;
+    }
+
+    [ShowIf(nameof(ShowSelectedGetItem))]
     [LabelText("アイテムの種類"), HideLabel]
     [EnumToggleButtons]
     public ItemTypeEnum itemTypeEnumField;
 
-    [ShowIf("itemTypeEnumField", ItemTypeEnum.アイテム)]
+    // 以下、乱雑なカスタムメソッドの嵐
+    private bool ShowSelectedOneItem() // selected_OneItemの表示非表示処理
+    {
+        return eventTypeEnumField == EventTypeEnum.宝箱 && itemChestTypeEnumField == ChestTypeEnum.直接獲得 && itemTypeEnumField == ItemTypeEnum.アイテム;
+    }
+
+    [ShowIf(nameof(ShowSelectedOneItem))]
     [ValueDropdown("GetOneItemData")]
     public ItemData selected_OneItem;
 
-    [ShowIf("itemTypeEnumField", ItemTypeEnum.武器)]
+    private bool ShowSelectedOneWeapon() // selected_OneWeaponの表示非表示処理
+    {
+        return eventTypeEnumField == EventTypeEnum.宝箱 && itemChestTypeEnumField == ChestTypeEnum.直接獲得 && itemTypeEnumField == ItemTypeEnum.武器;
+    }
+
+    [ShowIf(nameof(ShowSelectedOneWeapon))]
     [ValueDropdown("GetOneWeaponData")]
     public ItemData selected_OneWeapon;
 
-    [ShowIf("itemChestTypeEnumField", ChestTypeEnum.ランダムドロップ)]
+    private bool ShowSelectedRandom() // selected_RandomItemの表示非表示処理
+    {
+        return eventTypeEnumField == EventTypeEnum.宝箱 && itemChestTypeEnumField == ChestTypeEnum.ランダムドロップ;
+    }
+
+    [ShowIf(nameof(ShowSelectedRandom))]
     [ValueDropdown("GetRandomItemData")]
     public ItemData selected_RandomItem;
-
-
 
     private List<ValueDropdownItem<StageData>> GetStageData()
     {
@@ -85,6 +103,7 @@ public class EventPlayer : EventBase
 
         return dropdownItems;
     }
+
     private List<ValueDropdownItem<WeaponData>> GetOneWeaponData()
     {
         List<ValueDropdownItem<WeaponData>> dropdownItems = new List<ValueDropdownItem<WeaponData>>();
@@ -99,6 +118,7 @@ public class EventPlayer : EventBase
 
         return dropdownItems;
     }
+
     private List<ValueDropdownItem<ItemData>> GetRandomItemData()
     {
         List<ValueDropdownItem<ItemData>> dropdownItems = new List<ValueDropdownItem<ItemData>>();
@@ -113,7 +133,6 @@ public class EventPlayer : EventBase
 
         return dropdownItems;
     }
-
 
     protected EventBase eventBase;
 
